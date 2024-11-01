@@ -1,0 +1,139 @@
+backend:
+    name: git-gateway
+    branch: main
+
+local_backend: true
+
+# Change url to a link to the image you want to use, no file paths, must be a URL
+logo_url: "https://www.senoweb.cz/assets/images/senoweb_og_logo_rounded.png"
+locale: cs
+
+# Where should uploaded files be saved
+media_folder: src/assets/images/cms
+
+# Where should media be served, relative to the base of the built site
+public_folder: /assets/images/cms
+
+collections:
+    # SETTINGS CONFIG
+    - label: Nastavení
+      name: settings
+      delete: false
+      editor:
+          preview: false
+      files:
+          - label: Nastavení webu
+            name: website_settings
+            file: src/_data/client.json
+            description: Dovoluje klientovi upravit jeho kontaktní infrormace pomocí default souboru client.json
+            fields:
+                - label: Název podniku
+                  name: name
+                  widget: string
+                  summary: Použito v kartě prohlížeče a odkazech pro sdílení
+
+                - label: Email
+                  name: email
+                  widget: string
+                  summary: Hlavní email, kde vás mohou zákaznici kontaktovat
+
+                - label: Telefonní číslo bez mezer
+                  name: phoneForTel
+                  widget: string
+                  summary: Použito pro klikatelné odkazy k volání. Ve formátu +420xxxxxxxxx
+
+                - label: Telefonní číslo s mezerami
+                  name: phoneFormatted
+                  widget: string
+                  summary: Použito jako viditelný text na stránkách. Ve formátu +420 xxx xxx xxx
+
+                - label: Adresa
+                  name: address
+                  widget: object
+                  fields:
+                      - label: Ulice a č.p.
+                        name: lineOne
+                        widget: string
+
+                      - label: Město
+                        name: city
+                        widget: string
+
+                      - label: PSČ
+                        name: zip
+                        widget: string
+
+                      - label: Google Mapy odkaz
+                        name: mapLink
+                        widget: string
+                        summary: Odkaz pro sdílení adresy vašeho podniku z Google Mapy
+
+                - label: Sociální sítě
+                  name: social
+                  widget: object
+                  fields:
+                      - label: Facebook
+                        name: facebook
+                        widget: string
+
+                      - label: Instagram
+                        name: instagram
+                        widget: string
+
+                      - label: Youtube
+                        name: youtube
+                        widget: string
+
+                      - label: TikTok
+                        name: tiktok
+                        widget: string
+
+                      - label: WhatsApp
+                        name: whatsapp
+                        widget: string
+
+    # BLOG CONFIG
+    - label: Blog
+      name: blog
+      folder: src/content/blog
+      create: true
+      slug: "{{slug}}"
+      fields:
+          - label: Název
+            name: title
+            widget: string
+
+          - label: Krátký název
+            name: shortTitle
+            widget: string
+            hint: Krátký název je použit jako nadpis stránky
+
+          - label: Popis
+            name: description
+            widget: string
+
+          - label: Autor
+            name: author
+            widget: string
+
+          - label: Datum
+            name: date
+            widget: datetime
+
+          - label: Štítky
+            name: tags
+            widget: list
+            default:
+                - post
+
+          - label: Náhledový obrázek
+            name: image
+            widget: image
+
+          - label: Popis obrázku
+            name: imageAlt
+            widget: string
+
+          - label: Obsah
+            name: body
+            widget: markdown

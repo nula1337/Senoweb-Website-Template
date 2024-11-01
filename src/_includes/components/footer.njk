@@ -1,0 +1,133 @@
+<!-- FOOTER -->
+<footer class="w-full py-16 ~px-4/8 bg-white dark:bg-gray-950 border-t border-gray-300 dark:border-gray-600">
+    <div class="container m-auto flex flex-col gap-12">
+        <!-- LOGO + NAVIGATION + CONTACT -->
+        <div class="flex flex-col lg:flex-row justify-between items-center lg:items-start gap-16">
+            <div class="flex flex-col items-center lg:items-start gap-8 lg:gap-12">
+                <img
+                    class="dark:hidden h-14 w-auto"
+                    decoding="async"
+                    loading="lazy"
+                    src="/assets/svgs/bvspeed_logo_black.svg"
+                    alt="BV Speed - logo"
+                    width="205"
+                    height="56">
+
+                <img
+                    class="hidden dark:block h-14 w-auto"
+                    decoding="async"
+                    loading="lazy"
+                    src="/assets/svgs/bvspeed_logo_white.svg"
+                    alt="BV Speed - logo"
+                    width="205"
+                    height="56">
+
+                <!-- NAVIGATION -->
+                <nav class="flex justify-center whitespace-nowrap">
+                    <ul class="flex gap-8">
+                        {% set navPages = collections.all | eleventyNavigation %}
+
+                        {# Loop through all pages with a eleventyNavigation in the frontmatter #}
+                        {% for entry in navPages %}
+
+                            {# Define a hasChild variable to make it easier to test what navigation items are have child dropdown pages #}
+                            {% set hasChild = entry.children.length %}
+                            <li
+                            class="group relative flex items-center{% if hasChild %} dropdown{% endif %}"
+                            {% if hasChild %}
+                            tabindex="0"
+                            {% endif %}>
+                                <a
+                                href="{{ entry.url }}"
+                                class="text-gray-800 dark:text-gray-200 uppercase font-medium
+                                {% if entry.url == page.url or entry.title | lower in page.url %} text-primary dark:text-primary
+                                {% else %} transition-colors duration-300 hover:text-primary{% endif %}"
+                                {% if entry.url == page.url or entry.title | lower in page.url %}
+                                aria-current="page"
+                                {% endif %}>
+                                    {{ entry.title }}
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </nav>
+            </div>
+
+            <!-- CONTACT INFO -->
+            <ul class="flex flex-wrap justify-center items-start gap-8 sm:gap-16">
+                <li class="flex flex-col items-start gap-3">
+                    <!-- ICON -->
+                    <div class="p-3 bg-primary rounded-lg">
+                        <img
+                        src="/assets/svgs/footer/buildings.svg"
+                        alt="Ikona budov"
+                        decoding="async"
+                        loading="lazy"
+                        width="24"
+                        height="24"
+                        draggable="false"/>
+                    </div>
+
+                    <!-- TEXT -->
+                    <div class="flex flex-col gap-2">
+                        <span class="font-medium dark:text-white">BV Speed s.r.o.</span>
+                        <p class="font-work-sans text-sm text-gray-800 dark:text-gray-200">
+                            IČO: 07829442<br/>
+                            DIČ: CZ07829442
+                        <p></div>
+                        </li>
+
+                        <li class="flex flex-col items-start gap-3">
+                            <!-- ICON -->
+                            <div class="p-3 bg-primary rounded-lg">
+                                <img
+                        src="/assets/svgs/footer/geo.svg"
+                        alt="Ikona bodu na mapě"
+                        decoding="async"
+                        loading="lazy"
+                        width="24"
+                        height="24"
+                        draggable="false"/>
+                            </div>
+                            <!-- TEXT -->
+                            <div class="flex flex-col gap-2">
+                                <span class="font-medium dark:text-white">Adresa</span>
+                                <p class="font-work-sans text-sm text-gray-800 dark:text-gray-200">
+                            U Javorky 363,<br/>
+                            560 02 Česká Třebová
+                        <p></div>
+                                </li>
+
+                                <li class="flex flex-col items-start gap-3">
+                                    <!-- ICON -->
+                                    <div class="p-3 bg-primary rounded-lg">
+                                        <img
+                                        src="/assets/svgs/footer/reply-all.svg"
+                                        alt="Ikona odpovědi"
+                                        decoding="async"
+                                        loading="lazy"
+                                        width="24"
+                                        height="24"
+                                        draggable="false"/>
+                                    </div>
+                                    <!-- TEXT -->
+                                    <div class="flex flex-col gap-2">
+                                        <span class="font-medium dark:text-white">Kontakt</span>
+                                        <a class="font-work-sans text-sm text-gray-800 dark:text-gray-200 hover:underline hover:text-black dark:hover:text-white" href="/kontakt">
+                            Kliknutím <br/>
+                            zašlete zprávu
+                        </a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- SEPARATOR -->
+                        <div class="h-px w-full bg-gray-300 dark:bg-gray-600"></div>
+
+                        <!-- CREDITS -->
+                        <span class="font-work-sans text-center text-sm text-gray-600 dark:text-gray-400 font-medium">
+            © 2024 Všechna práva vyhrazena - Vyvinuto na míru od <a class="underline hover:text-black dark:hover:text-white" href="https://www.senoweb.cz" target="_blank">Senoweb.cz</a>
+                        </span>
+                    </div>
+                </footer>

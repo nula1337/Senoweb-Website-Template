@@ -1,0 +1,203 @@
+@import ".\tailwindcss/base.css";
+@import ".\tailwindcss/components.css";
+@import ".\tailwindcss/utilities.css";
+/* oswald-regular - latin-ext */
+@font-face {
+  font-display: swap;
+  /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Oswald';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/oswald-v53-latin-ext-regular.woff2') format('woff2');
+  /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* oswald-500 - latin-ext */
+@font-face {
+  font-display: swap;
+  /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Oswald';
+  font-style: normal;
+  font-weight: 500;
+  src: url('../fonts/oswald-v53-latin-ext-500.woff2') format('woff2');
+  /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* oswald-600 - latin-ext */
+@font-face {
+  font-display: swap;
+  /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Oswald';
+  font-style: normal;
+  font-weight: 600;
+  src: url('../fonts/oswald-v53-latin-ext-600.woff2') format('woff2');
+  /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* work-sans-regular - latin-ext */
+@font-face {
+  font-display: swap;
+  /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Work Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/work-sans-v19-latin-ext-regular.woff2') format('woff2');
+  /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* work-sans-500 - latin-ext */
+@font-face {
+  font-display: swap;
+  /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Work Sans';
+  font-style: normal;
+  font-weight: 500;
+  src: url('../fonts/work-sans-v19-latin-ext-500.woff2') format('woff2');
+  /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+:root {
+  --bg-planet-bright: #ecd590;
+  --bg-polygon-bright: #f2a54c;
+  --bg-planet-shadow: #828894;
+  --bg-planet-lightshadow: #3a3a3a;
+  --dot-size: 0.25rem;
+}
+html body label.darkmode-container {
+  height: 100%;
+  cursor: pointer;
+  position: relative;
+  /* To make outline on mobile invisible */
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+}
+html body label.darkmode-container input[type="checkbox"] {
+  height: 0;
+  width: 0;
+  visibility: hidden;
+  position: absolute;
+}
+html body label.darkmode-container .planet {
+  display: block;
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 50%;
+  overflow: hidden;
+  background: radial-gradient(3.75em, 99%, transparent 100%);
+  background-color: var(--bg-planet-bright);
+  background-repeat: no-repeat;
+  position: relative;
+  will-change: background;
+  transition: all 400ms ease;
+  z-index: 11;
+  /* Safari transition issue */
+  backface-visibility: hidden;
+  transform: translate3d(0, 0, 0);
+}
+html body label.darkmode-container .planet::after {
+  content: "";
+  background-color: var(--bg-planet-shadow);
+  width: 1.25rem;
+  height: 1.25rem;
+  position: absolute;
+  border-radius: 50%;
+  will-change: opacity, transform, background-color;
+  opacity: 0;
+  transform: translate(2em, -2em);
+  transition: opacity 400ms ease, transform 400ms ease, background-color 400ms ease;
+}
+html body label.darkmode-container .elements {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: transform 400ms ease;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+html body label.darkmode-container .elements svg {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  opacity: 1;
+  transition: transform 400ms ease, opacity 200ms ease, width 200ms ease, height 200ms ease;
+}
+html body label.darkmode-container .elements svg polygon {
+  fill: var(--bg-polygon-bright);
+  transition: fill 400ms ease;
+}
+html body label.darkmode-container .elements svg:first-child {
+  transform: translate(0, -0.8rem);
+}
+html body label.darkmode-container .elements svg:nth-child(2) {
+  transform: translate(0.55em, -0.55em) rotate(45deg);
+}
+html body label.darkmode-container .elements svg:nth-child(3) {
+  transform: translate(0.8em, 0) rotate(90deg);
+}
+html body label.darkmode-container .elements svg:nth-child(4) {
+  transform: translate(0.55em, 0.55em) rotate(135deg);
+}
+html body label.darkmode-container .elements svg:nth-child(5) {
+  transform: translate(0, 0.8em) rotate(180deg);
+}
+html body label.darkmode-container .elements svg:nth-child(6) {
+  transform: translate(-0.55em, 0.55em) rotate(225deg);
+}
+html body label.darkmode-container .elements svg:nth-child(7) {
+  transform: translate(-0.8em, 0) rotate(270deg);
+}
+html body label.darkmode-container .elements svg:nth-child(8) {
+  transform: translate(-0.55em, -0.55em) rotate(315deg);
+}
+html body label.darkmode-container .elements svg:nth-child(9) {
+  transform: translate(0em, -1em);
+  opacity: 0;
+}
+html body label.darkmode-container .elements svg:nth-child(10) {
+  transform: translate(0em, -1.5em);
+  opacity: 0;
+}
+html body label.darkmode-container .elements svg:nth-child(11) {
+  transform: translate(0em, -1.25em);
+  opacity: 0;
+}
+html.dark label.darkmode-container input[type="checkbox"] + .planet {
+  --bg-planet-bright: #D7D7D8;
+}
+html.dark label.darkmode-container input[type="checkbox"] + .planet::after {
+  opacity: 1;
+  transform: translate(0.4em, -0.3em);
+}
+html.dark label.darkmode-container input[type="checkbox"] ~ .elements {
+  transform: rotate(180deg);
+  z-index: 12;
+}
+html.dark label.darkmode-container input[type="checkbox"] ~ .elements svg {
+  transform: translate(0.5em, 1em);
+  opacity: 0;
+}
+html.dark label.darkmode-container input[type="checkbox"] ~ .elements svg:nth-child(9) {
+  transform: translate(-0.2em, 0.4em);
+  width: 0.2em;
+  height: 0.2em;
+  opacity: 1;
+}
+html.dark label.darkmode-container input[type="checkbox"] ~ .elements svg:nth-child(9) circle {
+  fill: var(--bg-planet-lightshadow);
+}
+html.dark label.darkmode-container input[type="checkbox"] ~ .elements svg:nth-child(10) {
+  transform: translate(-0.35em, 0);
+  width: 0.45em;
+  height: 0.45em;
+  opacity: 1;
+}
+html.dark label.darkmode-container input[type="checkbox"] ~ .elements svg:nth-child(10) circle {
+  fill: var(--bg-planet-lightshadow);
+}
+html.dark label.darkmode-container input[type="checkbox"] ~ .elements svg:nth-child(11) {
+  transform: translate(0, 0.2em);
+  width: 0.25em;
+  height: 0.25em;
+  opacity: 1;
+}
+html.dark label.darkmode-container input[type="checkbox"] ~ .elements svg:nth-child(11) circle {
+  fill: var(--bg-planet-lightshadow);
+}
