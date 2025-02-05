@@ -1,6 +1,7 @@
+# yaml-language-server: $schema=./schema.json
 backend:
-    name: git-gateway
-    branch: main
+  name: git-gateway
+  branch: main
 
 local_backend: true
 
@@ -15,125 +16,126 @@ media_folder: src/assets/images/cms
 public_folder: /assets/images/cms
 
 collections:
-    # SETTINGS CONFIG
-    - label: Nastavení
-      name: settings
-      delete: false
-      editor:
-          preview: false
-      files:
-          - label: Nastavení webu
-            name: website_settings
-            file: src/_data/client.json
-            description: Dovoluje klientovi upravit jeho kontaktní infrormace pomocí default souboru client.json
+  # SETTINGS CONFIG
+  - label: Nastavení
+    name: settings
+    delete: false
+    editor:
+      preview: false
+
+    files:
+      - label: Nastavení webu
+        name: website_settings
+        file: src/_data/client.json
+        description: Dovoluje klientovi upravit jeho kontaktní infrormace pomocí default souboru client.json
+        fields:
+          - label: Název podniku
+            name: name
+            widget: string
+            summary: Použito v kartě prohlížeče a odkazech pro sdílení
+
+          - label: Email
+            name: email
+            widget: string
+            summary: Hlavní email, kde vás mohou zákaznici kontaktovat
+
+          - label: Telefonní číslo bez mezer
+            name: phoneForTel
+            widget: string
+            summary: Použito pro klikatelné odkazy k volání. Ve formátu +420xxxxxxxxx
+
+          - label: Telefonní číslo s mezerami
+            name: phoneFormatted
+            widget: string
+            summary: Použito jako viditelný text na stránkách. Ve formátu +420 xxx xxx xxx
+
+          - label: Adresa
+            name: address
+            widget: object
             fields:
-                - label: Název podniku
-                  name: name
-                  widget: string
-                  summary: Použito v kartě prohlížeče a odkazech pro sdílení
+              - label: Ulice a č.p.
+                name: lineOne
+                widget: string
 
-                - label: Email
-                  name: email
-                  widget: string
-                  summary: Hlavní email, kde vás mohou zákaznici kontaktovat
+              - label: Město
+                name: city
+                widget: string
 
-                - label: Telefonní číslo bez mezer
-                  name: phoneForTel
-                  widget: string
-                  summary: Použito pro klikatelné odkazy k volání. Ve formátu +420xxxxxxxxx
+              - label: PSČ
+                name: zip
+                widget: string
 
-                - label: Telefonní číslo s mezerami
-                  name: phoneFormatted
-                  widget: string
-                  summary: Použito jako viditelný text na stránkách. Ve formátu +420 xxx xxx xxx
+              - label: Google Mapy odkaz
+                name: mapLink
+                widget: string
+                summary: Odkaz pro sdílení adresy vašeho podniku z Google Mapy
 
-                - label: Adresa
-                  name: address
-                  widget: object
-                  fields:
-                      - label: Ulice a č.p.
-                        name: lineOne
-                        widget: string
+          - label: Sociální sítě
+            name: social
+            widget: object
+            fields:
+              - label: Facebook
+                name: facebook
+                widget: string
 
-                      - label: Město
-                        name: city
-                        widget: string
+              - label: Instagram
+                name: instagram
+                widget: string
 
-                      - label: PSČ
-                        name: zip
-                        widget: string
+              - label: Youtube
+                name: youtube
+                widget: string
 
-                      - label: Google Mapy odkaz
-                        name: mapLink
-                        widget: string
-                        summary: Odkaz pro sdílení adresy vašeho podniku z Google Mapy
+              - label: TikTok
+                name: tiktok
+                widget: string
 
-                - label: Sociální sítě
-                  name: social
-                  widget: object
-                  fields:
-                      - label: Facebook
-                        name: facebook
-                        widget: string
+              - label: WhatsApp
+                name: whatsapp
+                widget: string
 
-                      - label: Instagram
-                        name: instagram
-                        widget: string
+  # BLOG CONFIG
+  - label: Blog
+    name: blog
+    folder: src/content/blog
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - label: Název
+        name: title
+        widget: string
 
-                      - label: Youtube
-                        name: youtube
-                        widget: string
+      - label: Krátký název
+        name: shortTitle
+        widget: string
+        hint: Krátký název je použit jako nadpis stránky
 
-                      - label: TikTok
-                        name: tiktok
-                        widget: string
+      - label: Popis
+        name: description
+        widget: string
 
-                      - label: WhatsApp
-                        name: whatsapp
-                        widget: string
+      - label: Autor
+        name: author
+        widget: string
 
-    # BLOG CONFIG
-    - label: Blog
-      name: blog
-      folder: src/content/blog
-      create: true
-      slug: "{{slug}}"
-      fields:
-          - label: Název
-            name: title
-            widget: string
+      - label: Datum
+        name: date
+        widget: datetime
 
-          - label: Krátký název
-            name: shortTitle
-            widget: string
-            hint: Krátký název je použit jako nadpis stránky
+      - label: Štítky
+        name: tags
+        widget: list
+        default:
+          - post
 
-          - label: Popis
-            name: description
-            widget: string
+      - label: Náhledový obrázek
+        name: image
+        widget: image
 
-          - label: Autor
-            name: author
-            widget: string
+      - label: Popis obrázku
+        name: imageAlt
+        widget: string
 
-          - label: Datum
-            name: date
-            widget: datetime
-
-          - label: Štítky
-            name: tags
-            widget: list
-            default:
-                - post
-
-          - label: Náhledový obrázek
-            name: image
-            widget: image
-
-          - label: Popis obrázku
-            name: imageAlt
-            widget: string
-
-          - label: Obsah
-            name: body
-            widget: markdown
+      - label: Obsah
+        name: body
+        widget: markdown
