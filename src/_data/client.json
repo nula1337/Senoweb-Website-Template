@@ -1,0 +1,20 @@
+{
+  "name": "Senoweb",
+  "email": "info@senoweb.cz",
+  "phoneForTel": "+420731736631",
+  "phoneFormatted": "+420 731 736 631",
+  "address": {
+    "lineOne": "Třebovská 123",
+    "city": "Ústí nad Orlicí",
+    "zip": "562 03",
+    "mapLink": "https://maps.app.goo.gl/GQmwqUWKd6JMZi8Y7"
+  },
+  "social": {
+    "facebook": "https://facebook.com/",
+    "instagram": "https://www.instagram.com/",
+    "youtube": "https://www.youtube.com/",
+    "tiktok": "https://www.tiktok.com/",
+    "whatsapp": "https://wa.me/"
+  },
+  "domain": "https://www.senoweb.cz"
+}
