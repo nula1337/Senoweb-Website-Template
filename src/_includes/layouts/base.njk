@@ -26,7 +26,7 @@
     <link rel="icon" type="image/svg+xml" href="/assets/favicons/favicon.svg"/>
     <link rel="shortcut icon" href="/assets/favicons/favicon.ico"/>
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicons/apple-touch-icon.png"/>
-    <meta name="apple-mobile-web-app-title" content="BV Speed s.r.o."/>
+    <meta name="apple-mobile-web-app-title" content="{{ client.name }}"/>
     <link rel="manifest" href="/assets/favicons/site.webmanifest"/>
 
     <!-- Preloads -->
@@ -48,7 +48,13 @@
 
     {% block head %}{% endblock %}
 
-    <title>{{ title }}</title>
+    <title>
+      {% if page.url === "/" %}
+        {{ title }} | {{ client.name }} | {{ client.address.city }}
+      {% else %}
+        {{ title }} | {{ client.name }}
+      {% endif %}
+    </title>
   </head>
 
   <body class="group/body{% if page.url == '/' %} home{% else %} interior{% endif %}">
