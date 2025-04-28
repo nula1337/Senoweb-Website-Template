@@ -10,7 +10,7 @@
 		"build:tailwind": "tailwindcss -i ./src/assets/css/input.css -o ./src/assets/css/main.css --minify --postcss",
 		"watch:cms": "npx decap-server",
 		"start": "del-cli ./public --force && run-p watch:*",
-		"build": "run-s build:*"
+		"build": "npm run build:tailwind && npm run build:eleventy"
 	},
 	"repository": {
 		"type": "git",
