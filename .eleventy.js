@@ -9,10 +9,12 @@ const pluginImages = require("@codestitchofficial/eleventy-plugin-sharp-images")
 const pluginMinifier = require("@codestitchofficial/eleventy-plugin-minify");
 const pluginNavigation = require("@11ty/eleventy-navigation");
 const pluginSitemap = require("@quasibit/eleventy-plugin-sitemap");
+const { EleventyI18nPlugin } = require("@11ty/eleventy");
 
 // ⚙️ Configuration Files
 const configSitemap = require("./src/config/plugins/sitemap");
 const configImages = require("./src/config/plugins/images");
+const configI18n = require("./src/config/plugins/i18n");
 
 // 🔧 Processing Functions
 const javascript = require("./src/config/processors/javascript");
@@ -62,6 +64,13 @@ module.exports = function (eleventyConfig) {
      * Creates sitemap.xml automatically using domain from _data/client.json
      * Documentation: https://github.com/quasibit/eleventy-plugin-sitemap
      */
+    eleventyConfig.addPlugin(EleventyI18nPlugin, configI18n);
+
+    /*
+    * 🌍 Internationalization (i18n) Plugin
+    * Adds support for translating content and generating localized URLs
+    * Documentation: https://www.11ty.dev/docs/plugins/i18n/
+    */
     eleventyConfig.addPlugin(pluginSitemap, configSitemap);
 
     /*
@@ -114,6 +123,15 @@ module.exports = function (eleventyConfig) {
      */
     eleventyConfig.addFilter("limit", function (array, limit) {
         return array.slice(0, limit);
+    });
+
+    /*
+     * 🏷️ Page Language Filter
+     * Filters collections by the current page language for i18n compatibility
+     * Usage: {{ collections.all | pageLang | eleventyNavigation }}
+     */
+    eleventyConfig.addFilter("pageLang", function (value) {
+        return value.filter(item => item.page.lang === this.page.lang)
     });
 
     // ═════════════════════════════════════════════════════════════════════════
