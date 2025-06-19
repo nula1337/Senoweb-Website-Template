@@ -34,47 +34,59 @@
     </head>
     <body>
         <!-- Include the script that builds the page and powers Decap CMS -->
-        <script src="https://unpkg.com/decap-cms@^3.5.0/dist/decap-cms.js"></script>
+        <script src="https://unpkg.com/decap-cms@^3.6.4/dist/decap-cms.js"></script>
 
         <!-- Documentation: https://decapcms.org/docs/customization/ -->
         <script type="text/babel">
             const BlogPreview = createClass({
                 render: function () {
                     // Get all the props from the collection
-                    const data = this.props.entry.get("data").toJS();
-                    const { title, author, date: rawDate, image } = data;
-                    const date = typeof rawDate === "string" ? new Date(rawDate) : rawDate;
+                    const data = this
+                        .props
+                        .entry
+                        .get("data")
+                        .toJS();
+                    const {title, author, date: rawDate, image} = data;
+                    const date = typeof rawDate === "string"
+                        ? new Date(rawDate)
+                        : rawDate;
                     let formattedDate = "";
                     if (date) {
-                            formattedDate = Intl.DateTimeFormat("en-US", {
-                            month: "long",
-                            day: "numeric",
-                            year: "numeric"
-                        }).format(date);
+                        formattedDate = Intl
+                            .DateTimeFormat("en-US", {
+                                month: "long",
+                                day: "numeric",
+                                year: "numeric"
+                            })
+                            .format(date);
                     }
 
-                    const cover = this.props.getAsset(image);
+                    const cover = this
+                        .props
+                        .getAsset(image);
 
                     // Create elements for the preview pane in JSX, to be processed by Babel
-                    return (
-                        <div className="blog">
-                            <h1 className="title">{title}</h1>
+                    return (<div className="blog">
+                        <h1 className="title">{title}</h1>
 
-                            <div className="metadata">
-                                <span className="author">{author}</span>
-                                <span className="dot"></span>
-                                <span className="date">{formattedDate}</span>
-                            </div>
-
-                            <img src={cover?.toString()} className="cover" alt="Cover" />
-
-                            <hr className="divider" />
-
-                            <div className="markdown">
-                                {this.props.widgetFor("body")}
-                            </div>
+                        <div className="metadata">
+                            <span className="author">{author}</span>
+                            <span className="dot"></span>
+                            <span className="date">{formattedDate}</span>
                         </div>
-                    );
+
+                        <img src={cover?.toString()} className="cover" alt="Cover"/>
+
+                        <hr className="divider"/>
+
+                        <div className="markdown">
+                            {
+                                this
+                                    .props
+                                    .widgetFor("body")
+                            }
+                        </div>
+                    </div>);
                 }
             });
 

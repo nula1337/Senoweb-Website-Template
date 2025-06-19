@@ -13,11 +13,10 @@ module.exports = {
     screens: screens,
     extend: {
       fontFamily: {
-        "sans": ["Oswald", defaultTheme.fontFamily.sans],
-        "work-sans": ["Work Sans", defaultTheme.fontFamily.sans]
+        "sans": ["Poppins", defaultTheme.fontFamily.sans]
       },
       colors: {
-        primary: "#3B82F6"
+        primary: "#E11D48"
       }
     },
   },

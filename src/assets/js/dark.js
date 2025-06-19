@@ -1,43 +1,42 @@
 //
 //    The Dark Mode System
 //
-const html = document.documentElement
-const darkmodeSwitch = document.querySelector("#darkmode-switch")
-
 
 // helper functions to toggle dark mode
 function enableDarkMode() {
-    html.classList.add('dark');
-    localStorage.setItem('theme', 'dark');
+  document.documentElement.classList.add("dark");
+  document.documentElement.classList.add('cc--darkmode'); // For cookie consent banner
+  localStorage.setItem("theme", "dark");
 }
 function disableDarkMode() {
-    html.classList.remove('dark');
-    localStorage.setItem('theme', 'light');
+  document.documentElement.classList.remove("dark");
+  document.documentElement.classList.remove('cc--darkmode'); // For cookie consent banner
+  localStorage.setItem("theme", "light");
 }
 
 // determines a new users dark mode preferences
-function detectColourScheme() {
+function detectColorScheme() {
   // default to the light theme
-  let theme = 'light';
+  let theme = "light";
 
-  // check the localstorage for a saved 'theme' variable. if it's there, the user has visited before, so apply the necessary theme choices
-  if (localStorage.getItem('theme')) {
-    theme = localStorage.getItem('theme');
+  // check localStorage for a saved 'theme' variable. if it's there, the user has visited before, so apply the necessary theme choices
+  if (localStorage.getItem("theme")) {
+    theme = localStorage.getItem("theme");
   }
   // if it's not there, check to see if the user has applied dark mode preferences themselves in the browser
-  else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-    theme = 'dark';
+  else if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
+    theme = "dark";
   }
 
   // if there is no preference set, the default of light will be used. apply accordingly
-  theme === 'dark' ? enableDarkMode() : disableDarkMode();
+  theme === "dark" ? enableDarkMode() : disableDarkMode();
 }
 
 // run on page load
-detectColourScheme();
+detectColorScheme();
 
 // add event listener to the dark mode button toggle
-darkmodeSwitch.addEventListener("change", (event) => {
-  // on click, check localstorage for the dark mode value, use to apply the opposite of what's saved
-  localStorage.getItem('theme') === 'light' ? enableDarkMode(event) : disableDarkMode(event);
+document.getElementById("dark-mode-toggle").addEventListener("click", () => {
+  // on click, check localStorage for the dark mode value, use to apply the opposite of what's saved
+  localStorage.getItem("theme") === "light" ? enableDarkMode() : disableDarkMode();
 });

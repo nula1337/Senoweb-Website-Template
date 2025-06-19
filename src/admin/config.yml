@@ -15,102 +15,6 @@ media_folder: "src/assets/images/cms"
 public_folder: "/assets/images/cms"
 
 collections:
-  # SETTINGS CONFIG
-  - label: "Nastavení"
-    name: "settings"
-    delete: false
-    editor:
-      preview: false
-    files:
-      - label: "Nastavení webu"
-        name: "website_settings"
-        file: "src/_data/client.json"
-        description: "Dovoluje klientovi upravit jeho kontaktní infrormace pomocí default souboru client.json"
-        fields:
-          - {
-              label: "Název podniku",
-              name: "name",
-              widget: "string",
-              hint: "Použito v kartě prohlížeče a odkazech pro sdílení",
-            }
-          - {
-              label: "Email",
-              name: "email",
-              widget: "string",
-              hint: "Hlavní email, kde vás mohou zákaznici kontaktovat",
-            }
-          - {
-              label: "Telefonní číslo bez mezer",
-              name: "phoneForTel",
-              widget: "string",
-              hint: "Použito pro klikatelné odkazy k volání. Ve formátu +420xxxxxxxxx",
-            }
-          - {
-              label: "Telefonní číslo s mezerami",
-              name: "phoneFormatted",
-              widget: "string",
-              hint: "Použito jako viditelný text na stránkách. Ve formátu +420 xxx xxx xxx",
-            }
-          - label: "Adresa"
-            name: "address"
-            widget: "object"
-            fields:
-              - {
-                  label: "Ulice a č.p.",
-                  name: lineOne,
-                  widget: string,
-                  required: false,
-                }
-              - {
-                  label: "Město",
-                  name: "city",
-                  widget: "string",
-                  required: false,
-                }
-              - { label: "PSČ", name: "zip", widget: "string", required: false }
-              - {
-                  label: "Google Mapy odkaz",
-                  name: "mapLink",
-                  widget: "string",
-                  hint: "Odkaz pro sdílení adresy vašeho podniku z Google Mapy",
-                  required: false,
-                }
-
-          - label: "Sociální sítě"
-            name: "social"
-            widget: "object"
-            fields:
-              - {
-                  label: "Facebook",
-                  name: "facebook",
-                  widget: "string",
-                  required: false,
-                }
-              - {
-                  label: "Instagram",
-                  name: "instagram",
-                  widget: "string",
-                  required: false,
-                }
-              - {
-                  label: "Youtube",
-                  name: "youtube",
-                  widget: "string",
-                  required: false,
-                }
-              - {
-                  label: "TikTok",
-                  name: "tiktok",
-                  widget: "string",
-                  required: false,
-                }
-              - {
-                  label: "WhatsApp",
-                  name: "whatsapp",
-                  widget: "string",
-                  required: false,
-                }
-
   # BLOG CONFIG
   - label: "Blog"
     name: "blog"
@@ -124,11 +28,26 @@ collections:
           name: "url",
           widget: "string",
           hint: "Určete, kam bude stránka zapsána. Pokud použijete „Blogový příspěvek“, bude příspěvek přístupný z „blog/blogovy-prispevek“.",
+          pattern:
+            [
+              "^[A-Za-z0-9 ]+(?:-[A-Za-z0-9 ]+)*$",
+              "Pouze písmena (A-Z, a-z), číslice a pomlčky (-). Žádná lomítka ani speciální znaky.",
+            ],
         }
-      - { label: "Popis", name: "description", widget: "string" }
+      - {
+          label: "Popis",
+          name: "description",
+          widget: "string",
+          hint: "Kratší popis blogového příspěvku, který se zobrazuje na náhledech příspěvků",
+        }
       - { label: "Autor", name: "author", widget: "string" }
       - { label: "Datum", name: "date", widget: "datetime" }
       - { label: "Štítky", name: "tags", widget: "list", default: ["post"] }
-      - { label: "Náhledový obrázek", name: "image", widget: "image" }
+      - {
+          label: "Náhledový obrázek",
+          name: "image",
+          widget: "image",
+          choose_url: false, # Only allow local images - for image optimization reasons
+        }
       - { label: "Popis obrázku", name: "imageAlt", widget: "string" }
       - { label: "Obsah", name: "body", widget: "markdown" }

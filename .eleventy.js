@@ -36,7 +36,7 @@ module.exports = function (eleventyConfig) {
      * - JavaScript: Compiled with esbuild for modern bundling
      */
     eleventyConfig.on("eleventy.after", javascript);
-    
+
     // ═════════════════════════════════════════════════════════════════════════
     // PLUGINS
     // Extend Eleventy with additional functionality
@@ -55,7 +55,7 @@ module.exports = function (eleventyConfig) {
      * Enables hierarchical navigation structure via front matter
      * Documentation: https://www.11ty.dev/docs/plugins/navigation/
      */
-    eleventyConfig.addPlugin(pluginEleventyNavigation);
+    eleventyConfig.addPlugin(pluginNavigation);
 
     /*
      * 🗺️ Sitemap Generation
