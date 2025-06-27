@@ -10,22 +10,22 @@ eleventyExcludeFromCollections: true
     <head>
         <!-- Standard meta tags -->
         <meta charset="UTF-8">
-    
+
         <!-- Ensures the viewport widths are defined correctly and work on all devices (esp. mobile) -->
         <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    
+
         <!-- Disable indexing for this page -->
         <meta name="robots" content="noindex, nofollow">
-    
+
         <!-- Main stylesheet -->
         <link rel="stylesheet" href="/assets/css/main.css">
 
-        <title>Děkujeme za odeslání formuláře - {{ client.name }}</title>
+        <title>Děkujeme za odeslání formuláře | {{ client.name }}</title>
     </head>
-    
+
     <body>
         <!-- FORM SUCCESS MESSAGE -->
-        <section class="relative px-4 sm:px-8 py-32 bg-neutral-950 h-screen w-screen">
+        <section class="relative py-24 ~px-4/8 bg-neutral-950 h-screen w-screen">
             <div class="container m-auto flex justify-center items-center h-full">
                 <div class=" p-8 bg-white rounded-xl">
                     <h1 class="text-xl text-neutral-950 font-semibold">Děkujeme!</h1>
@@ -44,17 +44,19 @@ eleventyExcludeFromCollections: true
             <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-end gap-2">
                 <p class="-mb-px text-sm text-neutral-300 leading-none">powered by</p>
                 <a aria-label="Kliknutím přejdete stránku www.senoweb.cz" href="https://www.senoweb.cz/" target="_blank">
-                    <img class="h-4 w-auto" decoding="async" loading="eager" src="/assets/svgs/senoweb_logo_white.svg" alt="Senoweb bílé logo" width="170" height="24">
+                    <img class="h-4 w-auto" decoding="async" loading="eager" src="https://www.senoweb.cz/assets/svgs/senoweb_logo_white.svg" alt="Senoweb bílé logo" width="170" height="24">
                 </a>
             </div>
 
             <script>
-                (function() {
-                  if (document.referrer && document.location.host && document.referrer.match(new RegExp("^https?://" + document.location.host))) {
-                    document.getElementById("back-link").setAttribute("href", document.referrer);
-                  }
+                (function () {
+                    if (document.referrer && document.location.host && document.referrer.match(new RegExp("^https?://" + document.location.host))) {
+                        document
+                            .getElementById("back-link")
+                            .setAttribute("href", document.referrer);
+                    }
                 })();
-              </script>
+            </script>
         </section>
     </body>
 </html>
