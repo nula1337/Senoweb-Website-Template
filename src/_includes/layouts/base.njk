@@ -42,7 +42,7 @@
 
     {% block head %}{% endblock %}
 
-    <title>{{ title }}</title>
+    <title>{{ title }} | {{ client.name }}</title>
   </head>
 
   <body class="group/body{% if page.url == '/' %} home{% else %} interior{% endif %}">

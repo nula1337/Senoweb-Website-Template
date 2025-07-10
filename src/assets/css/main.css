@@ -1392,8 +1392,20 @@ select {
   margin-bottom: 0px;
 }
 
+.mb-2 {
+  margin-bottom: 0.5rem;
+}
+
+.mb-4 {
+  margin-bottom: 1rem;
+}
+
 .mb-6 {
   margin-bottom: 1.5rem;
+}
+
+.ml-8 {
+  margin-left: 2rem;
 }
 
 .mt-2 {
@@ -1452,6 +1464,10 @@ select {
   width: 100vw;
 }
 
+.max-w-2xl {
+  max-width: 42rem;
+}
+
 .max-w-4xl {
   max-width: 56rem;
 }
@@ -1479,6 +1495,10 @@ select {
 
 .resize {
   resize: both;
+}
+
+.list-disc {
+  list-style-type: disc;
 }
 
 .flex-col {
@@ -1523,6 +1543,12 @@ select {
 
 .gap-8 {
   gap: 2rem;
+}
+
+.space-y-1 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(0.25rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(0.25rem * var(--tw-space-y-reverse));
 }
 
 .scroll-smooth {
@@ -1657,6 +1683,11 @@ select {
   color: rgb(209 213 219 / var(--tw-text-opacity, 1));
 }
 
+.text-gray-800 {
+  --tw-text-opacity: 1;
+  color: rgb(31 41 55 / var(--tw-text-opacity, 1));
+}
+
 .text-neutral-300 {
   --tw-text-opacity: 1;
   color: rgb(212 212 212 / var(--tw-text-opacity, 1));
@@ -1713,6 +1744,16 @@ select {
 .\~text-2xl\/4xl {
   font-size: clamp(1.5rem,0.96rem + 1.34vw,2.25rem)/* fluid type from 1.5rem at 40rem to 2.25rem at 96rem */;
   line-height: clamp(2rem,1.64rem + 0.89vw,2.5rem)/* fluid from 2rem at 40rem to 2.5rem at 96rem */;
+}
+
+.\~text-sm\/base {
+  font-size: clamp(0.875rem,0.786rem + 0.223vw,1rem)/* fluid type from 0.875rem at 40rem to 1rem at 96rem */;
+  line-height: clamp(1.25rem,1.07rem + 0.45vw,1.5rem)/* fluid from 1.25rem at 40rem to 1.5rem at 96rem */;
+}
+
+.\~text-xl\/2xl {
+  font-size: clamp(1.25rem,1.07rem + 0.45vw,1.5rem)/* fluid type from 1.25rem at 40rem to 1.5rem at 96rem */;
+  line-height: clamp(1.75rem,1.57rem + 0.45vw,2rem)/* fluid from 1.75rem at 40rem to 2rem at 96rem */;
 }
 
 .\~px-4\/8 {
@@ -2128,6 +2169,11 @@ html {
 .dark\:bg-slate-950:where(.dark, .dark *) {
   --tw-bg-opacity: 1;
   background-color: rgb(2 6 23 / var(--tw-bg-opacity, 1));
+}
+
+.dark\:text-gray-200:where(.dark, .dark *) {
+  --tw-text-opacity: 1;
+  color: rgb(229 231 235 / var(--tw-text-opacity, 1));
 }
 
 .dark\:text-slate-300:where(.dark, .dark *) {
