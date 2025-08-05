@@ -1,7 +1,7 @@
 // Select DOM elements
 const bodyElement = document.querySelector("body");
-const navbarMenu = document.querySelector("#navigation");
-const hamburgerMenu = document.querySelector("#navigation .toggle");
+const navbarMenu = document.querySelector("header");
+const hamburgerMenu = document.querySelector("header #mobile-menu-toggle");
 
 // Function to toggle the aria-expanded attribute
 function toggleAriaExpanded(element) {
