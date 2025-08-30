@@ -21,7 +21,7 @@ collections:
   # BLOG CONFIG
   - label: "Blog"
     name: "blog"
-    folder: "src/content/blog"
+    folder: "src/content/cms/blog"
     create: true
     slug: "{{year}}-{{month}}-{{day}}_{{slug}}"
     fields:
@@ -45,12 +45,17 @@ collections:
         }
       - { label: "Autor", name: "author", widget: "string" }
       - { label: "Datum", name: "date", widget: "datetime" }
-      - { label: "Štítky", name: "tags", widget: "hidden", default: ["post"] }
       - {
           label: "Náhledový obrázek",
           name: "image",
           widget: "image",
           choose_url: false, # Only allow local images - for image optimization reasons
         }
-      - { label: "Popis obrázku", name: "imageAlt", widget: "string" }
+      - {
+          label: "Popis obrázku",
+          name: "imageAlt",
+          widget: "string",
+          hint: "Popište, co je na obrázku. Slouží k validnímu SEO příspěvku.",
+        }
       - { label: "Obsah", name: "body", widget: "markdown" }
+      - { label: "Štítky", name: "tags", widget: "hidden", default: ["post"] }
