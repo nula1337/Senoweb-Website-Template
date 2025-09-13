@@ -134,6 +134,23 @@ module.exports = function (eleventyConfig) {
         return value.filter(item => item.page.lang === this.page.lang)
     });
 
+    /*
+     * 🔍 Property Equality Filter
+     * Filters a collection based on a specific property and its exact value.
+     * Useful for filtering items like adopted animals, specific breeds, etc.
+     * Usage: {{ collections.adoption | where("adopted", true) }}
+     */
+    eleventyConfig.addFilter("where", function (collection, propName, value) {
+        if (!Array.isArray(collection)) return [];
+        return collection.filter((item) => {
+            // Get the value from frontmatter/data
+            const propValue = item.data?.[propName];
+
+            // Support booleans, strings, numbers
+            return propValue === value;
+        });
+    });
+
     // ═════════════════════════════════════════════════════════════════════════
     // SHORTCODES
     // Generate dynamic content with JavaScript
