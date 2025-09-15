@@ -22,6 +22,13 @@ Hlavní změny oproti původní šabloně:
 - 🔧 **Snadný vývoj** – připravené skripty pro build a lokální server.
 - 🚀 **Netlify podpora** – jednoduché nasazení s využitím pluginů.
 
+
+## Požadavky
+
+- [Node.js](https://nodejs.org/) (doporučeno LTS)
+- [npm](https://www.npmjs.com/)
+
+
 ## Instalace
 
 1. Naklonujte repozitář:
@@ -54,3 +61,19 @@ npm run build
 - HTML soubory jsou generovány pomocí Eleventy do složky `public`.
 - CSS je minifikováno a optimalizováno pomocí Tailwind + PostCSS + CSSNano.
 - Obrázky jsou optimalizovány pomocí pluginů Sharp.
+
+
+## Struktura projektu
+
+```
+.
+├── src/ # Zdrojové soubory
+│ ├── _includes/ # Šablony a partials pro Eleventy
+│ ├── assets/ # CSS, JS, obrázky
+│ └── content/ # Obsah spravovaný přes CMS
+├── public/ # Výstupní složka (build)
+├── .eleventy.js # Konfigurace Eleventy
+├── tailwind.config.js # Konfigurace Tailwindu
+├── package.json
+└── netlify.toml # Konfigurace pro Netlify
+```
