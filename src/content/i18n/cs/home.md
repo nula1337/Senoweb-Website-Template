@@ -1,7 +1,7 @@
 ---
 layout: "pages/home.njk"
 
-title: 'Efektivní weby na míru'
+title: 'Efektivní'
 description: 'V Senoweb se specializujeme na tvorbu webových stránek na míru. Nepoužíváme koupené šablony, nástroje pro automatizované budování webů ani nástroje, které by váš web zahlcovali zbytečným kódem a tím vaší stránku zpomalovaly.'
 permalink: '/'
 
@@ -11,6 +11,12 @@ eleventyNavigation:
 
 
 hero:
-    topper: Senoweb
-    heading: Webové stránky bez starostí s doživotními aktualizacemi a neomezenými úpravami
+    topper: Taneční studio Ká
+    heading: Taneční kurzy, které vás chytnou za srdce
+
+    imageUrl: /assets/images/hero/hero-image.jpg
+    imageAlt: Kopec se zelenou trávou
+
+    ctaUrl: /kontakt
+    cta: Kontakt
 ---

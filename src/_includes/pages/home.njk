@@ -13,8 +13,47 @@
 
 {% block body %}
     <!-- HERO -->
-    <section class="py-24 ~px-4/8 min-h-screen bg-gray-100 dark:bg-gray-900">
-        <div class="container m-auto"></div>
+    <section class="relative pt-48 pb-24 ~px-4/8 min-h-screen bg-gray-100 dark:bg-gray-900 z-10">
+        <div class="container m-auto flex flex-col items-start gap-8">
+            <!-- TOPPER + HEADING -->
+            <div class="flex flex-col items-start gap-4 ~max-w-[26rem]/[42rem]">
+                <span class="px-4 py-1 bg-slate-800 text-white font-semibold rounded-md">{{ hero.topper }}</span>
+                <h1 class="~text-3xl/6xl font-extrabold">{{ hero.heading }}</h1>
+            </div>
+
+            <!-- CTA -->
+            <a href="{{ hero.ctaUrl }}" class="btn bg-black">{{ hero.cta }}</a>
+        </div>
+
+        <picture>
+            <!-- MOBILE IMAGE -->
+            <source media="(max-width: 600px)" srcset="{% getUrl hero.imageUrl | avif %}" type="image/avif">
+            <source media="(max-width: 600px)" srcset="{% getUrl hero.imageUrl | webp %}" type="image/webp">
+            <source media="(max-width: 600px)" srcset="{% getUrl hero.imageUrl | jpeg %}" type="image/jpeg">
+            <!-- TABLET IMAGE -->
+            <source media="(max-width: 1024px)" srcset="{% getUrl hero.imageUrl | resize({ width: 1200, height: 1680 }) | avif %}" type="image/avif">
+            <source media="(max-width: 1024px)" srcset="{% getUrl hero.imageUrl | resize({ width: 1200, height: 1680 }) | webp %}" type="image/webp">
+            <source media="(max-width: 1024px)" srcset="{% getUrl hero.imageUrl | resize({ width: 1200, height: 1680 }) | jpeg %}" type="image/jpeg">
+            <!-- DESKTOP IMAGE -->
+            <source media="(min-width: 1024px)" srcset="{% getUrl hero.imageUrl | resize({ width: 2880, height: 1620 }) | avif %}" type="image/avif">
+            <source media="(min-width: 1024px)" srcset="{% getUrl hero.imageUrl | resize({ width: 2880, height: 1620 }) | webp %}" type="image/webp">
+            <source media="(min-width: 1024px)" srcset="{% getUrl hero.imageUrl | resize({ width: 2880, height: 1620 }) | jpeg %}" type="image/jpeg">
+            <img
+                class="object-cover absolute top-0 left-0 h-full w-full -z-10"
+                src="{% getUrl hero.imageUrl | resize({ width: 2880, height: 1620 }) | jpeg %}"
+                alt="{{ hero.imageAlt }}"
+                width="1920"
+                height="1080"
+                loading="eager"
+                decoding="async"
+                aria-hidden="true"
+                draggable="false">
+        </picture>
+    </section>
+
+    <!-- SECTION -->
+    <section class="py-24 ~px-4/8 h-96">
+        <div class="container m-auto bg-black h-full"></div>
     </section>
 
     {% include "sections/cta.njk" %}
