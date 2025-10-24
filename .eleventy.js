@@ -9,7 +9,7 @@ const pluginImages = require("@codestitchofficial/eleventy-plugin-sharp-images")
 const pluginMinifier = require("@codestitchofficial/eleventy-plugin-minify");
 const pluginNavigation = require("@11ty/eleventy-navigation");
 const pluginSitemap = require("@quasibit/eleventy-plugin-sitemap");
-const { EleventyI18nPlugin } = require("@11ty/eleventy");
+const { I18nPlugin } = require("@11ty/eleventy");
 
 // ⚙️ Configuration Files
 const configSitemap = require("./src/config/plugins/sitemap");
@@ -64,7 +64,7 @@ module.exports = function (eleventyConfig) {
      * Creates sitemap.xml automatically using domain from _data/client.json
      * Documentation: https://github.com/quasibit/eleventy-plugin-sitemap
      */
-    eleventyConfig.addPlugin(EleventyI18nPlugin, configI18n);
+    eleventyConfig.addPlugin(I18nPlugin, configI18n);
 
     /*
     * 🌍 Internationalization (i18n) Plugin
