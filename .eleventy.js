@@ -8,11 +8,9 @@
 const pluginImages = require("@codestitchofficial/eleventy-plugin-sharp-images");
 const pluginMinifier = require("@codestitchofficial/eleventy-plugin-minify");
 const pluginNavigation = require("@11ty/eleventy-navigation");
-const pluginSitemap = require("@quasibit/eleventy-plugin-sitemap");
 const { I18nPlugin } = require("@11ty/eleventy");
 
 // ⚙️ Configuration Files
-const configSitemap = require("./src/config/plugins/sitemap");
 const configImages = require("./src/config/plugins/images");
 const configI18n = require("./src/config/plugins/i18n");
 
@@ -60,18 +58,11 @@ module.exports = function (eleventyConfig) {
     eleventyConfig.addPlugin(pluginNavigation);
 
     /*
-     * 🗺️ Sitemap Generation
-     * Creates sitemap.xml automatically using domain from _data/client.json
-     * Documentation: https://github.com/quasibit/eleventy-plugin-sitemap
+     * 🌍 Internationalization (i18n) Plugin
+     * Adds support for translating content and generating localized URLs
+     * Documentation: https://www.11ty.dev/docs/plugins/i18n/
      */
     eleventyConfig.addPlugin(I18nPlugin, configI18n);
-
-    /*
-    * 🌍 Internationalization (i18n) Plugin
-    * Adds support for translating content and generating localized URLs
-    * Documentation: https://www.11ty.dev/docs/plugins/i18n/
-    */
-    eleventyConfig.addPlugin(pluginSitemap, configSitemap);
 
     /*
      * 📦 Production Minification
@@ -134,20 +125,26 @@ module.exports = function (eleventyConfig) {
         return value.filter(item => item.page.lang === this.page.lang)
     });
 
-    /*
-     * 🔍 Property Equality Filter
-     * Filters a collection based on a specific property and its exact value.
-     * Useful for filtering items like adopted animals, specific breeds, etc.
-     * Usage: {{ collections.adoption | where("adopted", true) }}
+    /**
+     * 🔍 Multi-Property Equality Filter
+     * Filters a collection based on multiple property-value pairs.
+     * Supports nested properties like "eleventyNavigation.parent".
+     * Usage:
+     *   {{ collections.all | whereAll({ category: "skola", "eleventyNavigation.parent": "Škola" }) }}
      */
-    eleventyConfig.addFilter("where", function (collection, propName, value) {
+    eleventyConfig.addFilter("whereAll", function (collection, conditions = {}) {
         if (!Array.isArray(collection)) return [];
-        return collection.filter((item) => {
-            // Get the value from frontmatter/data
-            const propValue = item.data?.[propName];
 
-            // Support booleans, strings, numbers
-            return propValue === value;
+        // Helper for nested props like "eleventyNavigation.parent"
+        function getDeep(obj, path) {
+            return path.split(".").reduce((acc, key) => acc && acc[key], obj);
+        }
+
+        return collection.filter((item) => {
+            return Object.entries(conditions).every(([prop, expected]) => {
+                const actual = getDeep(item.data, prop);
+                return actual === expected;
+            });
         });
     });
 

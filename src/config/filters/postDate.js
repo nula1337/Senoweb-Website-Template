@@ -1,5 +1,7 @@
 const { DateTime } = require("luxon");
 
 module.exports = function (dateObj) {
-    return DateTime.fromJSDate(dateObj).toLocaleString(DateTime.DATE_MED);
+    const date = new Date(dateObj);
+
+    return DateTime.fromJSDate(date).setLocale("cs").toLocaleString(DateTime.DATE_MED);
 };
