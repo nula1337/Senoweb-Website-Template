@@ -1,11 +1,11 @@
 ---
-layout: "pages/services.njk"
+layout: "pages/kontakt.njk"
 
-title: 'Služby'
+title: 'Kontakt'
 description: 'V Senoweb se specializujeme na tvorbu webových stránek na míru. Nepoužíváme koupené šablony, nástroje pro automatizované budování webů ani nástroje, které by váš web zahlcovali zbytečným kódem a tím vaší stránku zpomalovaly.'
-permalink: 'sluzby/'
+permalink: 'kontakt/'
 
 eleventyNavigation:
-  key: Služby
-  order: 300
+  key: Kontakt
+  order: 400
 ---

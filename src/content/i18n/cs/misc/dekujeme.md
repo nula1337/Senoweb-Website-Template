@@ -1,8 +1,8 @@
 ---
-layout: "pages/misc/success.njk"
+layout: "pages/misc/dekujeme.njk"
 
 title: 'Odeslání formuláře'
 description: 'Vaše odeslání formuláře bylo úspěšně doručeno.'
-permalink: 'kontakt/success/'
+permalink: 'dekujeme/'
 eleventyExcludeFromCollections: true
 ---

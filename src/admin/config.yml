@@ -30,10 +30,10 @@ collections:
           label: "URL odkaz",
           name: "url",
           widget: "string",
-          hint: "Určete, kam bude stránka zapsána. Pokud použijete „Blogový příspěvek“, bude příspěvek přístupný z „blog/blogovy-prispevek“. URL odkaz musí být jedinečný.",
+          hint: "Určete, kam bude stránka zapsána. Pokud použijete „blogovy-prispevek“, bude příspěvek přístupný na adrese „/blog/blogovy-prispevek“. URL odkaz musí být jedinečný.",
           pattern:
             [
-              "^[A-Za-zÀ-ž0-9 ]+(?:-[A-Za-zÀ-ž0-9 ]+)*$",
+              "^[a-zà-ž0-9]+(?:-[a-zà-ž0-9]+)*$",
               "Pouze písmena (A-Z, a-z), číslice a pomlčky (-). Žádná lomítka ani speciální znaky.",
             ],
         }
@@ -58,4 +58,4 @@ collections:
           hint: "Popište, co je na obrázku. Slouží k validnímu SEO příspěvku.",
         }
       - { label: "Obsah", name: "body", widget: "markdown" }
-      - { label: "Štítky", name: "tags", widget: "hidden", default: ["post"] }
+      - { label: "Štítky", name: "tags", widget: "hidden", default: ["blog"] }

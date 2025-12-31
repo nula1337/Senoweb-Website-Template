@@ -226,3 +226,37 @@ html {
       }
   }
 }
+
+
+/* ====================== */
+/* === COOKIE CONSENT === */
+/* ====================== */
+
+:root {
+  --primary: #841CDF;
+  --secondary: #00D1B2;
+}
+
+#cc-main {
+  /** Change font **/
+  --cc-font-family: "Poppins", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+  /** Change modal border radius **/
+  --cc-modal-border-radius: 1.5rem;
+
+  /** Change button primary color to primary and secondary on hover **/
+  --cc-btn-primary-bg: var(--primary);
+  --cc-btn-primary-border-color: var(--primary);
+
+  --cc-btn-primary-color: #FFF;
+  --cc-btn-primary-hover-color: #FFF;
+}
+
+.cc--darkmode #cc-main {
+  /** Change the darkmode modal background **/
+  --cc-bg: #070707;
+}
+
+/* ====================== */
+/* ====================== */
+/* ====================== */
