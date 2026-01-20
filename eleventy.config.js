@@ -5,30 +5,43 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 // 📦 Plugin Imports
-const pluginImages = require("@codestitchofficial/eleventy-plugin-sharp-images");
-const pluginMinifier = require("@codestitchofficial/eleventy-plugin-minify");
-const pluginNavigation = require("@11ty/eleventy-navigation");
-const { I18nPlugin } = require("@11ty/eleventy");
+import pluginImages from "@codestitchofficial/eleventy-plugin-sharp-images";
+import pluginMinifier from "@codestitchofficial/eleventy-plugin-minify";
+import pluginNavigation from "@11ty/eleventy-navigation";
+import { I18nPlugin } from "@11ty/eleventy";
 
 // ⚙️ Configuration Files
-const configImages = require("./src/config/plugins/images");
-const configI18n = require("./src/config/plugins/i18n");
+import { configI18n, configImages } from "./src/config/plugins.js";
 
 // 🔧 Processing Functions
-const javascript = require("./src/config/processors/javascript");
+import css from "./src/config/processors/css.js";
+import javascript from "./src/config/processors/javascript.js";
 
 // 🛠️ Utilities
-const filterPostDate = require("./src/config/filters/postDate");
-const filterIsoDate = require("./src/config/filters/isoDate");
+import { isoDate, postDate } from "./src/config/filters.js";
+
 const isProduction = process.env.ELEVENTY_ENV === "PROD";
 
 
-module.exports = function (eleventyConfig) {
+/** @param {import('@11ty/eleventy/UserConfig').default} eleventyConfig*/
+export default (eleventyConfig) => {
     // ═════════════════════════════════════════════════════════════════════════
     // LANGUAGES
     // Using Eleventy's build events to process non-template languages
     // Learn more: https://www.11ty.dev/docs/events/
     // ═════════════════════════════════════════════════════════════════════════
+
+    /*
+     * CSS Processing
+     * These processors handle Tailwind CSS compilation and minification.
+     * - CSS: Processed with Tailwind CSS v4 (Oxide engine) and PostCSS.
+     * - Minification: Optimized via cssnano for production builds.
+     */
+    eleventyConfig.on("eleventy.before", async () => {
+        // Only minify CSS on production
+        const minify = isProduction ? true : false;
+        await css({ minify: minify });
+    });
 
     /*
      * JavaScript Processing
@@ -96,7 +109,7 @@ module.exports = function (eleventyConfig) {
      * Usage: {{ "2023-12-02" | postDate }}
      * Powered by Luxon: https://moment.github.io/luxon/api-docs/
      */
-    eleventyConfig.addFilter("postDate", filterPostDate);
+    eleventyConfig.addFilter("postDate", postDate);
 
     /*
      * 📅 ISO Date Formatting Filter
@@ -104,7 +117,7 @@ module.exports = function (eleventyConfig) {
      * Usage: {{ "2023-12-02" | isoDate }}
      * Powered by Luxon: https://moment.github.io/luxon/api-docs/
      */
-    eleventyConfig.addFilter("isoDate", filterIsoDate);
+    eleventyConfig.addFilter("isoDate", isoDate);
 
     /*
      * 🔢 Limit Filter
@@ -136,7 +149,7 @@ module.exports = function (eleventyConfig) {
         if (!Array.isArray(collection)) return [];
 
         // Helper for nested props like "eleventyNavigation.parent"
-        function getDeep(obj, path) {
+        const getDeep = (obj, path) => {
             return path.split(".").reduce((acc, key) => acc && acc[key], obj);
         }
 

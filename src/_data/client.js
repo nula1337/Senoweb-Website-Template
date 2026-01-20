@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   name: "Senoweb",
   email: "info@senoweb.cz",
   ico: "19538685",
