@@ -15,10 +15,15 @@ Tato šablona slouží jako základ pro tvorbu moderních, rychlých a plně př
 
 ## Instalace
 
-1. V horní části této stránky repozitáře klikněte na tlačítko **Use This Template** a vytvořte nový repozitář.
 > [!CAUTION]
 > Veškeré projekty vytvářené pro **coalmarketing** musí mít repozitář založený výhradně pod GitHub organizací **coalmarketing**.
 > Použití repozitáře založeného na osobním GitHub účtu (i v případě, že je vývojář členem organizace) vede na Netlify k automatickému účtování Git Contributor poplatků.
+
+![alt text](https://github.com/nula1337/Senoweb-Website-Template/blob/main/github/github-new-repository.png)
+
+### Postup
+
+1. V horní části této stránky repozitáře klikněte na tlačítko **Use This Template** a vytvořte nový repozitář.
 2. Postupujte podle pokynů a vytvořte nový repozitář ze startovací sady.
 3. Zkopírujte repozitář do svého počítače a otevřete jej v VS Code.
 4. Spusťte `npm install` a nainstalujte všechny závislosti.
