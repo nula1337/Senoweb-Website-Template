@@ -16,8 +16,8 @@ Tato šablona slouží jako základ pro tvorbu moderních, rychlých a plně př
 ## Instalace
 
 > [!CAUTION]
-> Veškeré projekty vytvářené pro **coalmarketing** musí mít repozitář založený výhradně pod GitHub organizací **coalmarketing**.
-> Použití repozitáře založeného na osobním GitHub účtu (i v případě, že je vývojář členem organizace) vede na Netlify k automatickému účtování Git Contributor poplatků.
+> Veškeré projekty vytvářené pro **coalmarketing** musí mít repozitář založený výhradně pod GitHub organizací **coalmarketing a musí být veřejné**.
+> Použití privátního repozitáře nebo repozitáře založeného na osobním GitHub účtu (i v případě, že je vývojář členem organizace) vede na Netlify k automatickému účtování Git Contributor poplatků.
 
 ![alt text](https://github.com/nula1337/Senoweb-Website-Template/blob/main/github/github-new-repository.png)
 
@@ -32,3 +32,4 @@ Tato šablona slouží jako základ pro tvorbu moderních, rychlých a plně př
 7. Upravte tailwind proměnné `@theme` v ./src/assets/css/input.css
 8. Upravte soubory webových stránek (použijte ./src, NE ./public) podle potřeby. K zahájení práce použijte šablonu v souboru content/pages/_template.txt nebo upravte stávající stránky.
 9. Nasazení proveďte pomocí Netlify.
+10. Zprovoznění administrace proveďte pomocí Decap CMS.
