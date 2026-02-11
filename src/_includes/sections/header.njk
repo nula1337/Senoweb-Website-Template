@@ -86,55 +86,53 @@
 
     <!-- DARKMODE + CTA -->
     <div class="flex items-center gap-2 lg:gap-4">
-      <!-- DARKMODE + CTA -->
-      <div class="flex items-center gap-2 lg:gap-4">
-        <!-- DARKMODE SWITCH -->
-        <label class="darkmode-container relative h-8 w-8 select-none hover:cursor-pointer" for="dark-mode-toggle">
-          <span class="sr-only">Přepínač tmavého režimu</span>
-          <input id="dark-mode-toggle" type="checkbox" class="invisible">
+      <!-- DARKMODE SWITCH -->
+      <label class="darkmode-container relative h-8 w-8 select-none hover:cursor-pointer" for="dark-mode-toggle">
+        <span class="sr-only">Přepínač tmavého režimu</span>
+        <input id="dark-mode-toggle" type="checkbox" class="invisible">
 
-          <!-- LIGHTMODE -->
-          <img
-            class="absolute top-1/2 left-1/2 -translate-1/2 transition-[translate,opacity] duration-300 opacity-100 dark:opacity-0 dark:-translate-y-6"
-            src="/assets/svgs/light_mode.svg"
-            alt="Ikona měsíce"
-            width="20"
-            height="20"
-            loading="eager"
-            decoding="async"
-            aria-hidden="true"
-            draggable="false">
+        <!-- LIGHTMODE -->
+        <img
+          class="absolute top-1/2 left-1/2 -translate-1/2 transition-[translate,opacity] duration-300 opacity-100 dark:opacity-0 dark:-translate-y-6"
+          src="/assets/svgs/light_mode.svg"
+          alt="Ikona měsíce"
+          width="20"
+          height="20"
+          loading="eager"
+          decoding="async"
+          aria-hidden="true"
+          draggable="false">
 
-          <!-- LIGHTMODE -->
-          <img
-            class="absolute top-1/2 left-1/2 translate-y-6 -translate-x-1/2 transition-[translate,opacity] duration-300 opacity-0 dark:opacity-100 dark:-translate-y-1/2"
-            src="/assets/svgs/dark_mode.svg"
-            alt="Ikona měsíce"
-            width="20"
-            height="20"
-            loading="eager"
-            decoding="async"
-            aria-hidden="true"
-            draggable="false">
-        </label>
+        <!-- LIGHTMODE -->
+        <img
+          class="absolute top-1/2 left-1/2 translate-y-6 -translate-x-1/2 transition-[translate,opacity] duration-300 opacity-0 dark:opacity-100 dark:-translate-y-1/2"
+          src="/assets/svgs/dark_mode.svg"
+          alt="Ikona měsíce"
+          width="20"
+          height="20"
+          loading="eager"
+          decoding="async"
+          aria-hidden="true"
+          draggable="false">
+      </label>
 
-        <!-- CTA -->
-        <a href="/kontakt" class="btn max-lg:hidden">Kontakt</a>
+      <!-- CTA -->
+      <a href="/kontakt" class="btn max-lg:hidden">Kontakt</a>
 
-        <!-- MOBILE MENU BUTTON -->
-        <button
+      <!-- MOBILE MENU BUTTON -->
+      <button
         id="mobile-menu-toggle"
         class="group lg:hidden flex justify-center items-center gap-1 h-11 w-11 bg-secondary rounded-xl transition-transform duration-300 [&.active]:rotate-90"
         type="button"
         aria-expanded="false"
       >
-          <span class="sr-only">Otevřít navigaci</span>
-          <span class="relative block h-3.5 w-5">
-            <span class="absolute top-0 block h-0.5 w-full bg-white rounded-full transition-transform duration-300 group-[.active]:rotate-45 group-[.active]:top-1/2 group-[.active]:-translate-y-1/2 group-[.active]:left-1/2 group-[.active]:-translate-x-1/2"></span>
-            <span class="absolute top-1/2 -translate-y-1/2 block h-0.5 w-full bg-white rounded-full transition-opacity duration-300 group-[.active]:opacity-0"></span>
-            <span class="absolute bottom-0 block h-0.5 w-full bg-white rounded-full transition-transform duration-300 group-[.active]:rotate-[315deg] group-[.active]:top-1/2 group-[.active]:-translate-y-1/2 group-[.active]:left-1/2 group-[.active]:-translate-x-1/2"></span>
-          </span>
-        </button>
-      </div>
+        <span class="sr-only">Otevřít navigaci</span>
+        <span class="relative block h-3.5 w-5">
+          <span class="absolute top-0 block h-0.5 w-full bg-white rounded-full transition-transform duration-300 group-[.active]:rotate-45 group-[.active]:top-1/2 group-[.active]:-translate-y-1/2 group-[.active]:left-1/2 group-[.active]:-translate-x-1/2"></span>
+          <span class="absolute top-1/2 -translate-y-1/2 block h-0.5 w-full bg-white rounded-full transition-opacity duration-300 group-[.active]:opacity-0"></span>
+          <span class="absolute bottom-0 block h-0.5 w-full bg-white rounded-full transition-transform duration-300 group-[.active]:rotate-[315deg] group-[.active]:top-1/2 group-[.active]:-translate-y-1/2 group-[.active]:left-1/2 group-[.active]:-translate-x-1/2"></span>
+        </span>
+      </button>
     </div>
-  </header>
+  </div>
+</header>
