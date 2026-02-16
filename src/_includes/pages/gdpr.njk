@@ -4,17 +4,17 @@
     {% include "sections/landing.njk" %}
 
     <!-- GDPR -->
-    <section class="fl-py-16/24 fl-px-4/8">
+    <section class="~py-16/24 ~px-4/8">
         <div class="container m-auto">
             <div class="max-w-[75ch]">
                 {% for item in contentOne.items %}
                     <div class="mb-6">
                         {% if item.heading %}
-                            <h3 class="dark:text-white fl-text-xl/2xl font-semibold mb-4">{{ item.heading }}</h3>
+                            <h3 class="dark:text-white ~text-xl/2xl font-semibold mb-4">{{ item.heading }}</h3>
                         {% endif %}
 
                         {% if item.text %}
-                            <p class="fl-text-sm/base text-gray-800 dark:text-gray-200 mb-2">
+                            <p class="~text-sm/base text-gray-800 dark:text-gray-200 mb-2">
                                 {% for text in item.text %}
                                     {{ item.text }}
                                 {% endfor %}

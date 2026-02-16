@@ -29,7 +29,7 @@ Tato šablona slouží jako základ pro tvorbu moderních, rychlých a plně př
 4. Spusťte `npm install` a nainstalujte všechny závislosti.
 5. Po dokončení instalace spusťte `npm start` a spusťte vývojový server.
 6. Vyplňte soubor `./src/_data/client.js` příslušnými informacemi pro svého klienta.
-7. Upravte tailwind proměnné `@theme` v ./src/assets/css/input.css
+7. Upravte tailwind proměnné v `./tailwind.config.js`
 8. Upravte soubory webových stránek (použijte ./src, NE ./public) podle potřeby. K zahájení práce použijte šablonu v souboru content/pages/_template.txt nebo upravte stávající stránky.
 9. Nasazení proveďte pomocí Netlify.
 10. Zprovoznění administrace proveďte pomocí Decap CMS.
