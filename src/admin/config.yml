@@ -19,6 +19,12 @@ media_folder: "src/assets/images/cms"
 # Where should media be served, relative to the base of the built site
 public_folder: "/assets/images/cms"
 
+# Slug function configuration
+slug:
+  encoding: "ascii"
+  clean_accents: true
+  sanitize_replacement: "-"
+
 # Decap CMS Collections
 collections:
   # BLOG CONFIG
@@ -27,6 +33,10 @@ collections:
     folder: "src/content/cms/blog"
     create: true
     slug: "{{year}}-{{month}}-{{day}}_{{slug}}"
+    summary: "{{ title }} [{{ date | date('DD. MM. YYYY') }}]"
+    editor:
+      preview: true
+
     fields:
       - { label: "Název", name: "title", widget: "string" }
       - {

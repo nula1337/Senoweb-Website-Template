@@ -16,8 +16,7 @@
         </a>
 
         <!-- NAVIGATION -->
-        <nav class="max-lg:hidden max-lg:group-[.mobile-menu]/body:block max-lg:absolute max-lg:top-[calc(100%+0.5rem)] max-lg:left-1/2 max-lg:-translate-x-1/2
-      max-lg:w-[calc(100vw-2rem)] max-lg:p-4 max-lg:bg-black max-lg:rounded-lg">
+        <nav class="max-lg:hidden max-lg:group-[.mobile-menu]/body:block max-lg:absolute max-lg:top-[calc(100%+0.5rem)] max-lg:left-1/2 max-lg:-translate-x-1/2 max-lg:w-[calc(100vw-2rem)] max-lg:p-4 max-lg:bg-black max-lg:rounded-lg">
             <ul class="flex max-lg:flex-col ~gap-2/8">
                 {% set navPages = collections.all | eleventyNavigation %}
 
@@ -28,20 +27,20 @@
                     {% set hasChild = entry.children.length %}
 
                     <li
-            class="group/li inline-flex {% if hasChild -%} dropdown {%- endif %}"
-            {%- if hasChild -%}tabindex="0"{%- endif -%}
-          >
+                      class="group/li inline-flex {% if hasChild -%} dropdown {%- endif %}"
+                      {%- if hasChild -%}tabindex="0"{%- endif -%}
+                    >
 
                         {# If the page has child dropdown pages, render it as a <button> tag with the appropriate dropdown HTML #}
                         {% if hasChild %}
                             {# Render the <button> with the active class, dropdown icon and child links #}
                             <button
-                class="dropdown-button"
-                aria-expanded="false"
-                aria-controls="dropdown-{{ entry.key | slug }}"
-                aria-label="dropdown-{{ entry.key | slug }}"
-                type="button"
-              >
+                              class="dropdown-button"
+                              aria-expanded="false"
+                              aria-controls="dropdown-{{ entry.key | slug }}"
+                              aria-label="dropdown-{{ entry.key | slug }}"
+                              type="button"
+                            >
                                 <span>{{ entry.key }}</span>
 
                                 <!-- ICON -->
@@ -56,12 +55,12 @@
                                     {% for child in entry.children %}
                                         <li class="drop-li">
                                             <a
-                          href="{{ child.url }}"
-                          class="li-link inline-flex whitespace-nowrap ~p-1.5/4 ~text-sm/base
-                          {%- if child.url == page.url %} text-white
-                          {%- else %} text-gray-200 hover:text-white{% endif %}"
-                          {%- if child.url == page.url -%}aria-current="page"{%- endif -%}
-                        >
+                                              href="{{ child.url }}"
+                                              class="li-link inline-flex whitespace-nowrap ~p-1.5/4 ~text-sm/base
+                                              {%- if child.url == page.url %} text-white
+                                              {%- else %} text-gray-200 hover:text-white{% endif %}"
+                                              {%- if child.url == page.url -%}aria-current="page"{%- endif -%}
+                                            >
                                                 {{ child.key }}
                                             </a>
                                         </li>
@@ -71,11 +70,11 @@
                         {% else %}
                             {# Normal pages are rendered as <a> tags, in the normal way you'd expect #}
                             <a
-                class="w-full ~p-1.5/4 whitespace-nowrap transition-colors duration-300 max-lg:pl-4 max-lg:border-l-4 max-lg:rounded-r-md
-                {%- if entry.url == page.url %} text-primary font-semibold max-lg:border-l-primary max-lg:bg-primary/10
-                {%- else %} text-gray-200 hover:text-white{% endif %}"
-                href="{{ entry.url }}"
-                {%- if entry.url == page.url -%}aria-current="page"{%- endif -%}>
+                                class="w-full ~p-1.5/4 whitespace-nowrap transition-colors duration-300 max-lg:pl-4 max-lg:border-l-4 max-lg:rounded-r-md
+                                {%- if entry.url == page.url %} text-primary font-semibold max-lg:border-l-primary max-lg:bg-primary/10
+                                {%- else %} text-gray-200 hover:text-white{% endif %}"
+                                href="{{ entry.url }}"
+                                {%- if entry.url == page.url -%}aria-current="page"{%- endif -%}>
                                 {{ entry.key }}
                             </a>
                         {% endif %}
@@ -93,27 +92,27 @@
 
                 <!-- LIGHTMODE -->
                 <img
-          class="absolute top-1/2 left-1/2 -translate-1/2 transition-[translate,opacity] duration-300 opacity-100 dark:opacity-0 dark:-translate-y-6"
-          src="/assets/svgs/light_mode.svg"
-          alt="Ikona měsíce"
-          width="20"
-          height="20"
-          loading="eager"
-          decoding="async"
-          aria-hidden="true"
-          draggable="false">
+                    class="absolute top-1/2 left-1/2 -translate-1/2 transition-[transform,opacity] duration-300 opacity-100 dark:opacity-0 dark:-translate-y-6"
+                    src="/assets/svgs/light_mode.svg"
+                    alt="Ikona měsíce"
+                    width="20"
+                    height="20"
+                    loading="eager"
+                    decoding="async"
+                    aria-hidden="true"
+                    draggable="false">
 
                 <!-- LIGHTMODE -->
                 <img
-          class="absolute top-1/2 left-1/2 translate-y-6 -translate-x-1/2 transition-[translate,opacity] duration-300 opacity-0 dark:opacity-100 dark:-translate-y-1/2"
-          src="/assets/svgs/dark_mode.svg"
-          alt="Ikona měsíce"
-          width="20"
-          height="20"
-          loading="eager"
-          decoding="async"
-          aria-hidden="true"
-          draggable="false">
+                    class="absolute top-1/2 left-1/2 translate-y-6 -translate-x-1/2 transition-[transform,opacity] duration-300 opacity-0 dark:opacity-100 dark:-translate-y-1/2"
+                    src="/assets/svgs/dark_mode.svg"
+                    alt="Ikona měsíce"
+                    width="20"
+                    height="20"
+                    loading="eager"
+                    decoding="async"
+                    aria-hidden="true"
+                    draggable="false">
             </label>
 
             <!-- CTA -->
@@ -121,11 +120,11 @@
 
             <!-- MOBILE MENU BUTTON -->
             <button
-        id="mobile-menu-toggle"
-        class="group lg:hidden flex justify-center items-center gap-1 h-11 w-11 bg-secondary rounded-xl transition-transform duration-300 [&.active]:rotate-90"
-        type="button"
-        aria-expanded="false"
-      >
+                  id="mobile-menu-toggle"
+                  class="group lg:hidden flex justify-center items-center gap-1 h-11 w-11 bg-secondary rounded-xl transition-transform duration-300 [&.active]:rotate-90"
+                  type="button"
+                  aria-expanded="false"
+                >
                 <span class="sr-only">Otevřít navigaci</span>
                 <span class="relative block h-3.5 w-5">
                     <span class="absolute top-0 block h-0.5 w-full bg-white rounded-full transition-transform duration-300 group-[.active]:rotate-45 group-[.active]:top-1/2 group-[.active]:-translate-y-1/2 group-[.active]:left-1/2 group-[.active]:-translate-x-1/2"></span>
