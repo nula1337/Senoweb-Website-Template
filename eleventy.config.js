@@ -148,7 +148,6 @@ export default (eleventyConfig) => {
     eleventyConfig.addFilter("whereAll", function (collection, conditions = {}) {
         if (!Array.isArray(collection)) return [];
 
-        // Helper for nested props like "eleventyNavigation.parent"
         const getDeep = (obj, path) => {
             return path.split(".").reduce((acc, key) => acc && acc[key], obj);
         }
@@ -156,6 +155,13 @@ export default (eleventyConfig) => {
         return collection.filter((item) => {
             return Object.entries(conditions).every(([prop, expected]) => {
                 const actual = getDeep(item.data, prop);
+
+                // NEW LOGIC: If the value in the file is an array, check if it contains the expected value
+                if (Array.isArray(actual)) {
+                    return actual.includes(expected);
+                }
+
+                // Fallback to strict equality for strings/booleans
                 return actual === expected;
             });
         });
