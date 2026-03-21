@@ -1,6 +1,7 @@
 .DS_Store
 .vscode
 .cache
+.wrangler
 node_modules
 public
 figma

@@ -15,22 +15,3 @@
 export const configI18n = {
     defaultLanguage: "cs"
 };
-
-
-/**
- * Configuration for Eleventy Sharp Image plugin
- * @typedef {Object} ImageConfig
- * @property {string} urlPath - The web-accessible path prefix for images (e.g., "/assets/images").
- * @property {string} outputDir - The physical file system directory where images will be saved.
- * @property {"auto"|"content"|"stats"} [cacheStrategy] - When to re-run the image processing. 
- * - "auto": Re-run when the input file changes.
- * - "content": Re-run only when the image content actually changes.
- * - "stats": Re-run when the file stats (size/date) change.
- * @property {boolean} [autoRotate] - Automatically apply EXIF orientation correction. Default: true.
- */
-
-/** @type {ImageConfig} */
-export const configImages = {
-    urlPath: "/assets/images",
-    outputDir: "public/assets/images"
-};
