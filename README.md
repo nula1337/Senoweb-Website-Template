@@ -87,4 +87,8 @@ Tato šablona slouží jako základ pro tvorbu moderních, rychlých a plně př
 
 #### Nastavení formuláře
 
-V nastavení Basin formuláře je vhodné nastavit češtinu pro emailové zprávy a stránku s potvrzením. Také se dá email personalizovat nahráním loga projektu a úpravou barev. Na stránce „Domains“ se také dá přidat doména projektu a díky vytvoření DKIM DNS záznamu je poté možné zasílat notifikační emaily z domény klienta.
+1. V nastavení formuláře v záložce „Emails“ nastavte emailové adresy, na které se budou zasílat vyplněné zprávy.
+2. Nastavte jazyk Basin notifikačních emailů na Čeština (Czech):\
+![Basin form language](https://github.com/nula1337/Senoweb-Website-Template/blob/main/github/basin-form-language.png)
+3. V záložce „Settings“ nastavte časové pásmo, jazyk a branding stránky s potvrzením úspěšného odeslání formuláře.
+4. Volitelně v záložce „Emails“ → „Config“ → „Mailer“ nahrajte vlastní logo projektu, které se zobrazuje v emailech a nastavte emailovou adresu, z které se notifikace odesílají (je potřeba mít doménu přidanou na stránce „Domains“).
