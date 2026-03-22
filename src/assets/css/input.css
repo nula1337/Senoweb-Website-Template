@@ -21,6 +21,43 @@
   }
 }
 
+/* ================== */
+/* === NAVIGATION === */
+/* ================== */
+
+.cm-drop-ul {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 100;
+    background: white; /* Adjust based on your theme */
+    min-width: 200px;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+}
+
+/* Show dropdown when active (via JS click) or hovered (on desktop) */
+.cm-dropdown.cm-active .cm-drop-ul,
+.cm-dropdown:hover .cm-drop-ul {
+    display: block;
+}
+
+/* Mobile styles for the wrapper */
+@media (max-width: 1024px) {
+    #cm-ul-wrapper {
+        display: none; /* Hide mobile menu by default */
+    }
+    
+    #cm-navigation.cm-active #cm-ul-wrapper {
+        display: block; /* Show mobile menu when hamburger clicked */
+    }
+
+    .cm-drop-ul {
+        position: static; /* Stack dropdowns vertically on mobile */
+        box-shadow: none;
+    }
+}
+
 
 /* ============= */
 /* === FONTS === */
