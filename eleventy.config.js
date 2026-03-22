@@ -7,7 +7,6 @@
 // 📦 Plugin Imports
 import pluginImages from "@codestitchofficial/eleventy-plugin-sharp-images";
 import pluginMinifier from "@codestitchofficial/eleventy-plugin-minify";
-import pluginNavigation from "@11ty/eleventy-navigation";
 import { I18nPlugin } from "@11ty/eleventy";
 
 // ⚙️ Configuration Files
@@ -85,13 +84,6 @@ export default (eleventyConfig) => {
     eleventyConfig.addPlugin(pluginImages, configImages);
 
     /*
-     * 🧭 Navigation Plugin
-     * Enables hierarchical navigation structure via front matter
-     * Documentation: https://www.11ty.dev/docs/plugins/navigation/
-     */
-    eleventyConfig.addPlugin(pluginNavigation);
-
-    /*
      * 🌍 Internationalization (i18n) Plugin
      * Adds support for translating content and generating localized URLs
      * Documentation: https://www.11ty.dev/docs/plugins/i18n/
@@ -153,7 +145,7 @@ export default (eleventyConfig) => {
     /*
      * 🏷️ Page Language Filter
      * Filters collections by the current page language for i18n compatibility
-     * Usage: {{ collections.all | pageLang | eleventyNavigation }}
+     * Usage: {{ collections.all | pageLang }}
      */
     eleventyConfig.addFilter("pageLang", function (value) {
         return value.filter(item => item.page.lang === this.page.lang)
