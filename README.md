@@ -37,6 +37,21 @@ Tato šablona slouží jako základ pro tvorbu moderních, rychlých a plně př
 4. Pro zrychlení následných buildů (zejména u optimalizace obrázků) zapněte v nastavení projektu **Settings** → **Build** → **Build cache** → **Enable**\
 ![Cloudflare Pages Build cache](https://github.com/nula1337/Senoweb-Website-Template/blob/main/github/cloudflare-build-cache.png)
 
+### Nastavení domény
+
+Pokud chceme pro projekt nastavit doménu druhého řádu je zapotřebí přidat doménu do Cloudflare (nastavit Cloudflare nameservery).
+
+### Domenové redirecty
+
+Pro redirecty v rámci webu je možné na Cloudflare Pages použít soubor `./src/_redirects`.
+V případě, že je potřeba nastavit redirect na doménové úrovni - například redirect z kořenové domény na subdoménu www. nebo redirect na jinou doménu - je potřeba nastavit redirect pravidlo.
+Pro nastavení těchto redirectů je zapotřebí, aby byla doména přidána do Cloudflare (měla nastavená Cloudflare nameservery).
+
+1. Přejděte na [tento odkaz](https://dash.cloudflare.com/?to=/:account/:zone/rules/redirect-rules) nebo v dashboardu Cloudflare přejděte na **Domains** → **domena-projektu.cz** → **Rules** → **Overview**.
+2. V **Templates** vyberte **Redirect from root to WWW** nebo **Redirect to a different domain**.
+3. Vyplňte URL adresu a uložte redirect pravidlo.
+4. Otestujte funkčnost pravidla.
+
 ### Decap Bridge
 
 1. Než přejdete k dalšímu kroku, ujistěte se, že máte repozitář na GitHubu a že je váš web nasazen.
