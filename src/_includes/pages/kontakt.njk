@@ -5,6 +5,41 @@
 
     <!-- CONTACT -->
     <section class="~py-16/24 ~px-4/8">
-        <div class="container m-auto"></div>
+        <div class="container m-auto">
+            <form method="POST" action="" name="{{ form.name }}" class="flex flex-col gap-8 w-full ~p-6/10 bg-white dark:bg-stone-950 border border-stone-300 dark:border-stone-700 rounded-3xl shadow-md" netlify netlify-honeypot="_gotcha">
+                <!-- HONEYPOT -->
+                <input class="sr-only" type="search" name="_gotcha" tabindex="-1" autocomplete="off" spellcheck="false" autocorrect="off" placeholder="Leave this empty">
+
+                {% for field in form.fields %}
+                    {% if field.type === "textarea" %}
+                        <!-- {{ field.name | upper }} -->
+                        <label class="flex flex-col gap-3">
+                            <span class="~text-sm/base text-stone-950 dark:text-white font-medium !leading-none">{{ field.name }}</span>
+                            <textarea class="input min-h-[5lh] max-h-[30lh]" name="{{ field.name }}" rows="5" {%- if field.placeholder %} placeholder="{{ field.placeholder }}" {%- endif %} {%- if field.required %} required {%- endif %}></textarea>
+                        </label>
+
+                    {% else %}
+                        <!-- {{ field.name | upper }} -->
+                        <label class="flex flex-col gap-3">
+                            <span class="~text-sm/base text-stone-950 dark:text-white font-medium !leading-none">{{ field.name }}</span>
+                            <input 
+                                class="input"
+                                type="{{ field.type }}"
+                                name="{{ field.name }}"
+                                autocomplete="{{ field.autocomplete }}"
+                                {%- if field.placeholder %} placeholder="{{ field.placeholder }}" {%- endif %}
+                                {%- if field.required %} required {%- endif %}>
+                        </label>
+                    {% endif %}
+                {% endfor %}
+
+                <div class="flex flex-col gap-4">
+                    <button type="submit" class="btn">{{ form.submit }}</button>
+                    <p class="font-hind text-center text-stone-600 dark:text-stone-400">
+                            Odesláním formuláře souhlasíte se <a href="/gdpr" target="_blank" class="underline hover:text-black dark:hover:text-white">zpracováním osobních údajů</a>
+                    </p>
+                </div>
+            </form>
+        </div>
     </section>
 {% endblock body %}

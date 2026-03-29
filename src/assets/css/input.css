@@ -21,40 +21,34 @@
   }
 }
 
+
 /* ================== */
 /* === NAVIGATION === */
 /* ================== */
 
 .cm-drop-ul {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    z-index: 100;
-    background: white; /* Adjust based on your theme */
-    min-width: 200px;
-    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  @apply hidden absolute top-full left-0 min-w-52 bg-white shadow-md z-50;
 }
 
 /* Show dropdown when active (via JS click) or hovered (on desktop) */
 .cm-dropdown.cm-active .cm-drop-ul,
 .cm-dropdown:hover .cm-drop-ul {
-    display: block;
+  @apply block;
 }
 
 /* Mobile styles for the wrapper */
-@media (max-width: 1024px) {
+@media (max-width: 1536px) {
     #cm-ul-wrapper {
-        display: none; /* Hide mobile menu by default */
+      @apply absolute top-full left-0 h-auto w-full py-4 px-4 bg-white dark:bg-stone-950 shadow-md transition-[transform,opacity] duration-500 ease-in-out scale-y-0 origin-top opacity-0;
     }
     
     #cm-navigation.cm-active #cm-ul-wrapper {
-        display: block; /* Show mobile menu when hamburger clicked */
+      @apply scale-y-100 opacity-100;
     }
 
     .cm-drop-ul {
-        position: static; /* Stack dropdowns vertically on mobile */
-        box-shadow: none;
+      /* static - stacks dropdowns vertically on mobile */
+      @apply static shadow-none;
     }
 }
 
