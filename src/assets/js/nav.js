@@ -249,3 +249,9 @@
     init.inertState();
     init.eventListeners();
 })();
+
+// Add 'scroll' class body on scroll
+document.addEventListener('scroll', () => {
+    const scroll = document.documentElement.scrollTop;
+    document.body.classList.toggle('scroll', scroll >= 100);
+});

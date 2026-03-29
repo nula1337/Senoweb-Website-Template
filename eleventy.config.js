@@ -77,7 +77,9 @@ export default (eleventyConfig) => {
 
         // After eleventy processing is done, copy the images to live website
         eleventyConfig.on("eleventy.after", async () => {
-            await fs.copy(".cache/images", "public/assets/images", { overwrite: false });
+            if (await fs.pathExists(".cache/images")) {
+                await fs.copy(".cache/images", "public/assets/images", { overwrite: false });
+            }
         });
     }
 

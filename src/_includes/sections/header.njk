@@ -28,13 +28,14 @@
         </a>
 
         <!-- NAVIGATION -->
-        <nav class="flex">
+        <nav class="flex items-center">
             <!-- MOBILE NAVIGATION TOGGLE -->
-            <button type="button" class="cm-toggle" aria-label="mobile menu toggle" aria-expanded="false" aria-controls="cm-ul-wrapper" aria-haspopup="menu">
-                <span aria-hidden="true">
-                    <span></span>
-                    <span></span>
-                    <span></span>
+            <button type="button" class="cm-toggle group flex justify-center items-center size-10 transition-transform duration-300" aria-label="mobile menu toggle" aria-expanded="false" aria-controls="cm-ul-wrapper" aria-haspopup="menu">
+                <span class="relative h-4 w-6 *:absolute *:left-0 *:h-0.5 *:w-full *:bg-black dark:*:bg-white *:transition-[top,bottom,transform,opacity] *:duration-300" aria-hidden="true">
+                    <!-- LINES -->
+                    <span class="absolute top-0 group-[.cm-active]:top-1/2 group-[.cm-active]:-translate-y-1/2 group-[.cm-active]:rotate-[225deg]"></span>
+                    <span class="absolute top-1/2 -translate-y-1/2 group-[.cm-active]:-rotate-[225deg]"></span>
+                    <span class="absolute bottom-0 group-[.cm-active]:-translate-y-full group-[.cm-active]:opacity-0"></span>
                 </span>
             </button>
 

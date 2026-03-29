@@ -88,7 +88,7 @@ Pro nastavení těchto redirectů je zapotřebí, aby byla doména přidána do 
 3. Přejděte na stránku „Forms“ a vytvořte nový formulář.
 4. Po vytvoření formuláře Basin vytvoří endpoint odkaz, na který je možné odesílat zprávy z formuláře:\
 ![Basin form endpoint](https://github.com/nula1337/Senoweb-Website-Template/blob/main/github/basin-new-form.png)
-5. Tento odkaz je následně potřeba použít v atributu `action` tagu `form`:\
+5. Tento odkaz je následně potřeba použít v atributu `action` tagu `form`:
 ```html
 <form method="POST" action="https://usebasin.com/f/3d1718590a84">
   <label>
