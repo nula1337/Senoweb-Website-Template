@@ -1,36 +1,38 @@
 <!-- HEADER -->
 <header id="cm-navigation" class="py-4 ~px-4/8 fixed flex w-full z-50">
-    <div class="container m-auto flex justify-between items-center gap-8">
+    <div class="container m-auto flex justify-between items-center gap-2">
         <!-- LOGO -->
-        <a href="/">
-            <span class="sr-only">Přejít na domovskou stránku</span>
-            <img
-                class="hidden dark:block ~h-5/6 w-auto"
-                src="/assets/svgs/senoweb-logo-white.svg"
-                alt="Senoweb logo"
-                width="170"
-                height="24"
-                loading="lazy"
-                decoding="async"
-                aria-hidden="true"
-                draggable="false">
+        <div class="flex-1">
+            <a href="/">
+                <span class="sr-only">Přejít na domovskou stránku</span>
+                <img
+                    class="hidden dark:block ~h-5/6 w-auto"
+                    src="/assets/svgs/senoweb-logo-white.svg"
+                    alt="Senoweb logo"
+                    width="170"
+                    height="24"
+                    loading="lazy"
+                    decoding="async"
+                    aria-hidden="true"
+                    draggable="false">
 
-            <img
-                class="block dark:hidden ~h-5/6 w-auto"
-                src="/assets/svgs/senoweb-logo-black.svg"
-                alt="Senoweb logo"
-                width="170"
-                height="24"
-                loading="lazy"
-                decoding="async"
-                aria-hidden="true"
-                draggable="false">
-        </a>
+                <img
+                    class="block dark:hidden ~h-5/6 w-auto"
+                    src="/assets/svgs/senoweb-logo-black.svg"
+                    alt="Senoweb logo"
+                    width="170"
+                    height="24"
+                    loading="lazy"
+                    decoding="async"
+                    aria-hidden="true"
+                    draggable="false">
+            </a>
+        </div>
 
         <!-- NAVIGATION -->
         <nav class="flex items-center">
             <!-- MOBILE NAVIGATION TOGGLE -->
-            <button type="button" class="cm-toggle group flex justify-center items-center size-10 transition-transform duration-300" aria-label="mobile menu toggle" aria-expanded="false" aria-controls="cm-ul-wrapper" aria-haspopup="menu">
+            <button type="button" class="cm-toggle group flex lg:hidden justify-center items-center size-10 transition-transform duration-300" aria-label="mobile menu toggle" aria-expanded="false" aria-controls="cm-ul-wrapper" aria-haspopup="menu">
                 <span class="relative h-4 w-6 *:absolute *:left-0 *:h-0.5 *:w-full *:bg-black dark:*:bg-white *:transition-[top,bottom,transform,opacity] *:duration-300" aria-hidden="true">
                     <!-- LINES -->
                     <span class="absolute top-0 group-[.cm-active]:top-1/2 group-[.cm-active]:-translate-y-1/2 group-[.cm-active]:rotate-[225deg]"></span>
@@ -78,7 +80,8 @@
                                                 class="li-link inline-flex whitespace-nowrap ~p-1.5/4 ~text-sm/base
                                                 {%- if subitem.url === page.url %} text-black
                                                 {%- else %} text-gray-800 hover:text-black {%- endif %}"
-                                                {%- if subitem.url === page.url -%} aria-current="page" {%- endif %}>
+                                                {%- if subitem.url === page.url -%} aria-current="page" {%- endif -%}
+                                            >
                                                 {{ subitem.title }}
                                             </a>
                                         </li>
@@ -91,7 +94,8 @@
                                     {%- if item.url === page.url %} text-primary font-semibold max-lg:border-l-primary max-lg:bg-primary/10
                                     {%- else %} text-gray-800 dark:text-gray-200 hover:text-black dark:hover:text-white {%- endif %}"
                                     href="{{ entry.url }}"
-                                    {%- if item.url === page.url -%} aria-current="page" {%- endif %}>
+                                    {%- if item.url === page.url -%} aria-current="page" {%- endif -%}
+                                >
                                     {{ item.title }}
                                 </a>
                             {% endif %}

@@ -37,7 +37,7 @@
 }
 
 /* Mobile styles for the wrapper */
-@media (max-width: 1536px) {
+@media (max-width: 1024px) {
     #cm-ul-wrapper {
       @apply absolute top-full left-0 h-auto w-full py-4 px-4 bg-white dark:bg-stone-950 shadow-md transition-[transform,opacity] duration-500 ease-in-out scale-y-0 origin-top opacity-0;
     }
