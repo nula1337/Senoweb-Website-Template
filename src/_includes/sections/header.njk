@@ -93,7 +93,7 @@
                                     class="w-full ~p-1.5/4 whitespace-nowrap transition-colors duration-300 max-lg:pl-4 max-lg:border-l-4 max-lg:rounded-r-md
                                     {%- if item.url === page.url %} text-primary font-semibold max-lg:border-l-primary max-lg:bg-primary/10
                                     {%- else %} text-gray-800 dark:text-gray-200 hover:text-black dark:hover:text-white {%- endif %}"
-                                    href="{{ entry.url }}"
+                                    href="{{ item.url }}"
                                     {%- if item.url === page.url -%} aria-current="page" {%- endif -%}
                                 >
                                     {{ item.title }}
