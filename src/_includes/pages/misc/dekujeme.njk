@@ -3,32 +3,50 @@
     <head>
         <!-- Standard meta tags -->
         <meta charset="UTF-8">
-
-        <!-- Ensures the viewport widths are defined correctly and work on all devices (esp. mobile) -->
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="{{ description }}">
+        <meta name="generator" content="{{ eleventy.generator }}">
+        <link rel="canonical" href="{{ client.domain }}{{ page.url }}">
 
         <!-- Disable indexing for this page -->
         <meta name="robots" content="noindex, nofollow">
 
+        <!-- Favicons -->
+        <link rel="icon" type="image/png" href="/assets/favicons/favicon-96x96.png" sizes="96x96"/>
+        <link rel="icon" type="image/svg+xml" href="/assets/favicons/favicon.svg"/>
+        <link rel="shortcut icon" href="/assets/favicons/favicon.ico"/>
+        <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicons/apple-touch-icon.png"/>
+        <meta name="apple-mobile-web-app-title" content="{{ client.name }}"/>
+        <link rel="manifest" href="/assets/favicons/site.webmanifest"/>
+
         <!-- Main stylesheet -->
         <link rel="stylesheet" href="/assets/css/main.css">
 
-        <title>Děkujeme za odeslání formuláře | {{ client.name }}</title>
+        <title>{{ title }} | {{ client.name }}</title>
     </head>
 
     <body>
         <!-- FORM SUCCESS MESSAGE -->
         <section class="relative ~py-16/24 ~px-4/8 bg-neutral-950 h-screen w-screen">
             <div class="container m-auto flex justify-center items-center h-full">
-                <div class=" p-8 bg-white rounded-xl">
-                    <h1 class="text-xl text-neutral-950 font-semibold">Děkujeme!</h1>
-                    <p class="mt-2 mb-6 text-neutral-800">Vaše zpráva byla v pořádku odeslána.</p>
+                <!-- CONTENT CARD -->
+                <div class="flex flex-col gap-8 p-8 bg-white rounded-xl">
+                    <!-- HEADING + TEXT -->
+                    <div class="flex flex-col gap-2">
+                        <h1 class="text-xl text-neutral-950 font-semibold">{{ contentOne.heading }}</h1>
+                        <p class="text-neutral-800">{{ contentOne.text }}</p>
+                    </div>
+
+                    <!-- BACK TO WEBSITE LINK -->
                     <a id="back-link" href="" class="group flex items-center gap-1 text-rose-600">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                        <!-- ARROW ICON -->
+                        <svg class="size-4" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
                             <path class="transition-[opacity,transform] duration-300 group-hover:opacity-0 group-hover:-translate-x-1" fill-rule="evenodd" d="M8.354 1.646a.5.5 0 0 1 0 .708L2.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"/>
                             <path class="transition-[opacity,transform] duration-300 group-hover:-translate-x-1" fill-rule="evenodd" d="M12.354 1.646a.5.5 0 0 1 0 .708L6.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"/>
                         </svg>
-                        <p class="font-medium group-hover:underline">Zpět na náš web</p>
+
+                        <p class="font-medium group-hover:underline">{{ contentOne.backLink }}</p>
                     </a>
                 </div>
             </div>

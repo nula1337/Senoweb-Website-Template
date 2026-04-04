@@ -14,7 +14,7 @@ contentOne:
         - text: S Vašimi údaji je nakládáno v souladu se zákonem 101/2000 Sb. o ochraně osobních údajů, a dále také dle rozšiřujícího a sjednocujícího nařízení GDPR v podobě směrnice (EU) 2016/679, která původní zákon 101/2000 Sb. a směrnici 95/46/ES nahrazuje.
     
         - heading: Správce osobních údajů
-          text: Správcem osobních údajů je Štěpán Horák, se sídlem 	Paběnická 179/6, Libuš, 14200 Praha 4, IČO 87212935 a jako správce zpracováváme tyto vaše osobní údaje - jméno, příjmení, email a telefonní číslo.
+          text: Správcem osobních údajů je Ondřej Senohrábek, se sídlem Třebovská 123/4, 56201 Ústí nad Orlicí, IČO 19538685 a jako správce zpracováváme tyto vaše osobní údaje - jméno, příjmení, email a telefonní číslo.
     
         - heading: Účel sběru osobních údajů
           text: Osobní údaje je nutné zpracovat za účelem vyřízení vašeho dotazu nebo poptávky. Tyto údaje jsou správcem zpracovány po dobu pravděpodobného trvání vašeho zájmu (maximálně 5 let) nebo po dobu trvání spolupráce.
