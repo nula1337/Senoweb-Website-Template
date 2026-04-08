@@ -5,9 +5,9 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 // 📦 Plugin Imports
-import pluginImages from "@codestitchofficial/eleventy-plugin-sharp-images";
 import pluginMinifier from "@codestitchofficial/eleventy-plugin-minify";
 import { I18nPlugin } from "@11ty/eleventy";
+import { eleventyImageTransformPlugin } from "@11ty/eleventy-img";
 
 // ⚙️ Configuration Files
 import { configI18n } from "./src/config/plugins.js";
@@ -20,7 +20,8 @@ import javascript from "./src/config/processors/javascript.js";
 import { isoDate, postDate } from "./src/config/filters.js";
 
 // 🔗 Dependencies
-import * as fs from 'fs-extra'
+import fs from "fs/promises";
+//import * as fs from 'fs-extra'
 
 const isProduction = process.env.ELEVENTY_ENV === "PROD";
 
@@ -60,30 +61,43 @@ export default (eleventyConfig) => {
 
     /*
      * 🖼️ Image Optimization
-     * Resize and optimize images for better performance using {% getUrl %}
-     * Documentation: https://github.com/CodeStitchOfficial/eleventy-plugin-sharp-images
+     * Resize and optimize images for better performance using the official eleventy-img plugin.
+     * Documentation: https://www.11ty.dev/docs/plugins/image/
      */
     let configImages = {
-        urlPath: "/assets/images",
-        outputDir: "public/assets/images"
-    }
+        urlPath: "/assets/images/",
+        outputDir: "public/assets/images/",
+        formats: ["avif", "webp", "jpeg", "svg"],
+        widths: [600, 1200, 1920, 2880, "auto"], // Generates these sizes - 1.5 * 400 (mobile), 1.5 * 800 (tablet), 1.5 * 1280 (small desktop), 1.5 * 1920 (desktop)
+        svgShortCircuit: true, // Skip optimizing SVG images to raster formats
+        defaultAttributes: {
+            loading: "lazy",
+            decoding: "async",
+            "aria-hidden": "true",
+            draggable: "false"
+        }
+    };
 
     if (isProduction) {
         // On production set the output path to .cache folder which is preserved between builds on Cloudflare
-        configImages = {
-            urlPath: "/assets/images",
-            outputDir: ".cache/images"
-        }
+        configImages.outputDir = ".cache/images/";
 
         // After eleventy processing is done, copy the images to live website
         eleventyConfig.on("eleventy.after", async () => {
-            if (await fs.pathExists(".cache/images")) {
-                await fs.copy(".cache/images", "public/assets/images", { overwrite: false });
+            try {
+                await fs.access(".cache/images");
+                await fs.cp(".cache/images", "public/assets/images", {
+                    recursive: true,
+                    force: false,           // don't overwrite existing files
+                    errorOnExist: false     // silently skip if destination exists
+                });
+            } catch {
+                // .cache/images doesn't exist yet, nothing to copy
             }
         });
     }
 
-    eleventyConfig.addPlugin(pluginImages, configImages);
+    eleventyConfig.addPlugin(eleventyImageTransformPlugin, configImages);
 
     /*
      * 🌍 Internationalization (i18n) Plugin

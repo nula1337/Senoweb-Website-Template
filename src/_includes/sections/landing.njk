@@ -1,11 +1,11 @@
 <!-- LANDING -->
-<div class="relative ~py-16/24 ~px-4/8 z-10">
+<div class="relative py-fluid-16/24 px-fluid-4/8 z-10">
     <div class="container m-auto flex flex-col items-start gap-8">
         <!-- HEADING -->
         <span class="text-4xl">{{ landing.heading }}</span>
 
         <!-- BREADCRUMBS -->
-        <ul class="flex flex-wrap justify-center items-center ~gap-2/4">
+        <ul class="flex flex-wrap justify-center items-center gap-4">
             {% for item in landing.breadcrumbs %}
                 {% if item.url %}
                     <li>

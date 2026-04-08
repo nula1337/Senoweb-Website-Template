@@ -8,14 +8,13 @@
 
 {% block body %}
     <!-- SECTION -->
-    <section class="~py-16/24 ~px-4/8 bg-white dark:bg-black">
+    <section class="py-fluid-16/24 px-fluid-4/8 bg-white dark:bg-black">
         <div class="container m-auto">
-            <picture>
-                <source media="(min-width: 1024px)" srcset="{% getUrl '/assets/images/og-logo.png' | avif %}" type="image/avif">
-                <source media="(min-width: 1024px)" srcset="{% getUrl '/assets/images/og-logo.png' | webp %}" type="image/webp">
-                <source media="(min-width: 1024px)" srcset="{% getUrl '/assets/images/og-logo.png' | jpeg %}" type="image/jpeg">
-                <img src="{% getUrl '/assets/images/og-logo.png' | jpeg %}" alt="" width="" height="" loading="lazy" decoding="async" aria-hidden="true" draggable="false">
-            </picture>
+            <img
+              src="/assets/images/og-logo.png"
+              alt="{{ client.name }} logo"
+              sizes="(max-width: 600px) 100vw, (max-width: 1024px) 100vw, 100vw"
+            >
         </div>
     </section>
 

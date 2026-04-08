@@ -1,6 +1,4 @@
-import tailwindcss from "tailwindcss";
-import autoprefixer from "autoprefixer";
-import nested from "postcss-nested";
+import tailwindcss from "@tailwindcss/postcss";
 import postcss from "postcss";
 import cssnano from "cssnano";
 import fs from "fs/promises";
@@ -31,14 +29,14 @@ export default async ({ minify = false }) => {
     const css = await fs.readFile(inputPath, "utf8");
 
     // Setup PostCSS plugins
-    const plugins = [tailwindcss, autoprefixer, nested];
+    const plugins = [tailwindcss];
 
     // Add minification if requested
     if (minify) {
         plugins.push(cssnano({ preset: 'default' }));
     }
 
-    // Process with PostCSS + Tailwind 3
+    // Process with PostCSS + Tailwind
     const result = await postcss(plugins).process(css, {
         from: inputPath,
         to: outputPath

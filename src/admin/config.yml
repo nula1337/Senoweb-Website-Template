@@ -17,7 +17,7 @@ locale: "cs"
 media_folder: "src/assets/images/cms"
 
 # Where should media be served, relative to the base of the built site
-public_folder: "/assets/images/cms"
+public_folder: "/assets/cms"
 
 # Slug function configuration
 slug:
@@ -25,7 +25,6 @@ slug:
   clean_accents: true
   sanitize_replacement: "-"
 
-# Decap CMS Collections
 collections:
   # BLOG CONFIG
   - label: "Blog"
@@ -58,17 +57,19 @@ collections:
         }
       - { label: "Autor", name: "author", widget: "string" }
       - { label: "Datum", name: "date", widget: "datetime" }
-      - {
-          label: "Náhledový obrázek",
-          name: "image",
-          widget: "image",
-          choose_url: false, # Only allow local images - for image optimization reasons
-        }
-      - {
-          label: "Popis obrázku",
-          name: "imageAlt",
-          widget: "string",
-          hint: "Popište, co je na obrázku. Slouží k validnímu SEO příspěvku.",
-        }
+
+      - label: "Náhledový obrázek"
+        name: "image"
+        widget: "object"
+        summary: "Obrázek - {{fields.alt}}"
+        fields:
+          - { label: "Obrázek", name: "url", widget: "image" }
+          - {
+              label: "Popis obrázku",
+              name: "alt",
+              widget: "string",
+              hint: "Popište, co je na obrázku. Slouží k validnímu SEO tohoto příspěvku.",
+            }
+
       - { label: "Obsah", name: "body", widget: "markdown" }
       - { label: "Štítky", name: "tags", widget: "hidden", default: ["blog"] }

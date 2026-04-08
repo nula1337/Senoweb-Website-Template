@@ -1,12 +1,12 @@
 <!-- HEADER -->
-<header id="cm-navigation" class="py-4 ~px-4/8 fixed flex w-full z-50">
+<header id="cm-navigation" class="py-4 px-8 fixed flex w-full z-50">
     <div class="container m-auto flex justify-between items-center gap-2">
         <!-- LOGO -->
-        <div class="flex-1">
+        <div class="flex-1 flex">
             <a href="/">
                 <span class="sr-only">Přejít na domovskou stránku</span>
                 <img
-                    class="hidden dark:block ~h-5/6 w-auto"
+                    class="hidden dark:block h-6 w-auto"
                     src="/assets/svgs/senoweb-logo-white.svg"
                     alt="Senoweb logo"
                     width="170"
@@ -17,7 +17,7 @@
                     draggable="false">
 
                 <img
-                    class="block dark:hidden ~h-5/6 w-auto"
+                    class="block dark:hidden h-6 w-auto"
                     src="/assets/svgs/senoweb-logo-black.svg"
                     alt="Senoweb logo"
                     width="170"
@@ -33,10 +33,10 @@
         <nav class="flex items-center">
             <!-- MOBILE NAVIGATION TOGGLE -->
             <button type="button" class="cm-toggle group flex lg:hidden justify-center items-center size-10 transition-transform duration-300" aria-label="mobile menu toggle" aria-expanded="false" aria-controls="cm-ul-wrapper" aria-haspopup="menu">
-                <span class="relative h-4 w-6 *:absolute *:left-0 *:h-0.5 *:w-full *:bg-black dark:*:bg-white *:transition-[top,bottom,transform,opacity] *:duration-300" aria-hidden="true">
+                <span class="relative h-4 w-6 *:absolute *:left-0 *:h-0.5 *:w-full *:bg-black dark:*:bg-white *:transition-[top,bottom,rotate,opacity] *:duration-300" aria-hidden="true">
                     <!-- LINES -->
-                    <span class="absolute top-0 group-[.cm-active]:top-1/2 group-[.cm-active]:-translate-y-1/2 group-[.cm-active]:rotate-[225deg]"></span>
-                    <span class="absolute top-1/2 -translate-y-1/2 group-[.cm-active]:-rotate-[225deg]"></span>
+                    <span class="absolute top-0 group-[.cm-active]:top-1/2 group-[.cm-active]:-translate-y-1/2 group-[.cm-active]:rotate-225"></span>
+                    <span class="absolute top-1/2 -translate-y-1/2 group-[.cm-active]:-rotate-225"></span>
                     <span class="absolute bottom-0 group-[.cm-active]:-translate-y-full group-[.cm-active]:opacity-0"></span>
                 </span>
             </button>
@@ -50,7 +50,7 @@
                         {% set hasChild = item.subitems.length %}
 
                         <li
-                          class="group/li inline-flex {% if hasChild -%} cm-dropdown {%- endif %}"
+                          class="group/li relative inline-flex {% if hasChild -%} cm-dropdown {%- endif %}"
                           {%- if hasChild -%} tabindex="0" {%- endif %}>
 
                             {# If the page has child dropdown pages, render it as a <button> tag with the appropriate dropdown HTML #}
@@ -77,7 +77,7 @@
                                         <li>
                                             <a
                                                 href="{{ subitem.url }}"
-                                                class="li-link inline-flex whitespace-nowrap ~p-1.5/4 ~text-sm/base
+                                                class="li-link inline-flex p-fluid-2/4 text-fluid-sm/base whitespace-nowrap
                                                 {%- if subitem.url === page.url %} text-black
                                                 {%- else %} text-gray-800 hover:text-black {%- endif %}"
                                                 {%- if subitem.url === page.url -%} aria-current="page" {%- endif -%}
@@ -90,8 +90,8 @@
                             {% else %}
                                 {# Normal pages are rendered as <a> tags, in the normal way you'd expect #}
                                 <a
-                                    class="w-full ~p-1.5/4 whitespace-nowrap transition-colors duration-300 max-lg:pl-4 max-lg:border-l-4 max-lg:rounded-r-md
-                                    {%- if item.url === page.url %} text-primary font-semibold max-lg:border-l-primary max-lg:bg-primary/10
+                                    class="w-full p-fluid-2/4 whitespace-nowrap
+                                    {%- if item.url === page.url %} text-black dark:text-white
                                     {%- else %} text-gray-800 dark:text-gray-200 hover:text-black dark:hover:text-white {%- endif %}"
                                     href="{{ item.url }}"
                                     {%- if item.url === page.url -%} aria-current="page" {%- endif -%}
@@ -114,7 +114,7 @@
 
                 <!-- LIGHTMODE -->
                 <img
-                    class="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 transition-[transform,opacity] duration-300 opacity-100 dark:opacity-0 dark:-translate-y-6"
+                    class="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 transition-[translate,opacity] duration-300 opacity-100 dark:opacity-0 dark:-translate-y-6"
                     src="/assets/svgs/light_mode.svg"
                     alt="Ikona měsíce"
                     width="20"
@@ -126,7 +126,7 @@
 
                 <!-- LIGHTMODE -->
                 <img
-                    class="absolute top-1/2 left-1/2 translate-y-6 -translate-x-1/2 transition-[transform,opacity] duration-300 opacity-0 dark:opacity-100 dark:-translate-y-1/2"
+                    class="absolute top-1/2 left-1/2 translate-y-6 -translate-x-1/2 transition-[translate,opacity] duration-300 opacity-0 dark:opacity-100 dark:-translate-y-1/2"
                     src="/assets/svgs/dark_mode.svg"
                     alt="Ikona měsíce"
                     width="20"
