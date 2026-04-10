@@ -7,34 +7,32 @@
     <section class="py-fluid-16/24 px-fluid-4/8">
         <div class="container m-auto">
             <!-- CONTACT FORM -->
-            <div class="flex flex-col gap-8">
-                <form method="POST" action="" name="{{ form.name }}" class="flex flex-col gap-8" netlify netlify-honeypot="_gotcha">
-                    <!-- HONEYPOT -->
-                    <input class="sr-only" type="search" name="_gotcha" tabindex="-1" autocomplete="off" spellcheck="false" autocorrect="off" placeholder="Leave this empty">
+            <form method="POST" action="" name="{{ form.name }}" class="flex flex-col gap-8" netlify netlify-honeypot="_gotcha">
+                <!-- HONEYPOT -->
+                <input class="sr-only" type="search" name="_gotcha" tabindex="-1" autocomplete="off" spellcheck="false" autocorrect="off" placeholder="Leave this empty">
 
-                    {% for field in form.fields %}
-                        {% if field.type === "textarea" %}
-                            <!-- {{ field.name | upper }} -->
-                            <label class="flex flex-col gap-3">
-                                <span>{{ field.name }}</span>
-                                <textarea class="input min-h-[5lh] max-h-[30lh]" name="{{ field.name }}" rows="5" {%- if field.placeholder %} placeholder="{{ field.placeholder }}" {%- endif %} {%- if field.required %} required {%- endif %}></textarea>
-                            </label>
+                {% for field in form.fields %}
+                    {% if field.type === "textarea" %}
+                        <!-- {{ field.name | upper }} -->
+                        <label class="flex flex-col gap-3">
+                            <span>{{ field.name }}</span>
+                            <textarea class="input min-h-[5lh] max-h-[30lh]" name="{{ field.name }}" rows="5" {%- if field.placeholder %} placeholder="{{ field.placeholder }}" {%- endif %} {%- if field.required %} required {%- endif %}></textarea>
+                        </label>
 
-                        {% else %}
-                            <!-- {{ field.name | upper }} -->
-                            <label class="flex flex-col gap-3">
-                                <span>{{ field.name }}</span>
-                                <input 
+                    {% else %}
+                        <!-- {{ field.name | upper }} -->
+                        <label class="flex flex-col gap-3">
+                            <span>{{ field.name }}</span>
+                            <input 
                                 class="input"
                                 type="{{ field.type }}"
                                 name="{{ field.name }}"
                                 {%- if field.autocomplete %} autocomplete="{{ field.autocomplete }}" {%- endif %}
                                 {%- if field.placeholder %} placeholder="{{ field.placeholder }}" {%- endif %}
                                 {%- if field.required %} required {%- endif %}>
-                            </label>
-                        {% endif %}
-                    {% endfor %}
-                </form>
+                        </label>
+                    {% endif %}
+                {% endfor %}
 
                 <div class="flex flex-col gap-4">
                     <button type="submit" class="btn">{{ form.submit }}</button>
@@ -42,7 +40,7 @@
                         Odesláním formuláře souhlasíte se <a href="/gdpr" target="_blank" class="underline hover:text-black dark:hover:text-white">zpracováním osobních údajů</a>
                     </p>
                 </div>
-            </div>
+            </form>
         </div>
     </section>
 {% endblock body %}
