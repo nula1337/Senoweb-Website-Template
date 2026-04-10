@@ -37,14 +37,14 @@
   );
 
   /* === FLUID TYPOGRAPHY === */
-  --text-fluid-2xl\/5xl: clamp(1.5rem, 1.5rem + (3 - 1.5) * 16 * var(--fluid-bp), 3rem);
-  --text-fluid-lg\/2xl: clamp(1.125rem, 1.125rem + (1.5 - 1.125) * 16 * var(--fluid-bp), 1.5rem);
-  --text-fluid-sm\/base: clamp(0.875rem, 0.875rem + (1 - 0.875) * 16 * var(--fluid-bp), 1rem);
+  --text-fluid-sm-base: clamp(0.875rem, 0.875rem + (1 - 0.875) * 16 * var(--fluid-bp), 1rem);
+  --text-fluid-lg-2xl: clamp(1.125rem, 1.125rem + (1.5 - 1.125) * 16 * var(--fluid-bp), 1.5rem);
+  --text-fluid-2xl-5xl: clamp(1.5rem, 1.5rem + (3 - 1.5) * 16 * var(--fluid-bp), 3rem);
 
   /* === FLUID SPACING === */
-  --spacing-fluid-2\/4: clamp(0.5rem, 0.5rem + (1 - 0.5) * 16 * var(--fluid-bp), 1rem);
-  --spacing-fluid-4\/8: clamp(1rem, 1rem + (2 - 1) * 16 * var(--fluid-bp), 2rem);
-  --spacing-fluid-16\/24: clamp(4rem, 4rem + (6 - 4) * 16 * var(--fluid-bp), 6rem);
+  --spacing-fluid-2-4: clamp(0.5rem, 0.5rem + (1 - 0.5) * 16 * var(--fluid-bp), 1rem);
+  --spacing-fluid-4-8: clamp(1rem, 1rem + (2 - 1) * 16 * var(--fluid-bp), 2rem);
+  --spacing-fluid-16-24: clamp(4rem, 4rem + (6 - 4) * 16 * var(--fluid-bp), 6rem);
 }
 
 

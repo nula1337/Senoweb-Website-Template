@@ -1,5 +1,5 @@
 <!-- HEADER -->
-<header id="cm-navigation" class="py-4 px-fluid-4/8 fixed flex w-full z-50">
+<header id="cm-navigation" class="py-4 px-fluid-4-8 fixed flex w-full z-50">
     <div class="container m-auto flex justify-between items-center gap-2">
         <!-- LOGO -->
         <div class="flex-1 flex">
@@ -77,7 +77,7 @@
                                         <li>
                                             <a
                                                 href="{{ subitem.url }}"
-                                                class="li-link inline-flex p-fluid-2/4 text-fluid-sm/base whitespace-nowrap
+                                                class="li-link inline-flex p-fluid-2-4 text-fluid-sm-base whitespace-nowrap
                                                 {%- if subitem.url === page.url %} text-black
                                                 {%- else %} text-gray-800 hover:text-black {%- endif %}"
                                                 {%- if subitem.url === page.url -%} aria-current="page" {%- endif -%}
@@ -90,7 +90,7 @@
                             {% else %}
                                 {# Normal pages are rendered as <a> tags, in the normal way you'd expect #}
                                 <a
-                                    class="w-full p-fluid-2/4 whitespace-nowrap
+                                    class="w-full p-fluid-2-4 whitespace-nowrap
                                     {%- if item.url === page.url %} text-black dark:text-white
                                     {%- else %} text-gray-800 dark:text-gray-200 hover:text-black dark:hover:text-white {%- endif %}"
                                     href="{{ item.url }}"
