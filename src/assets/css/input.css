@@ -52,10 +52,10 @@
 /* === COMPONENTS === */
 /* ================== */
 
-@layer components 
+@layer components {
   /* === BUTTONS === */
   .btn {
-    @apply relative text-white font-semibold overflow-hidden z-10 before:absolute before:top-0 before:left-0 before:h-full before:w-full before:bg-black before:-z-10 before:transition-transform before:duration-300 before:scale-y-0 before:origin-bottom hover:before:scale-y-100
+    @apply relative text-white font-semibold overflow-hidden z-10 before:absolute before:top-0 before:left-0 before:h-full before:w-full before:bg-black before:-z-10 before:transition-transform before:duration-300 before:scale-y-0 before:origin-bottom hover:before:scale-y-100;
   }
 
   .btn {
