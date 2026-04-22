@@ -21,7 +21,6 @@ import { isoDate, postDate } from "./src/config/filters.js";
 
 // 🔗 Dependencies
 import fs from "fs/promises";
-//import * as fs from 'fs-extra'
 
 const isProduction = process.env.ELEVENTY_ENV === "PROD";
 
