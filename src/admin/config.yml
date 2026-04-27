@@ -14,7 +14,7 @@ logo:
 locale: "cs"
 
 # Where should uploaded files be saved
-media_folder: "src/assets/images/cms"
+media_folder: "src/assets/cms"
 
 # Where should media be served, relative to the base of the built site
 public_folder: "/assets/cms"
@@ -42,18 +42,22 @@ collections:
           label: "URL odkaz",
           name: "url",
           widget: "string",
-          hint: "Určete, kam bude stránka zapsána. Pokud použijete „blogovy-prispevek“, bude příspěvek přístupný na adrese „/blog/blogovy-prispevek“. URL odkaz musí být jedinečný.",
+          hint: "Určete, kam bude stránka zapsána. Pokud použijete „blogovy-prispevek“,
+            bude příspěvek přístupný na adrese „/blog/blogovy-prispevek“. URL
+            odkaz musí být jedinečný.",
           pattern:
             [
               "^[a-zà-ž0-9]+(?:-[a-zà-ž0-9]+)*$",
-              "Pouze písmena (A-Z, a-z), číslice a pomlčky (-). Žádná lomítka ani speciální znaky.",
+              "Pouze písmena (A-Z, a-z), číslice a pomlčky (-). Žádná lomítka
+                ani speciální znaky.",
             ],
         }
       - {
           label: "Popis",
           name: "description",
           widget: "string",
-          hint: "Kratší popis blogového příspěvku, který se zobrazuje na náhledech příspěvků",
+          hint: "Kratší popis blogového příspěvku, který se zobrazuje na náhledech
+            příspěvků",
         }
       - { label: "Autor", name: "author", widget: "string" }
       - { label: "Datum", name: "date", widget: "datetime" }
@@ -72,4 +76,4 @@ collections:
             }
 
       - { label: "Obsah", name: "body", widget: "markdown" }
-      - { label: "Štítky", name: "tags", widget: "hidden", default: ["blog"] }
+      - { label: "Štítky", name: "tags", widget: "hidden", default: [ "blog" ] }
