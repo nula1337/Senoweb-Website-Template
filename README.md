@@ -23,10 +23,68 @@ Tato šablona slouží jako základ pro tvorbu moderních, rychlých a plně př
 4. Spusťte `npm install` a nainstalujte všechny závislosti.
 5. Po dokončení instalace spusťte `npm start` a spusťte vývojový server.
 6. Vyplňte soubor `./src/_data/client.js` příslušnými informacemi pro svého klienta.
-7. Upravte tailwind proměnné v `./tailwind.config.js`.
-8. Upravte soubory webových stránek (použijte `./src`, NE `./public`) podle potřeby. K zahájení práce použijte šablonu v souboru `content/pages/_template.txt` nebo upravte stávající stránky.
-9. Nasazení proveďte pomocí Cloudflare Pages.
-10. Konfiguraci administrace proveďte pomocí souboru `./src/admin/config.yml`.
+7. Vyplňte soubor `./src/_data/navigation.js` odkazy a texty, které budou v nagivaci webu.
+8. Upravte tailwind proměnné v `./src/assets/css/input.css`.
+9. Upravte soubory webových stránek (použijte `./src`, NE `./public`) podle potřeby. K zahájení práce použijte šablonu v souboru `content/pages/_template.txt` nebo upravte stávající stránky.
+10. Nasazení proveďte pomocí Cloudflare Pages.
+11. Konfiguraci administrace proveďte pomocí souboru `./src/admin/config.yml`.
+
+## Optimalizace obrázků (eleventy-img)
+
+Pro zpracování a optimalizaci obrázků využíváme oficiální plugin `@11ty/eleventy-img` v režimu HTML Transform. Během buildu Eleventy automaticky najde vaše `<img>` tagy, vygeneruje optimalizované formáty (AVIF, WebP, JPEG) v různých rozlišeních a nahradí je plnohodnotným `<picture>` elementem s automaticky doplněnými atributy `width` a `height`.
+
+Pro maximálně efektivní vývoj **důrazně doporučujeme přidat si do VS Code následující snippet**. Ten vám umožní rychle vložit obrázek a pomocí klávesy `Tab` snadno přeskakovat a nastavovat responsivní pravidla (`sizes`) přímo na míru vašemu Tailwind CSS layoutu.
+
+#### VS Code Snippet
+1. Ve VS Code přejděte do *Preferences > Configure User Snippets* a vyberte HTML (případně Nunjucks/Markdown).
+2. Vložte následující kód:
+
+```json
+"eleventy-responsive-image": {
+    "prefix": "eleventy-img",
+    "body":[
+        "<img",
+        "  src=\"${1:/assets/images/placeholder.jpg}\"",
+        "  alt=\"${2}\"",
+        "  sizes=\"(max-width: 48rem) ${3:100vw}, (max-width: 80rem) ${4:100vw}, ${5:96rem}\"",
+        ">"
+    ],
+    "description": "Inserts an image for 11ty HTML Transform with tab-able sizes"
+}
+```
+
+#### Jak to funguje
+Nemusíte ručně řešit 1.5x násobení pro Retina displeje. Jednoduše nastavte atribut `sizes` tak, aby odpovídal velikosti obrázku v rámci daného breakpointu (např. `50vw` pro dvousloupcový grid na tabletu nebo `min(100vw, 96rem)` pro full-width kontejner). Prohlížeč si na základě těchto instrukcí sám vybere ten nejvhodnější soubor, který Eleventy vygenerovalo. Změny výřezu řešte přímo pomocí tailwind tříd jako `object-cover` a `object-center`.
+
+### Fluidní design
+V souboru `input.css` máme předpřipravené CSS proměnné pro **fluidní typografii a odsazení**. Tyto hodnoty se plynule a automaticky přepočítávají (škálují) podle aktuální šířky prohlížeče uživatele (od `400px` do `1536px`). Nemusíte tak složitě psát desítky mediálních dotazů pro každý breakpoint.
+
+Tato sekce v `input.css` vypadá následovně:
+```css
+/* === FLUID CONFIG === */
+--fluid-min-width: 400;
+--fluid-max-width: 1536;
+  
+/* Tímto vzorcem se vypočítá průběh mezi minimální a maximální obrazovkou */
+--fluid-screen: 100vw;
+--fluid-bp: calc(
+    (var(--fluid-screen) - (var(--fluid-min-width) * 1px)) / 
+    (var(--fluid-max-width) - var(--fluid-min-width))
+);
+
+/* === FLUID TYPOGRAPHY === */
+--text-fluid-sm-base: clamp(0.875rem, 0.875rem + (1 - 0.875) * 16 * var(--fluid-bp), 1rem);
+--text-fluid-lg-2xl: clamp(1.125rem, 1.125rem + (1.5 - 1.125) * 16 * var(--fluid-bp), 1.5rem);
+--text-fluid-2xl-5xl: clamp(1.5rem, 1.5rem + (3 - 1.5) * 16 * var(--fluid-bp), 3rem);
+
+/* === FLUID SPACING === */
+--spacing-fluid-2-4: clamp(0.5rem, 0.5rem + (1 - 0.5) * 16 * var(--fluid-bp), 1rem);
+--spacing-fluid-4-8: clamp(1rem, 1rem + (2 - 1) * 16 * var(--fluid-bp), 2rem);
+--spacing-fluid-16-24: clamp(4rem, 4rem + (6 - 4) * 16 * var(--fluid-bp), 6rem);
+```
+
+#### Jak to funguje
+Tyto proměnné můžete rovnou používat ve vašich tailwind třídách, například: `text-fluid-2xl-5xl` pro plynule se zvětšující nadpis, případně `px-fluid-4-8` pro flexibilní horizontální padding.
 
 ## Nasazení projektu
 
