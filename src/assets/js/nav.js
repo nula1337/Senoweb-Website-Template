@@ -64,12 +64,17 @@
         },
 
         toggle(element) {
-            element.classList.toggle(CONFIG.CLASSES.active);
+            const isActive = element.classList.toggle(CONFIG.CLASSES.active);
             const button = element.querySelector(CONFIG.SELECTORS.dropdownToggle);
             const menu = element.querySelector(CONFIG.SELECTORS.dropdownMenu);
 
-            button && toggleAttribute(button, "aria-expanded");
-            menu && toggleInert(menu);
+            button && button.setAttribute("aria-expanded", isActive ? "true" : "false");
+
+            if (menu) {
+                // If the menu is active (clicked open), it is NOT inert.
+                // If it's not active, it IS inert.
+                menu.inert = !isActive;
+            }
         },
 
         closeAll() {

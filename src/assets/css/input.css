@@ -73,19 +73,19 @@
 /* ================== */
 
 .cm-drop-ul {
-  @apply hidden absolute top-full left-0 min-w-52 bg-white shadow-md z-50;
+  @apply absolute top-full left-0 min-w-52 bg-white shadow-md opacity-0 z-50;
 }
 
 /* Show dropdown when active (via JS click) or hovered (on desktop) */
 .cm-dropdown.cm-active .cm-drop-ul,
 .cm-dropdown:hover .cm-drop-ul {
-  @apply block;
+  @apply opacity-100;
 }
 
 /* Mobile styles for the wrapper */
 @media (max-width: 1024px) {
     #cm-ul-wrapper {
-      @apply absolute top-full left-0 h-auto w-full py-4 px-4 bg-white dark:bg-stone-950 shadow-md transition-[transform,opacity] duration-500 ease-in-out scale-y-0 origin-top opacity-0;
+      @apply absolute top-full left-0 h-auto w-full py-4 px-4 bg-white dark:bg-black shadow-md transition-[scale,opacity] duration-500 ease-in-out scale-y-0 origin-top opacity-0;
     }
     
     #cm-navigation.cm-active #cm-ul-wrapper {
@@ -94,7 +94,11 @@
 
     .cm-drop-ul {
       /* static - stacks dropdowns vertically on mobile */
-      @apply static shadow-none;
+      @apply static grid grid-rows-[0fr] shadow-none transition-[grid-template-rows] duration-500 ease-in-out;
+    }
+
+    .cm-dropdown.cm-active .cm-drop-ul {
+      @apply grid-rows-[1fr];
     }
 }
 

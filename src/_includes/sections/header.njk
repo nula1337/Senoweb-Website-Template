@@ -42,7 +42,7 @@
             </button>
 
             <div id="cm-ul-wrapper">
-                <ul class="flex gap-8">
+                <ul class="flex flex-col lg:flex-row gap-8">
                     {# Loop through all items in the src/_data/navigation.js file #}
                     {% for item in navigation %}
 
@@ -50,7 +50,7 @@
                         {% set hasChild = item.subitems.length %}
 
                         <li
-                          class="group/li relative inline-flex {% if hasChild -%} cm-dropdown {%- endif %}"
+                          class="group/li relative inline-flex flex-col {% if hasChild -%} cm-dropdown {%- endif %}"
                           {%- if hasChild -%} tabindex="0" {%- endif %}>
 
                             {# If the page has child dropdown pages, render it as a <button> tag with the appropriate dropdown HTML #}
@@ -59,7 +59,7 @@
                                 <button
                                     type="button"
                                     id="{{ item.title | slug }}-dropdown-toggle"
-                                    class="cm-dropdown-toggle flex items-center gap-1 text-gray-800 dark:text-gray-200 hover:text-black dark:hover:text-white"
+                                    class="cm-dropdown-toggle flex items-center gap-1 p-fluid-2-4 text-gray-800 dark:text-gray-200 hover:text-black dark:hover:text-white"
                                     aria-haspopup="menu"
                                     aria-expanded="false"
                                 >
@@ -72,21 +72,23 @@
                                 </button>
 
                                 {# Dropdowns have another ul/li set up within the parent li, which gets rendered in the same way as a normal link #}
-                                <ul class="cm-drop-ul" aria-labelledby="{{ item.title | slug }}-dropdown-toggle">
-                                    {% for subitem in item.subitems %}
-                                        <li>
-                                            <a
-                                                href="{{ subitem.url }}"
-                                                class="li-link inline-flex p-fluid-2-4 text-fluid-sm-base whitespace-nowrap
-                                                {%- if subitem.url === page.url %} text-black
-                                                {%- else %} text-gray-800 hover:text-black {%- endif %}"
-                                                {%- if subitem.url === page.url -%} aria-current="page" {%- endif -%}
-                                            >
-                                                {{ subitem.title }}
-                                            </a>
-                                        </li>
-                                    {% endfor %}
-                                </ul>
+                                <div class="cm-drop-ul" aria-labelledby="{{ item.title | slug }}-dropdown-toggle">
+                                    <ul class="overflow-hidden">
+                                        {% for subitem in item.subitems %}
+                                            <li>
+                                                <a
+                                                    href="{{ subitem.url }}"
+                                                    class="li-link inline-flex p-fluid-2-4 text-fluid-sm-base whitespace-nowrap
+                                                    {%- if subitem.url === page.url %} text-black
+                                                    {%- else %} text-gray-800 hover:text-black {%- endif %}"
+                                                    {%- if subitem.url === page.url -%} aria-current="page" {%- endif -%}
+                                                >
+                                                    {{ subitem.title }}
+                                                </a>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
                             {% else %}
                                 {# Normal pages are rendered as <a> tags, in the normal way you'd expect #}
                                 <a
