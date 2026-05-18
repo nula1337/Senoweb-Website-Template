@@ -44,7 +44,7 @@
             <div id="cm-ul-wrapper">
                 <ul class="flex flex-col lg:flex-row gap-8">
                     {# Loop through all items in the src/_data/navigation.js file #}
-                    {% for item in navigation %}
+                    {% for item in navigation[page.lang] %}
 
                         {# Define a hasChild variable to make it easier to test what navigation items are have child dropdown pages #}
                         {% set hasChild = item.subitems.length %}

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="cs" class="scroll-smooth">
+<html lang="{{ page.lang }}" class="scroll-smooth">
   <!-- A fully fleshed-out <head>, dynamically changing based on client.json and the page front matter -->
   <head>
     <!-- Standard meta tags -->
@@ -9,6 +9,16 @@
     <meta name="description" content="{{ description }}">
     <meta name="generator" content="{{ eleventy.generator }}">
     <link rel="canonical" href="{{ client.domain }}{{ page.url }}">
+
+    {% if page.url | locale_links | length > 0 %}
+      <link rel="alternate" hreflang="{{ page.lang }}" href="{{ client.domain }}{{ page.url }}"/>
+
+      {% for link in page.url | locale_links %}
+        <link rel="alternate" hreflang="{{ link.lang }}" href="{{ client.domain }}{{ link.url }}"/>
+      {% endfor %}
+
+      <link rel="alternate" hreflang="x-default" href="{{ client.domain }}{{ page.url | locale_url(client.defaultLanguage) }}"/>
+    {% endif %}
 
     <!-- Social Media Display -->
     <meta property="og:title" content="{{ title }}"/>

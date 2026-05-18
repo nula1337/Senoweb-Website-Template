@@ -19,6 +19,8 @@ export default {
   },
   //! Make sure you include the file protocol (e.g. https://) and that NO TRAILING SLASH is included
   domain: "https://www.senoweb.cz",
+  // The default language of the website (used for hreflang and as a fallback)
+  defaultLanguage: "cs",
   // Passing the isProduction variable for use in HTML templates
   isProduction: process.env.ELEVENTY_ENV === "PROD",
 };
