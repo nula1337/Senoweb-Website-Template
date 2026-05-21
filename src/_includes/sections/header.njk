@@ -72,8 +72,8 @@
                                 </button>
 
                                 {# Dropdowns have another ul/li set up within the parent li, which gets rendered in the same way as a normal link #}
-                                <div class="cm-drop-ul" aria-labelledby="{{ item.title | slug }}-dropdown-toggle">
-                                    <ul class="overflow-hidden">
+                                <div class="cm-drop-ul">
+                                    <ul class="overflow-hidden" aria-labelledby="{{ item.title | slug }}-dropdown-toggle">
                                         {% for subitem in item.subitems %}
                                             <li>
                                                 <a
