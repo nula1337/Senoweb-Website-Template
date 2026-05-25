@@ -73,13 +73,13 @@
 /* ================== */
 
 .cm-drop-ul {
-  @apply absolute top-full left-0 min-w-52 bg-white shadow-md opacity-0 z-50;
+  @apply absolute top-full left-0 min-w-52 bg-white shadow-md z-50 transition-[scale,opacity] duration-500 ease-in-out scale-y-0 origin-top opacity-0;
 }
 
 /* Show dropdown when active (via JS click) or hovered (on desktop) */
 .cm-dropdown.cm-active .cm-drop-ul,
 .cm-dropdown:hover .cm-drop-ul {
-  @apply opacity-100;
+  @apply scale-y-100 opacity-100;
 }
 
 /* Mobile styles for the wrapper */
