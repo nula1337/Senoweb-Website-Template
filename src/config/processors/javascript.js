@@ -4,7 +4,7 @@ import { glob } from "glob";
 const isProduction = process.env.ELEVENTY_ENV === "PROD";
 
 // Files to exclude from esbuild processing - Cookie Consent by default
-const excludeFiles = ["cookieconsent-config.js", "cookieconsent.umd.js", "fslightbox.js"];
+const excludeFiles = ["cookieconsent-config.js", "cookieconsent.umd.js", "glightbox.js"];
 
 
 /**
