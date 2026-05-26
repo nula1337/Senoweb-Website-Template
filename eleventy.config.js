@@ -25,6 +25,22 @@ import fs from "fs/promises";
 const isProduction = process.env.ELEVENTY_ENV === "PROD";
 
 
+/**
+ * Helper to safely access nested properties
+ */
+const getDeep = (obj, path) => {
+    return path.split('.').reduce((acc, part) => acc && acc[part] !== undefined ? acc[part] : undefined, obj);
+};
+
+/**
+ * Helper to normalize a string value to lower-case
+ */
+const normalize = (v) => {
+    if (v === undefined || v === null) return v;
+    return String(v).trim().toLowerCase().replace(/\s+/g, '');
+};
+
+
 /** @param {import('@11ty/eleventy/UserConfig').default} eleventyConfig*/
 export default (eleventyConfig) => {
     // ═════════════════════════════════════════════════════════════════════════
@@ -165,6 +181,16 @@ export default (eleventyConfig) => {
     eleventyConfig.addFilter("pageLang", function (value) {
         return value.filter(item => item.page.lang === this.page.lang)
     });
+
+    /*
+     * 🔡 String Normalization Filter
+     * Converts strings to lowercase and removes all internal/external whitespace.
+     * Usage: {{ phone | normalize }} or {{ email | normalize }}
+     */
+    eleventyConfig.addFilter("normalize", function (value) {
+        return normalize(value);
+    });
+
 
     /**
      * 🔍 Multi-Property Equality Filter
