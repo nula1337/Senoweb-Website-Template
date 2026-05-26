@@ -195,6 +195,38 @@ export default (eleventyConfig) => {
         });
     });
 
+    /**
+     * 🎯 Find Single Item Filter
+     * Finds the first item in a collection that matches multiple property-value pairs.
+     * Supports nested properties and performs lenient (case-insensitive) matching.
+     * Usage:
+     *   {{ collections.zamestnanci | findWhere({ "data.firstName": "Jan", "data.lastName": "Novák" }) }}
+     */
+    eleventyConfig.addFilter("findWhere", function (collection, conditions = {}, useLenientMatch = true) {
+        if (!Array.isArray(collection) || Object.keys(conditions).length === 0) {
+            return undefined;
+        }
+
+        return collection.find((item) => {
+            return Object.entries(conditions).every(([prop, expectedValue]) => {
+                // We check the root of the item. 
+                // In 11ty, most things are in item.data (frontmatter) or item (system)
+                let actualValue = getDeep(item, prop);
+
+                // Fallback: If not found on root, check in .data (common 11ty use case)
+                if (actualValue === undefined && !prop.startsWith('data.')) {
+                    actualValue = getDeep(item.data, prop);
+                }
+
+                if (useLenientMatch) {
+                    return normalize(actualValue) === normalize(expectedValue);
+                }
+
+                return actualValue === expectedValue;
+            });
+        });
+    });
+
     // ═════════════════════════════════════════════════════════════════════════
     // SHORTCODES
     // Generate dynamic content with JavaScript
