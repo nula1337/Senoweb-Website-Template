@@ -1,0 +1,20 @@
+<script>
+    const lightbox = GLightbox({selector: '.glightbox', touchNavigation: true, loop: true, autoplayVideos: true});
+
+    // Function to prevent default scroll behavior
+    function preventDefault(e) {
+        e.preventDefault();
+    }
+
+    lightbox.on('open', () => {
+        // Lock scroll without changing overflow
+        window.addEventListener('wheel', preventDefault, {passive: false});
+        window.addEventListener('touchmove', preventDefault, {passive: false});
+    });
+
+    lightbox.on('close', () => {
+        // Unlock scroll
+        window.removeEventListener('wheel', preventDefault);
+        window.removeEventListener('touchmove', preventDefault);
+    });
+</script>
