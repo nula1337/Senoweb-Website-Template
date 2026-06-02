@@ -2,6 +2,23 @@
 
 Tato šablona slouží jako základ pro tvorbu moderních, rychlých a plně přizpůsobitelných webových stránek. Vychází z repozitáře [CodeStitch Intermediate Website Kit (LESS)](https://github.com/CodeStitchOfficial/Intermediate-Website-Kit-LESS), ale byla upravena a rozšířena pro potřeby ručně vyvíjených webů na míru v rámci **Senoweb**.
 
+## Obsah
+
+- [Funkce](#funkce)
+- [Použití šablony](#použití-šablony)
+- [Optimalizace obrázků (eleventy-img)](#optimalizace-obrázků-eleventy-img)
+  - [VS Code Snippet](#vs-code-snippet)
+  - [Jak to funguje](#jak-to-funguje)
+  - [Fluidní design](#fluidní-design)
+- [Nasazení projektu](#nasazení-projektu)
+  - [Nastavení domény](#nastavení-domény)
+  - [Domenové redirecty](#domenové-redirecty)
+  - [Decap Bridge](#decap-bridge)
+    - [Vložení backend kódu](#vložení-backend-kódu)
+  - [Basin formuláře](#basin-formuláře)
+    - [Nastavení formuláře](#nastavení-formuláře)
+    - [Řešení problému se spamovým filtrem](#řešení-problému-se-spamovým-filtrem-spam-reason-ip-has-submitted-too-frequently)
+
 ## Funkce
 
 - **Eleventy (11ty)** - statický generátor webu
