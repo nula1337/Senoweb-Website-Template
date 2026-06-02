@@ -165,3 +165,49 @@ Pro nastavení těchto redirectů je zapotřebí, aby byla doména přidána do 
 ![Basin form language](https://github.com/nula1337/Senoweb-Website-Template/blob/main/github/basin-form-language.png)
 3. V záložce „Settings“ nastavte časové pásmo, jazyk a branding stránky s potvrzením úspěšného odeslání formuláře.
 4. Volitelně v záložce „Emails“ → „Config“ → „Mailer“ nahrajte vlastní logo projektu, které se zobrazuje v emailech a nastavte emailovou adresu, z které se notifikace odesílají (je potřeba mít doménu přidanou na stránce „Domains“).
+
+#### Řešení problému se spamovým filtrem (SPAM Reason: (IP has submitted too frequently.))
+
+Při odesílání požadavků ze serverless funkcí odcházejí všechny registrace z IP adres dané cloudové platformy. Spamový filtr služby Basin může tyto požadavky vyhodnotit jako útok a zablokovat je s chybovou hláškou:
+`SPAM Reason: (IP has submitted too frequently.)`
+
+Chcete-li tomuto chování předejít, je nutné v požadavku z vaší serverless funkce předat skutečnou IP adresu uživatele a API klíč. Podpora Basin pro tento účel vyžaduje nastavení následujících hlaviček:
+
+*   `Basin-True-Client-IP`: Skutečná IP adresa koncového uživatele.
+*   `Basin-API-Key`: Váš API klíč (uložený v proměnných prostředí, např. `BASIN_FORM_API_KEY`).
+
+##### Získání API klíče formuláře
+
+##### Příklad implementace (Cloudflare)
+![Basin form API key](https://github.com/nula1337/Senoweb-Website-Template/blob/main/github/basin-form-api-key.png)
+
+Níže je uveden příklad, jak získat IP adresu uživatele a odeslat ji společně s daty na Basin API:
+
+```javascript
+export async function onRequest(context) {
+  const { request, env } = context;
+
+  // 1. Získání IP adresy klienta (příklad pro Cloudflare a Netlify)
+  const userIp = request.headers.get("CF-Connecting-IP") || "";
+
+  // 2. Načtení dat z formuláře odeslaného uživatelem
+  const formData = await request.formData();
+
+  // 3. Odeslání dat na API Basin s potřebnými hlavičkami
+  const response = await fetch("https://usebasin.com/f/formId", {
+    method: "POST",
+    headers: {
+      "Accept": "application/json",
+      "Basin-True-Client-IP": userIp,
+      "Basin-API-Key": env.BASIN_FORM_API_KEY,
+    },
+    body: formData
+  });
+
+  if (response.ok) {
+    return new Response(JSON.stringify({ success: true }), { status: 200 });
+  } else {
+    return new Response(JSON.stringify({ error: "Chyba při odesílání" }), { status: response.status });
+  }
+}
+```
