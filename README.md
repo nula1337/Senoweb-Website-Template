@@ -177,10 +177,9 @@ Chcete-li tomuto chování předejít, je nutné v požadavku z vaší serverles
 *   `Basin-API-Key`: Váš API klíč (uložený v proměnných prostředí, např. `BASIN_FORM_API_KEY`).
 
 ##### Získání API klíče formuláře
-
-##### Příklad implementace (Cloudflare)
 ![Basin form API key](https://github.com/nula1337/Senoweb-Website-Template/blob/main/github/basin-form-api-key.png)
 
+##### Příklad implementace (Cloudflare)
 Níže je uveden příklad, jak získat IP adresu uživatele a odeslat ji společně s daty na Basin API:
 
 ```javascript
