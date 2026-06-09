@@ -202,10 +202,6 @@ export default (eleventyConfig) => {
     eleventyConfig.addFilter("whereAll", function (collection, conditions = {}) {
         if (!Array.isArray(collection)) return [];
 
-        const getDeep = (obj, path) => {
-            return path.split(".").reduce((acc, key) => acc && acc[key], obj);
-        }
-
         return collection.filter((item) => {
             return Object.entries(conditions).every(([prop, expected]) => {
                 const actual = getDeep(item.data, prop);
