@@ -203,10 +203,14 @@ export default (eleventyConfig) => {
         if (!Array.isArray(collection)) return [];
 
         return collection.filter((item) => {
-            return Object.entries(conditions).every(([prop, expected]) => {
-                const actual = getDeep(item.data, prop);
+            if (!item) return false;
 
-                // NEW LOGIC: If the value in the file is an array, check if it contains the expected value
+            return Object.entries(conditions).every(([prop, expected]) => {
+                // Check item.data first (for Eleventy collections), fallback to the item itself (for flat data)
+                const target = item.data && typeof item.data === 'object' ? item.data : item;
+                const actual = getDeep(target, prop);
+
+                // If the value in the file is an array, check if it contains the expected value
                 if (Array.isArray(actual)) {
                     return actual.includes(expected);
                 }
