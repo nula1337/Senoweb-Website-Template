@@ -31,6 +31,8 @@
         darkModeToggle: document.querySelector(CONFIG.SELECTORS.darkModeToggle),
     };
 
+    let lastWindowWidth = window.innerWidth;
+
     // Utilities
     const isMobile = () => window.matchMedia(`(max-width: ${CONFIG.BREAKPOINTS.MOBILE}px)`).matches;
 
@@ -203,15 +205,21 @@
         inertState() {
             if (!elements.menuWrapper) return;
 
-            // On mobile, menu starts closed, so set inert=true
-            // On desktop, menu is always visible, so set inert=false
-            elements.menuWrapper.inert = isMobile();
+            // Check if the menu is currently open
+            const isMenuOpen = elements.navigation && elements.navigation.classList.contains(CONFIG.CLASSES.active);
 
-            // Initialize dropdown menus - they start closed, so inert=true on all devices
+            // On mobile, the wrapper should only be inert if the menu is CLOSED.
+            // On desktop, it should never be inert.
+            elements.menuWrapper.inert = isMobile() && !isMenuOpen;
+
+            // Initialize dropdown menus
             if (elements.navigation) {
                 const dropdownMenus = elements.navigation.querySelectorAll(CONFIG.SELECTORS.dropdownMenu);
                 dropdownMenus.forEach((dropdown) => {
-                    dropdown.inert = true;
+                    const parentDropdown = dropdown.closest(CONFIG.SELECTORS.dropdown);
+                    const isDropdownActive = parentDropdown && parentDropdown.classList.contains(CONFIG.CLASSES.active);
+                    // Keep inert if the dropdown itself is not active
+                    dropdown.inert = !isDropdownActive;
                 });
             }
         },
@@ -242,9 +250,16 @@
 
             // Resize handling
             window.addEventListener("resize", () => {
-                this.inertState();
-                if (!isMobile() && elements.navigation.classList.contains(CONFIG.CLASSES.active)) {
-                    menuManager.toggle();
+                const currentWidth = window.innerWidth;
+
+                // Only run if the width has actually changed (ignores height-only changes)
+                if (currentWidth !== lastWindowWidth) {
+                    lastWindowWidth = currentWidth;
+
+                    this.inertState();
+                    if (!isMobile() && elements.navigation.classList.contains(CONFIG.CLASSES.active)) {
+                        menuManager.toggle();
+                    }
                 }
             });
         },
