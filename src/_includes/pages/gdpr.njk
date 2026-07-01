@@ -5,15 +5,15 @@
 
     <!-- GDPR -->
     <section class="py-fluid-16-24 px-fluid-4-8 bg-white dark:bg-stone-950">
-        <div class="container m-auto flex flex-col gap-8">
+        <div class="container m-auto flex flex-col items-center gap-fluid-12-16">
             <!-- TOPPER + HEADING -->
-            <div class="flex flex-col items-start gap-2">
-                <span class="topper">{{ contentOne.topper }}</span>
-                <h2 class="text-fluid-2xl-5xl text-black dark:text-white font-bold leading-[1.1]! uppercase">{{ contentOne.heading }}</h2>
+            <div class="flex flex-col items-center gap-2">
+                <span class="topper text-center">{{ gdpr.topper }}</span>
+                <h2 class="max-w-xl text-balance text-center text-fluid-2xl-5xl text-black dark:text-white font-bold leading-[1.2]! uppercase">{{ gdpr.heading }}</h2>
             </div>
 
             <div class="max-w-[75ch]">
-                {% for item in contentOne.items %}
+                {% for item in gdpr.items %}
                     <div class="mb-8">
                         {% if item.heading %}
                             <h3 class="text-fluid-lg-2xl text-black dark:text-white font-semibold mb-4">{{ item.heading }}</h3>

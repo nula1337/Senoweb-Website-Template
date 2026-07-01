@@ -7,9 +7,9 @@
     <section class="py-fluid-16-24 px-fluid-4-8">
         <div class="container m-auto">
             <!-- CONTACT FORM -->
-            <form method="POST" action="" name="{{ form.name }}" class="flex flex-col gap-8" netlify netlify-honeypot="_gotcha">
+            <form method="POST" action="" name="{{ form.name }}" class="flex flex-col gap-8" netlify netlify-honeypot="company">
                 <!-- HONEYPOT -->
-                <input class="sr-only" type="search" name="_gotcha" tabindex="-1" autocomplete="off" spellcheck="false" autocorrect="off" placeholder="Leave this empty">
+                <input class="sr-only" type="search" name="company" tabindex="-1" autocomplete="off" spellcheck="false" autocorrect="off" placeholder="Leave this empty">
 
                 {% for field in form.fields %}
                     <!-- {{ field.name | upper }} -->
