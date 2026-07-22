@@ -253,6 +253,99 @@ export default (eleventyConfig) => {
         });
     });
 
+    /**
+     * ↕️ Sorting Filter
+     * Sorts an array of objects by a specified key.
+     * Supports nested properties (e.g., "data.lastName") and Czech locale-aware sorting.
+     * Usage:
+     *   {{ collections.zamestnanci | sortBy("data.lastName", "asc") }}
+     */
+    eleventyConfig.addFilter("sortBy", function (array, key, order = 'asc') {
+        if (!Array.isArray(array)) return array;
+
+        const direction = order.toLowerCase() === 'desc' ? -1 : 1;
+
+        return [...array].sort((a, b) => {
+            let valA = getDeep(a, key);
+            let valB = getDeep(b, key);
+
+            // Push null/undefined to the end
+            if (valA == null) return 1;
+            if (valB == null) return -1;
+
+            // Try to parse both values as dates
+            const dateA = valA instanceof Date ? valA : new Date(valA);
+            const dateB = valB instanceof Date ? valB : new Date(valB);
+
+            // If both are valid dates, compare via timestamp
+            if (!isNaN(dateA.getTime()) && !isNaN(dateB.getTime())) {
+                return (dateA.getTime() - dateB.getTime()) * direction;
+            }
+
+            // Numeric handling
+            if (typeof valA === 'number' && typeof valB === 'number') {
+                return (valA - valB) * direction;
+            }
+
+            // String/locale handling
+            return String(valA).localeCompare(String(valB), { sensitivity: 'base' }) * direction;
+        });
+    });
+
+    /**
+     * 🗂️ Group by Property Filter
+     * Groups an array of objects by a key, with optional custom sort order for groups.
+     * Supports nested properties and handles values that are arrays (multi-grouping).
+     * Usage:
+     *   {{ collections.zamestnanci | groupBy("data.group", ["Vedení školy", "Třídní učitelé 1. stupně"]) }}
+     */
+    eleventyConfig.addFilter("groupBy", (array, key, order = 'asc') => {
+        if (!Array.isArray(array)) return [];
+
+        const ungroupedKey = "_ungrouped";
+        const grouped = {};
+
+        // 1. Group the items
+        array.forEach(item => {
+            const groupValue = getDeep(item, key);
+            if (Array.isArray(groupValue)) {
+                if (groupValue.length === 0) {
+                    (grouped[ungroupedKey] = grouped[ungroupedKey] || []).push(item);
+                } else {
+                    groupValue.forEach(val => {
+                        (grouped[val] = grouped[val] || []).push(item);
+                    });
+                }
+            } else {
+                const groupKey = groupValue ?? ungroupedKey;
+                (grouped[groupKey] = grouped[groupKey] || []).push(item);
+            }
+        });
+
+        const allKeys = Object.keys(grouped);
+        let sortedKeys;
+
+        // Determine Sort Logic
+        if (Array.isArray(order)) {
+            // Custom Array Order (e.g., ["Vedení", "Učitelé"])
+            const orderedKeys = order.filter(k => allKeys.includes(k));
+            const remainingKeys = allKeys
+                .filter(k => !order.includes(k))
+                .sort((a, b) => a.localeCompare(b, 'cs'));
+            sortedKeys = [...orderedKeys, ...remainingKeys];
+        } else {
+            // Directional String (e.g., "asc" or "desc")
+            const direction = (typeof order === 'string' && order.toLowerCase() === 'desc') ? -1 : 1;
+            sortedKeys = allKeys.sort((a, b) => a.localeCompare(b, 'cs') * direction);
+        }
+
+        // Map to the final structure
+        return sortedKeys.map(groupKey => ({
+            key: groupKey,
+            items: grouped[groupKey]
+        }));
+    });
+
     // ═════════════════════════════════════════════════════════════════════════
     // SHORTCODES
     // Generate dynamic content with JavaScript
