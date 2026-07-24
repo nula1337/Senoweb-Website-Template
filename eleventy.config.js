@@ -170,6 +170,10 @@ export default (eleventyConfig) => {
      * Useful for truncating lists, e.g. showing only the latest N items
      */
     eleventyConfig.addFilter("limit", function (array, limit) {
+        if (!Array.isArray(array)) {
+            return [];
+        }
+
         return array.slice(0, limit);
     });
 
