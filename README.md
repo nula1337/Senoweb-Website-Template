@@ -32,9 +32,11 @@ Tato šablona slouží jako základ pro tvorbu moderních, rychlých a plně př
 ## Použití šablony
 
 1. V horní části této stránky repozitáře klikněte na tlačítko **Use This Template** a vytvořte nový repozitář.
+
 > [!WARNING]
 > Veškeré projekty vytvářené pro **coalmarketing** musí mít repozitář založený výhradně pod GitHub organizací **coalmarketing**.
 > ![alt text](https://github.com/nula1337/Senoweb-Website-Template/blob/main/github/github-new-repository.png)
+
 2. Postupujte podle pokynů a vytvořte nový repozitář ze startovací sady.
 3. Naklonujte repozitář do svého počítače a otevřete jej v VS Code.
 4. Spusťte `npm install` a nainstalujte všechny závislosti.
@@ -53,7 +55,8 @@ Pro zpracování a optimalizaci obrázků využíváme oficiální plugin `@11ty
 Pro maximálně efektivní vývoj **důrazně doporučujeme přidat si do VS Code následující snippet**. Ten vám umožní rychle vložit obrázek a pomocí klávesy `Tab` snadno přeskakovat a nastavovat responsivní pravidla (`sizes`) přímo na míru vašemu Tailwind CSS layoutu.
 
 #### VS Code Snippet
-1. Ve VS Code přejděte do *Preferences > Configure User Snippets* a vyberte HTML (případně Nunjucks/Markdown).
+
+1. Ve VS Code přejděte do _Preferences > Configure User Snippets_ a vyberte HTML (případně Nunjucks/Markdown).
 2. Vložte následující kód:
 
 ```json
@@ -71,22 +74,24 @@ Pro maximálně efektivní vývoj **důrazně doporučujeme přidat si do VS Cod
 ```
 
 #### Jak to funguje
+
 Nemusíte ručně řešit 1.5x násobení pro Retina displeje. Jednoduše nastavte atribut `sizes` tak, aby odpovídal velikosti obrázku v rámci daného breakpointu (např. `50vw` pro dvousloupcový grid na tabletu nebo `min(100vw, 96rem)` pro full-width kontejner). Prohlížeč si na základě těchto instrukcí sám vybere ten nejvhodnější soubor, který Eleventy vygenerovalo. Změny výřezu řešte přímo pomocí tailwind tříd jako `object-cover` a `object-center`.
 
 ### Fluidní design
+
 V souboru `input.css` máme předpřipravené CSS proměnné pro **fluidní typografii a odsazení**. Tyto hodnoty se plynule a automaticky přepočítávají (škálují) podle aktuální šířky prohlížeče uživatele (od `400px` do `1536px`). Nemusíte tak složitě psát desítky mediálních dotazů pro každý breakpoint.
 
 Tato sekce v `input.css` vypadá následovně:
+
 ```css
 /* === FLUID CONFIG === */
 --fluid-min-width: 400;
 --fluid-max-width: 1536;
-  
+
 /* Tímto vzorcem se vypočítá průběh mezi minimální a maximální obrazovkou */
 --fluid-screen: 100vw;
 --fluid-bp: calc(
-    (var(--fluid-screen) - (var(--fluid-min-width) * 1px)) / 
-    (var(--fluid-max-width) - var(--fluid-min-width))
+	(var(--fluid-screen) - (var(--fluid-min-width) * 1px)) / (var(--fluid-max-width) - var(--fluid-min-width))
 );
 
 /* === FLUID TYPOGRAPHY === */
@@ -101,6 +106,7 @@ Tato sekce v `input.css` vypadá následovně:
 ```
 
 #### Jak to funguje
+
 Tyto proměnné můžete rovnou používat ve vašich tailwind třídách, například: `text-fluid-2xl-5xl` pro plynule se zvětšující nadpis, případně `px-fluid-4-8` pro flexibilní horizontální padding.
 
 ## Nasazení projektu
@@ -108,9 +114,9 @@ Tyto proměnné můžete rovnou používat ve vašich tailwind třídách, např
 1. Přejděte na [tento odkaz](https://dash.cloudflare.com/?to=/:account/workers-and-pages/create/pages) nebo v dashboardu Cloudflare přejděte na **Compute** → **Workers & Pages** → **Create application** → **Pages** → **Connect to Git**.
 2. Vyberte git repozitář z organizace coalmarketing.
 3. Použijte tuto konfiguraci pro **Build settings**:\
-![Cloudflare Pages Build settings](https://github.com/nula1337/Senoweb-Website-Template/blob/main/github/cloudflare-build-configuration.png)
+   ![Cloudflare Pages Build settings](https://github.com/nula1337/Senoweb-Website-Template/blob/main/github/cloudflare-build-configuration.png)
 4. Pro zrychlení následných buildů (zejména u optimalizace obrázků) zapněte v nastavení projektu **Settings** → **Build** → **Build cache** → **Enable**\
-![Cloudflare Pages Build cache](https://github.com/nula1337/Senoweb-Website-Template/blob/main/github/cloudflare-build-cache.png)
+   ![Cloudflare Pages Build cache](https://github.com/nula1337/Senoweb-Website-Template/blob/main/github/cloudflare-build-cache.png)
 
 ### Nastavení domény
 
@@ -132,20 +138,20 @@ Pro nastavení těchto redirectů je zapotřebí, aby byla doména přidána do 
 1. Než přejdete k dalšímu kroku, ujistěte se, že máte repozitář na GitHubu a že je váš web nasazen.
 2. Přihlaste se na stránce https://decapbridge.com/ přes coalmarketing účet.
 3. Přejděte na dashboard a klikněte na „Add site +“. Zobrazí se tato obrazovka:\
-![Decap Bridge New site configuration](https://github.com/nula1337/Senoweb-Website-Template/blob/main/github/cloudflare-build-configuration.png)
+   ![Decap Bridge New site configuration](https://github.com/nula1337/Senoweb-Website-Template/blob/main/github/cloudflare-build-configuration.png)
 4. Zadejte název repozitáře v tomto formátu `user-or-org/repository-name`, například: `coalmarketing/new-project`.
 5. Vytvořte Github access token:
-     - Přihlaste se ke svému účtu na GitHubu.
-     - Klikněte na svou profilovou fotku (vpravo nahoře) a klikněte na odkaz „Settings“.
-     - Přejděte dolů a klikněte na odkaz „Developer settings“.
-     - Klikněte na odkaz „Personal access tokens“ a vyberte možnost „Fine-grained tokens“.
-     - Klikněte na tlačítko „Generate new token“ a v případě potřeby zadejte své heslo znovu.
-     - Zadejte název tokenu například `Decap Bridge - Španělské Slunce`.
-     - Nastavte časový limit „Expiration“ přístupového tokenu na „No expiration“.
-     - Hodnotu „Repository access“ nastavte na „Only select repositories“ a vyberte repozitář projektu.
-     - V části „Permissions“ nastavte pro **Contents** a **Pull requests** oprávnění pro čtení a zápis. Decap CMS to potřebuje k načtení obsahu z repozitáře a následnému uložení změn.
-     - Klikněte na tlačítko „Generate token“, znovu zkontrolujte oprávnění a klikněte na tlačítko „Generate token“.
-     - Nezapomeňte si nyní zkopírovat vygenerovaný access token, protože jej již nebudete moci znovu zobrazit.
+   - Přihlaste se ke svému účtu na GitHubu.
+   - Klikněte na svou profilovou fotku (vpravo nahoře) a klikněte na odkaz „Settings“.
+   - Přejděte dolů a klikněte na odkaz „Developer settings“.
+   - Klikněte na odkaz „Personal access tokens“ a vyberte možnost „Fine-grained tokens“.
+   - Klikněte na tlačítko „Generate new token“ a v případě potřeby zadejte své heslo znovu.
+   - Zadejte název tokenu například `Decap Bridge - Španělské Slunce`.
+   - Nastavte časový limit „Expiration“ přístupového tokenu na „No expiration“.
+   - Hodnotu „Repository access“ nastavte na „Only select repositories“ a vyberte repozitář projektu.
+   - V části „Permissions“ nastavte pro **Contents** a **Pull requests** oprávnění pro čtení a zápis. Decap CMS to potřebuje k načtení obsahu z repozitáře a následnému uložení změn.
+   - Klikněte na tlačítko „Generate token“, znovu zkontrolujte oprávnění a klikněte na tlačítko „Generate token“.
+   - Nezapomeňte si nyní zkopírovat vygenerovaný access token, protože jej již nebudete moci znovu zobrazit.
 6. Vygenerovaný Github access token vložte do pole v Decap Bridge formuláři.
 7. Do pole „Your Decap CMS login URL“ vložte URL adresu administrace nasazeného projektu, například: `https://new-project.cz/admin/index.html`
 8. Volitelně nastavte personalizaci administrace pomocí nahrání loga projektu, zadání názvu a zvolení primární barvy.
@@ -162,16 +168,17 @@ Pro nastavení těchto redirectů je zapotřebí, aby byla doména přidána do 
 2. Přejděte na stránku „Projects“ a vytvořte nový projekt.
 3. Přejděte na stránku „Forms“ a vytvořte nový formulář.
 4. Po vytvoření formuláře Basin vytvoří endpoint odkaz, na který je možné odesílat zprávy z formuláře:\
-![Basin form endpoint](https://github.com/nula1337/Senoweb-Website-Template/blob/main/github/basin-new-form.png)
+   ![Basin form endpoint](https://github.com/nula1337/Senoweb-Website-Template/blob/main/github/basin-new-form.png)
 5. Tento odkaz je následně potřeba použít v atributu `action` tagu `form`:
+
 ```html
 <form method="POST" action="https://usebasin.com/f/3d1718590a84">
-  <label>
-    <span>Email</span>
-    <input class="input" type="email" name="Email" autocomplete="email" required>
-  </label>
+	<label>
+		<span>Email</span>
+		<input class="input" type="email" name="Email" autocomplete="email" required />
+	</label>
 
-  <button type="submit">Odeslat</button>
+	<button type="submit">Odeslat</button>
 </form>
 ```
 
@@ -179,7 +186,7 @@ Pro nastavení těchto redirectů je zapotřebí, aby byla doména přidána do 
 
 1. V nastavení formuláře v záložce „Emails“ nastavte emailové adresy, na které se budou zasílat vyplněné zprávy.
 2. Nastavte jazyk Basin notifikačních emailů na Čeština (Czech):\
-![Basin form language](https://github.com/nula1337/Senoweb-Website-Template/blob/main/github/basin-form-language.png)
+   ![Basin form language](https://github.com/nula1337/Senoweb-Website-Template/blob/main/github/basin-form-language.png)
 3. V záložce „Settings“ nastavte časové pásmo, jazyk a branding stránky s potvrzením úspěšného odeslání formuláře.
 4. Volitelně v záložce „Emails“ → „Config“ → „Mailer“ nahrajte vlastní logo projektu, které se zobrazuje v emailech a nastavte emailovou adresu, z které se notifikace odesílají (je potřeba mít doménu přidanou na stránce „Domains“).
 
@@ -190,40 +197,42 @@ Při odesílání požadavků ze serverless funkcí odcházejí všechny registr
 
 Chcete-li tomuto chování předejít, je nutné v požadavku z vaší serverless funkce předat skutečnou IP adresu uživatele a API klíč. Podpora Basin pro tento účel vyžaduje nastavení následujících hlaviček:
 
-*   `Basin-True-Client-IP`: Skutečná IP adresa koncového uživatele.
-*   `Basin-API-Key`: Váš API klíč (uložený v proměnných prostředí, např. `BASIN_FORM_API_KEY`).
+- `Basin-True-Client-IP`: Skutečná IP adresa koncového uživatele.
+- `Basin-API-Key`: Váš API klíč (uložený v proměnných prostředí, např. `BASIN_FORM_API_KEY`).
 
 ##### Získání API klíče formuláře
+
 ![Basin form API key](https://github.com/nula1337/Senoweb-Website-Template/blob/main/github/basin-form-api-key.png)
 
 ##### Příklad implementace (Cloudflare)
+
 Níže je uveden příklad, jak získat IP adresu uživatele a odeslat ji společně s daty na Basin API:
 
 ```javascript
 export async function onRequest(context) {
-  const { request, env } = context;
+	const { request, env } = context;
 
-  // 1. Získání IP adresy klienta (příklad pro Cloudflare a Netlify)
-  const userIp = request.headers.get("CF-Connecting-IP") || "";
+	// 1. Získání IP adresy klienta (příklad pro Cloudflare a Netlify)
+	const userIp = request.headers.get("CF-Connecting-IP") || "";
 
-  // 2. Načtení dat z formuláře odeslaného uživatelem
-  const formData = await request.formData();
+	// 2. Načtení dat z formuláře odeslaného uživatelem
+	const formData = await request.formData();
 
-  // 3. Odeslání dat na API Basin s potřebnými hlavičkami
-  const response = await fetch("https://usebasin.com/f/formId", {
-    method: "POST",
-    headers: {
-      "Accept": "application/json",
-      "Basin-True-Client-IP": userIp,
-      "Basin-API-Key": env.BASIN_FORM_API_KEY,
-    },
-    body: formData
-  });
+	// 3. Odeslání dat na API Basin s potřebnými hlavičkami
+	const response = await fetch("https://usebasin.com/f/formId", {
+		method: "POST",
+		headers: {
+			Accept: "application/json",
+			"Basin-True-Client-IP": userIp,
+			"Basin-API-Key": env.BASIN_FORM_API_KEY
+		},
+		body: formData
+	});
 
-  if (response.ok) {
-    return new Response(JSON.stringify({ success: true }), { status: 200 });
-  } else {
-    return new Response(JSON.stringify({ error: "Chyba při odesílání" }), { status: response.status });
-  }
+	if (response.ok) {
+		return new Response(JSON.stringify({ success: true }), { status: 200 });
+	} else {
+		return new Response(JSON.stringify({ error: "Chyba při odesílání" }), { status: response.status });
+	}
 }
 ```

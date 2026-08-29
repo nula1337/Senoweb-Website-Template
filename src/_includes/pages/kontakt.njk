@@ -1,44 +1,87 @@
 {% extends "layouts/base.njk" %}
 
 {% block body %}
-    {% include "sections/landing.njk" %}
+	{% include "sections/landing.njk" %}
 
-    <!-- CONTACT -->
-    <section class="py-fluid-16-24 px-fluid-4-8">
-        <div class="container m-auto">
-            <!-- CONTACT FORM -->
-            <form method="POST" action="" name="{{ form.name }}" class="flex flex-col gap-8" netlify netlify-honeypot="company">
-                <!-- HONEYPOT -->
-                <input class="sr-only" type="search" name="company" tabindex="-1" autocomplete="off" spellcheck="false" autocorrect="off" placeholder="Leave this empty">
+	<!-- CONTACT -->
+	<section class="py-fluid-16-24 px-fluid-4-8">
+		<div class="container m-auto">
+			<!-- CONTACT FORM -->
+			<form
+				class="flex flex-col gap-8"
+				method="POST"
+				action=""
+				name="{{ form.name }}"
+				netlify
+				netlify-honeypot="company"
+			>
+				<!-- HONEYPOT -->
+				<input
+					class="sr-only"
+					type="search"
+					name="company"
+					tabindex="-1"
+					autocomplete="off"
+					spellcheck="false"
+					autocorrect="off"
+					placeholder="Leave this empty"
+				/>
 
-                {% for field in form.fields %}
-                    <!-- {{ field.name | upper }} -->
-                    <label class="flex flex-col gap-2.5 max-sm:col-span-full" {%- if field.colSpan %} style="grid-column: span {{ field.colSpan }} / span {{ field.colSpan }};" {%- endif %}>
-                        {% if field.type === "textarea" %}
-                            <span class="label">{{ field.name }}</span>
-                            <textarea class="input min-h-[5lh] max-h-[30lh]" name="{{ field.name }}" rows="5" {%- if field.placeholder %} placeholder="{{ field.placeholder }}" {%- endif %} {%- if field.required %} required {%- endif %}></textarea>
+				{% for field in form.fields %}
+					<!-- {{ field.name | upper }} -->
+					<label
+						class="flex flex-col gap-2.5 max-sm:col-span-full"
+						{%- if field.colSpan %}
+							style="grid-column: span{{ field.colSpan }}/ span{{ field.colSpan }};"
+						{%- endif %}
+					>
+						{% if field.type === "textarea" %}
+							<span class="label">
+								{{ field.name }}
+							</span>
+							<textarea
+								class="input min-h-[5lh] max-h-[30lh]"
+								name="{{ field.name }}"
+								rows="5"
+								{%- if field.placeholder %}
+									placeholder="{{ field.placeholder }}"
+								{%- endif %}
+								{%- if field.required %}
+									required
+								{%- endif %}
+							></textarea>
+						{% else %}
+							<span class="label">
+								{{ field.name }}
+							</span>
+							<input
+								class="input"
+								type="{{ field.type }}"
+								name="{{ field.name }}"
+								{%- if field.autocomplete %}
+									autocomplete="{{ field.autocomplete }}"
+								{%- endif %}
+								{%- if field.placeholder %}
+									placeholder="{{ field.placeholder }}"
+								{%- endif %}
+								{%- if field.required %}
+									required
+								{%- endif %}
+							/>
+						{% endif %}
+					</label>
+				{% endfor %}
 
-                        {% else %}
-                            <span class="label">{{ field.name }}</span>
-                            <input 
-                                class="input"
-                                type="{{ field.type }}"
-                                name="{{ field.name }}"
-                                {%- if field.autocomplete %} autocomplete="{{ field.autocomplete }}" {%- endif %}
-                                {%- if field.placeholder %} placeholder="{{ field.placeholder }}" {%- endif %}
-                                {%- if field.required %} required {%- endif %}>
-
-                        {% endif %}
-                    </label>
-                {% endfor %}
-
-                <div class="flex flex-col gap-4">
-                    <button type="submit" class="btn">{{ form.submit }}</button>
-                    <p class="font-hind text-center text-stone-600 dark:text-stone-400">
-                        Odesláním formuláře souhlasíte se <a href="/gdpr" target="_blank" class="underline hover:text-black dark:hover:text-white">zpracováním osobních údajů</a>
-                    </p>
-                </div>
-            </form>
-        </div>
-    </section>
-{% endblock body %}
+				<div class="flex flex-col gap-4">
+					<button class="btn" type="submit">{{ form.submit }}</button>
+					<p class="font-hind text-center text-stone-600 dark:text-stone-400">
+						Odesláním formuláře souhlasíte se
+						<a class="underline hover:text-black dark:hover:text-white" href="/gdpr" target="_blank">
+							zpracováním osobních údajů
+						</a>
+					</p>
+				</div>
+			</form>
+		</div>
+	</section>
+{% endblock %}

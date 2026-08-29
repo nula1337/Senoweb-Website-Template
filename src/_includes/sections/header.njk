@@ -1,136 +1,156 @@
 <!-- HEADER -->
 <header id="cm-navigation" class="py-4 px-fluid-4-8 fixed flex w-full z-50">
-    <div class="container m-auto flex justify-between items-center gap-2">
-        <!-- LOGO -->
-        <div class="flex-1 flex">
-            <a href="/">
-                <span class="sr-only">Přejít na domovskou stránku</span>
-                <img
-                    class="hidden dark:block h-6 w-auto"
-                    src="/assets/svgs/senoweb-logo-white.svg"
-                    alt="Senoweb logo"
-                    loading="eager">
+	<div class="container m-auto flex justify-between items-center gap-2">
+		<!-- LOGO -->
+		<div class="flex-1 flex">
+			<a href="/">
+				<span class="sr-only">Přejít na domovskou stránku</span>
+				<img
+					class="hidden dark:block h-6 w-auto"
+					src="/assets/svgs/senoweb-logo-white.svg"
+					alt="Senoweb logo"
+					loading="eager"
+				/>
 
-                <img
-                    class="block dark:hidden h-6 w-auto"
-                    src="/assets/svgs/senoweb-logo-black.svg"
-                    alt="Senoweb logo"
-                    loading="eager">
-            </a>
-        </div>
+				<img
+					class="block dark:hidden h-6 w-auto"
+					src="/assets/svgs/senoweb-logo-black.svg"
+					alt="Senoweb logo"
+					loading="eager"
+				/>
+			</a>
+		</div>
 
-        <!-- NAVIGATION -->
-        <nav class="flex items-center">
-            <!-- MOBILE NAVIGATION TOGGLE -->
-            <button type="button" class="cm-toggle group flex lg:hidden justify-center items-center size-10 transition-transform duration-300" aria-label="Přepínač mobilní navigace" aria-expanded="false" aria-controls="cm-ul-wrapper" aria-haspopup="menu">
-                <span class="relative h-4 w-6 *:absolute *:left-0 *:h-0.5 *:w-full *:bg-black dark:*:bg-white *:transition-[top,bottom,rotate,opacity] *:duration-300" aria-hidden="true">
-                    <!-- LINES -->
-                    <span class="absolute top-0 group-[.cm-active]:top-1/2 group-[.cm-active]:-translate-y-1/2 group-[.cm-active]:rotate-225"></span>
-                    <span class="absolute top-1/2 -translate-y-1/2 group-[.cm-active]:-rotate-225"></span>
-                    <span class="absolute bottom-0 group-[.cm-active]:-translate-y-full group-[.cm-active]:opacity-0"></span>
-                </span>
-            </button>
+		<!-- NAVIGATION -->
+		<nav class="flex items-center">
+			<!-- MOBILE NAVIGATION TOGGLE -->
+			<button
+				class="cm-toggle group flex lg:hidden justify-center items-center size-10 transition-transform duration-300"
+				type="button"
+				aria-label="Přepínač mobilní navigace"
+				aria-expanded="false"
+				aria-controls="cm-ul-wrapper"
+				aria-haspopup="menu"
+			>
+				<span
+					class="relative h-4 w-6 *:absolute *:left-0 *:h-0.5 *:w-full *:bg-black dark:*:bg-white *:transition-[top,bottom,rotate,opacity] *:duration-300"
+					aria-hidden="true"
+				>
+					<!-- LINES -->
+					<span
+						class="absolute top-0 group-[.cm-active]:top-1/2 group-[.cm-active]:-translate-y-1/2 group-[.cm-active]:rotate-225"
+					></span>
+					<span class="absolute top-1/2 -translate-y-1/2 group-[.cm-active]:-rotate-225"></span>
+					<span class="absolute bottom-0 group-[.cm-active]:-translate-y-full group-[.cm-active]:opacity-0"></span>
+				</span>
+			</button>
 
-            <div id="cm-ul-wrapper">
-                <ul class="flex flex-col lg:flex-row gap-8">
-                    {# Loop through all items in the src/_data/navigation.js file #}
-                    {% for item in navigation[page.lang] %}
+			<div id="cm-ul-wrapper">
+				<ul class="flex flex-col lg:flex-row gap-8">
+					{# Loop through all items in the src/_data/navigation.js file #}
+					{% for item in navigation[page.lang] %}
+						{# Define a hasChild variable to make it easier to test what navigation items are have child dropdown pages #}
+						{% set hasChild = item.subitems.length %}
 
-                        {# Define a hasChild variable to make it easier to test what navigation items are have child dropdown pages #}
-                        {% set hasChild = item.subitems.length %}
+						<li
+							class="group/li relative inline-flex flex-col {% if hasChild -%} cm-dropdown {%- endif %}"
+							{%- if hasChild -%}
+								tabindex="0"
+							{%- endif %}
+						>
 
-                        <li
-                          class="group/li relative inline-flex flex-col {% if hasChild -%} cm-dropdown {%- endif %}"
-                          {%- if hasChild -%} tabindex="0" {%- endif %}>
+							{# If the page has child dropdown pages, render it as a <button> tag with the appropriate dropdown HTML #}
+							{% if hasChild %}
+								{# Render the <button> with the active class, dropdown icon and child links #}
+								<button
+									id="{{ item.title | slug }}-dropdown-toggle"
+									class="cm-dropdown-toggle flex items-center gap-1 p-fluid-2-4 text-gray-800 dark:text-gray-200 hover:text-black dark:hover:text-white"
+									type="button"
+									aria-haspopup="menu"
+									aria-expanded="false"
+								>
+									<span>{{ item.title }}</span>
 
-                            {# If the page has child dropdown pages, render it as a <button> tag with the appropriate dropdown HTML #}
-                            {% if hasChild %}
-                                {# Render the <button> with the active class, dropdown icon and child links #}
-                                <button
-                                    type="button"
-                                    id="{{ item.title | slug }}-dropdown-toggle"
-                                    class="cm-dropdown-toggle flex items-center gap-1 p-fluid-2-4 text-gray-800 dark:text-gray-200 hover:text-black dark:hover:text-white"
-                                    aria-haspopup="menu"
-                                    aria-expanded="false"
-                                >
-                                    <span>{{ item.title }}</span>
+									<!-- ICON -->
+									<svg
+										class="mb-0.5"
+										xmlns="http://www.w3.org/2000/svg"
+										width="12"
+										height="12"
+										fill="currentColor"
+										viewBox="0 0 16 16"
+									>
+										<path
+											d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"
+										/>
+									</svg>
+								</button>
 
-                                    <!-- ICON -->
-                                    <svg class="mb-0.5" xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" viewBox="0 0 16 16">
-                                        <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
-                                    </svg>
-                                </button>
+								{# Dropdowns have another ul/li set up within the parent li, which gets rendered in the same way as a normal link #}
+								<div class="cm-drop-ul">
+									<ul class="overflow-hidden" aria-labelledby="{{ item.title | slug }}-dropdown-toggle">
+										{% for subitem in item.subitems %}
+											<li>
+												<a class="li-link inline-flex p-fluid-2-4 text-fluid-sm-base whitespace-nowrap
+                                                    {%- if subitem.url === page.url %}text-black{%- else %}text-gray-800 hover:text-black{%- endif %}" href="{{ subitem.url }}" {%- if subitem.url === page.url -%}aria-current="page"{%- endif -%}>{{ subitem.title }}</a>
+											</li>
+										{% endfor %}
+									</ul>
+								</div>
+							{% else %}
+								{# Normal pages are rendered as <a> tags, in the normal way you'd expect #}
+								<a
+									class="w-full p-fluid-2-4 whitespace-nowrap {%- if item.url === page.url %} text-black dark:text-white {%- else %} text-gray-800 dark:text-gray-200 hover:text-black dark:hover:text-white {%- endif %}"
+									href="{{ item.url }}"
+									{%- if item.url === page.url -%}
+										aria-current="page"
+									{%- endif -%}
+								>
+									{{ item.title }}
+								</a>
+							{% endif %}
+						</li>
+					{% endfor %}
+				</ul>
+			</div>
+		</nav>
 
-                                {# Dropdowns have another ul/li set up within the parent li, which gets rendered in the same way as a normal link #}
-                                <div class="cm-drop-ul">
-                                    <ul class="overflow-hidden" aria-labelledby="{{ item.title | slug }}-dropdown-toggle">
-                                        {% for subitem in item.subitems %}
-                                            <li>
-                                                <a
-                                                    href="{{ subitem.url }}"
-                                                    class="li-link inline-flex p-fluid-2-4 text-fluid-sm-base whitespace-nowrap
-                                                    {%- if subitem.url === page.url %} text-black
-                                                    {%- else %} text-gray-800 hover:text-black {%- endif %}"
-                                                    {%- if subitem.url === page.url -%} aria-current="page" {%- endif -%}
-                                                >
-                                                    {{ subitem.title }}
-                                                </a>
-                                            </li>
-                                        {% endfor %}
-                                    </ul>
-                                </div>
-                            {% else %}
-                                {# Normal pages are rendered as <a> tags, in the normal way you'd expect #}
-                                <a
-                                    class="w-full p-fluid-2-4 whitespace-nowrap
-                                    {%- if item.url === page.url %} text-black dark:text-white
-                                    {%- else %} text-gray-800 dark:text-gray-200 hover:text-black dark:hover:text-white {%- endif %}"
-                                    href="{{ item.url }}"
-                                    {%- if item.url === page.url -%} aria-current="page" {%- endif -%}
-                                >
-                                    {{ item.title }}
-                                </a>
-                            {% endif %}
-                        </li>
-                    {% endfor %}
-                </ul>
-            </div>
-        </nav>
+		<!-- DARKMODE + CTA -->
+		<div class="flex items-center gap-2 lg:gap-4">
+			<!-- DARKMODE SWITCH -->
+			<label class="darkmode-container relative h-8 w-8 select-none hover:cursor-pointer" for="dark-mode-toggle">
+				<span class="sr-only">Přepínač tmavého režimu</span>
+				<input id="dark-mode-toggle" class="invisible" type="checkbox" />
 
-        <!-- DARKMODE + CTA -->
-        <div class="flex items-center gap-2 lg:gap-4">
-            <!-- DARKMODE SWITCH -->
-            <label class="darkmode-container relative h-8 w-8 select-none hover:cursor-pointer" for="dark-mode-toggle">
-                <span class="sr-only">Přepínač tmavého režimu</span>
-                <input id="dark-mode-toggle" type="checkbox" class="invisible">
+				<!-- LIGHTMODE -->
+				<img
+					class="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 transition-[translate,opacity] duration-300 opacity-100 dark:opacity-0 dark:-translate-y-6"
+					src="/assets/svgs/light_mode.svg"
+					alt="Ikona měsíce"
+					width="20"
+					height="20"
+					loading="eager"
+					decoding="async"
+					aria-hidden="true"
+					draggable="false"
+				/>
 
-                <!-- LIGHTMODE -->
-                <img
-                    class="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 transition-[translate,opacity] duration-300 opacity-100 dark:opacity-0 dark:-translate-y-6"
-                    src="/assets/svgs/light_mode.svg"
-                    alt="Ikona měsíce"
-                    width="20"
-                    height="20"
-                    loading="eager"
-                    decoding="async"
-                    aria-hidden="true"
-                    draggable="false">
+				<!-- LIGHTMODE -->
+				<img
+					class="absolute top-1/2 left-1/2 translate-y-6 -translate-x-1/2 transition-[translate,opacity] duration-300 opacity-0 dark:opacity-100 dark:-translate-y-1/2"
+					src="/assets/svgs/dark_mode.svg"
+					alt="Ikona měsíce"
+					width="20"
+					height="20"
+					loading="eager"
+					decoding="async"
+					aria-hidden="true"
+					draggable="false"
+				/>
+			</label>
 
-                <!-- LIGHTMODE -->
-                <img
-                    class="absolute top-1/2 left-1/2 translate-y-6 -translate-x-1/2 transition-[translate,opacity] duration-300 opacity-0 dark:opacity-100 dark:-translate-y-1/2"
-                    src="/assets/svgs/dark_mode.svg"
-                    alt="Ikona měsíce"
-                    width="20"
-                    height="20"
-                    loading="eager"
-                    decoding="async"
-                    aria-hidden="true"
-                    draggable="false">
-            </label>
-
-            <!-- CTA -->
-            <a href="/kontakt" class="btn max-lg:hidden">Kontakt</a>
-        </div>
-    </div>
+			<!-- CTA -->
+			<a class="btn max-lg:hidden" href="/kontakt">Kontakt</a>
+		</div>
+	</div>
 </header>

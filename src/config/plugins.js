@@ -13,5 +13,5 @@
 
 /** @type {I18nConfig} */
 export const configI18n = {
-    defaultLanguage: "cs"
+	defaultLanguage: "cs"
 };

@@ -45,19 +45,18 @@ collections:
           hint: "Určete, kam bude stránka zapsána. Pokud použijete „blogovy-prispevek“,
             bude příspěvek přístupný na adrese „/blog/blogovy-prispevek“. URL
             odkaz musí být jedinečný.",
-          pattern:
-            [
+          pattern: [
               "^[a-zà-ž0-9]+(?:-[a-zà-ž0-9]+)*$",
               "Pouze písmena (A-Z, a-z), číslice a pomlčky (-). Žádná lomítka
-                ani speciální znaky.",
-            ],
+              ani speciální znaky."
+            ]
         }
       - {
           label: "Popis",
           name: "description",
           widget: "string",
           hint: "Kratší popis blogového příspěvku, který se zobrazuje na náhledech
-            příspěvků",
+            příspěvků"
         }
       - { label: "Autor", name: "author", widget: "string" }
       - { label: "Datum", name: "date", widget: "datetime" }
@@ -72,8 +71,8 @@ collections:
               label: "Popis obrázku",
               name: "alt",
               widget: "string",
-              hint: "Popište, co je na obrázku. Slouží k validnímu SEO tohoto příspěvku.",
+              hint: "Popište, co je na obrázku. Slouží k validnímu SEO tohoto příspěvku."
             }
 
       - { label: "Obsah", name: "body", widget: "markdown" }
-      - { label: "Štítky", name: "tags", widget: "hidden", default: [ "blog" ] }
+      - { label: "Štítky", name: "tags", widget: "hidden", default: ["blog"] }

@@ -1,0 +1,26 @@
+---
+description: Rules for Eleventy template syntax, Nunjucks loops, image processing, and HTML markup
+globs: src/**/*.{njk,html,liquid,md}
+alwaysApply: false
+---
+# 11ty & HTML Template Standards
+
+## Image Processing (@11ty/eleventy-img)
+ALWAYS output images as standard `<img>` elements with explicit fluid `sizes`. The Eleventy HTML transform will auto-convert them into `<picture>` tags with generated AVIF/WebP/JPEG variants during build:
+
+```html
+<img
+  src="/assets/images/example.jpg"
+  alt="Popis obrázku"
+  sizes="(max-width: 48rem) 100vw, (max-width: 80rem) 100vw, 96rem"
+  class="w-full h-auto object-cover"
+>
+
+## Fluid Typography & Spacing
+Use our fluid CSS classes from `input.css` instead of fixed breakpoints when appropriate:
+- Text: `text-fluid-sm-base`, `text-fluid-lg-2xl`, `text-fluid-2xl-5xl`
+- Spacing/Padding: `px-fluid-4-8`, `py-fluid-16-24`, `spacing-fluid-2-4`, `spacing-fluid-4-8`, `spacing-fluid-16-24`
+
+## Nunjucks Patterns
+- Use `{% for item in navigation %}` loops for repeated structures.
+- Fetch client variables using `{{ client.name }}`, `{{ client.phone }}`, etc., from `src/_data/client.js`.

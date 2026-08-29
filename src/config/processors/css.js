@@ -4,7 +4,6 @@ import cssnano from "cssnano";
 import fs from "fs/promises";
 import path from "path";
 
-
 /**
  * Builds the main CSS bundle using PostCSS and Tailwind CSS.
  *
@@ -22,26 +21,26 @@ import path from "path";
  * await css({ minify: true });
  */
 export default async ({ minify = false }) => {
-    const inputPath = "./src/assets/css/input.css";
-    const outputDir = "./public/assets/css";
-    const outputPath = path.join(outputDir, "main.css");
+	const inputPath = "./src/assets/css/input.css";
+	const outputDir = "./public/assets/css";
+	const outputPath = path.join(outputDir, "main.css");
 
-    const css = await fs.readFile(inputPath, "utf8");
+	const css = await fs.readFile(inputPath, "utf8");
 
-    // Setup PostCSS plugins
-    const plugins = [tailwindcss];
+	// Setup PostCSS plugins
+	const plugins = [tailwindcss];
 
-    // Add minification if requested
-    if (minify) {
-        plugins.push(cssnano({ preset: 'default' }));
-    }
+	// Add minification if requested
+	if (minify) {
+		plugins.push(cssnano({ preset: "default" }));
+	}
 
-    // Process with PostCSS + Tailwind
-    const result = await postcss(plugins).process(css, {
-        from: inputPath,
-        to: outputPath
-    });
+	// Process with PostCSS + Tailwind
+	const result = await postcss(plugins).process(css, {
+		from: inputPath,
+		to: outputPath
+	});
 
-    await fs.mkdir(outputDir, { recursive: true });
-    await fs.writeFile(outputPath, result.css);
+	await fs.mkdir(outputDir, { recursive: true });
+	await fs.writeFile(outputPath, result.css);
 };

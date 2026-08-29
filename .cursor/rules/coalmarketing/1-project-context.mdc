@@ -1,0 +1,25 @@
+---
+description: Project stack, architecture, and constraints for Coalmarketing agency projects
+globs: *
+alwaysApply: true
+---
+# Senoweb 11ty Template Context (Coalmarketing / Cloudflare)
+
+## Tech Stack
+- **Framework**: Eleventy (11ty) static site generator with Nunjucks (`.njk`) templates.
+- **CSS**: Tailwind CSS v4 + Custom Fluid CSS variables in `src/assets/css/input.css`.
+- **Hosting & Infrastructure**: Cloudflare Pages.
+- **CMS**: Decap CMS (`src/admin/config.yml`) with Decap Bridge authentication.
+- **Forms**: Basin Forms (POST to `https://usebasin.com/f/{formId}` or Cloudflare Workers proxy with `Basin-True-Client-IP` & `Basin-API-Key`).
+- **Image Optimization**: `@11ty/eleventy-img` via HTML transform mode.
+
+## Key Configuration & Data Files
+- Client info: `src/_data/client.js`
+- Navigation: `src/_data/navigation.js`
+- CSS Input: `src/assets/css/input.css`
+- Admin Config: `src/admin/config.yml`
+
+## Project Workflow & Verification
+- **Build Command**: `npm run build`
+- **Dev Command**: `npm start`
+- **Output Directory**: Edit files inside `src/` ONLY. NEVER edit generated files inside `public/`.

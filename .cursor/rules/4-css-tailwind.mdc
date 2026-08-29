@@ -1,0 +1,10 @@
+---
+globs: src/assets/css/**/*.css, tailwind.config.js
+alwaysApply: false
+---
+# CSS & Tailwind Standards
+
+- The core fluid configuration lives in `src/assets/css/input.css`.
+- Do not overwrite `--fluid-min-width` or `--fluid-max-width` variables unless specifically requested.
+- Maintain existing `--fluid-bp` calculations for responsive scaling.
+- Keep custom CSS utilities clean and organized under standard Tailwind `@layer` directives if used.

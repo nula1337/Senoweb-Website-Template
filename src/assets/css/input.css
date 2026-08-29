@@ -6,137 +6,130 @@
 @plugin "@tailwindcss/forms";
 @plugin 'tailwind-scrollbar';
 
-
 /* ================= */
 /* === DARK MODE === */
 /* ================= */
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-
 /* ============= */
 /* === THEME === */
 /* ============= */
 
 @theme {
-  /* === FONTS === */
-  --font-sans: "Roboto", ui-sans-serif, system-ui, sans-serif;
+	/* === FONTS === */
+	--font-sans: "Roboto", ui-sans-serif, system-ui, sans-serif;
 
-  /* === COLORS === */
-  --color-primary: #E11D48;
+	/* === COLORS === */
+	--color-primary: #e11d48;
 
-  /* === FLUID CONFIG === */
-  --fluid-min-width: 400;
-  --fluid-max-width: 1536;
-  
-  /* This formula calculates the progress between min and max screens */
-  --fluid-screen: 100vw;
-  --fluid-bp: calc(
-    (var(--fluid-screen) - (var(--fluid-min-width) * 1px)) / 
-    (var(--fluid-max-width) - var(--fluid-min-width))
-  );
+	/* === FLUID CONFIG === */
+	--fluid-min-width: 400;
+	--fluid-max-width: 1536;
 
-  /* === FLUID TYPOGRAPHY === */
-  --text-fluid-sm-base: clamp(0.875rem, 0.875rem + (1 - 0.875) * 16 * var(--fluid-bp), 1rem);
-  --text-fluid-lg-2xl: clamp(1.125rem, 1.125rem + (1.5 - 1.125) * 16 * var(--fluid-bp), 1.5rem);
-  --text-fluid-2xl-5xl: clamp(1.5rem, 1.5rem + (3 - 1.5) * 16 * var(--fluid-bp), 3rem);
+	/* This formula calculates the progress between min and max screens */
+	--fluid-screen: 100vw;
+	--fluid-bp: calc(
+		(var(--fluid-screen) - (var(--fluid-min-width) * 1px)) / (var(--fluid-max-width) - var(--fluid-min-width))
+	);
 
-  /* === FLUID SPACING === */
-  --spacing-fluid-2-4: clamp(0.5rem, 0.5rem + (1 - 0.5) * 16 * var(--fluid-bp), 1rem);
-  --spacing-fluid-4-8: clamp(1rem, 1rem + (2 - 1) * 16 * var(--fluid-bp), 2rem);
-  --spacing-fluid-12-16: clamp(3rem, 3rem + (4 - 3) * 16 * var(--fluid-bp), 4rem);
-  --spacing-fluid-16-24: clamp(4rem, 4rem + (6 - 4) * 16 * var(--fluid-bp), 6rem);
-  --spacing-fluid-16-32: clamp(4rem, 4rem + (8 - 4) * 16 * var(--fluid-bp), 8rem);
+	/* === FLUID TYPOGRAPHY === */
+	--text-fluid-sm-base: clamp(0.875rem, 0.875rem + (1 - 0.875) * 16 * var(--fluid-bp), 1rem);
+	--text-fluid-lg-2xl: clamp(1.125rem, 1.125rem + (1.5 - 1.125) * 16 * var(--fluid-bp), 1.5rem);
+	--text-fluid-2xl-5xl: clamp(1.5rem, 1.5rem + (3 - 1.5) * 16 * var(--fluid-bp), 3rem);
+
+	/* === FLUID SPACING === */
+	--spacing-fluid-2-4: clamp(0.5rem, 0.5rem + (1 - 0.5) * 16 * var(--fluid-bp), 1rem);
+	--spacing-fluid-4-8: clamp(1rem, 1rem + (2 - 1) * 16 * var(--fluid-bp), 2rem);
+	--spacing-fluid-12-16: clamp(3rem, 3rem + (4 - 3) * 16 * var(--fluid-bp), 4rem);
+	--spacing-fluid-16-24: clamp(4rem, 4rem + (6 - 4) * 16 * var(--fluid-bp), 6rem);
+	--spacing-fluid-16-32: clamp(4rem, 4rem + (8 - 4) * 16 * var(--fluid-bp), 8rem);
 }
-
 
 /* ================== */
 /* === COMPONENTS === */
 /* ================== */
 
 @layer components {
-  /* === BUTTONS === */
-  .btn {
-    @apply relative text-white font-semibold overflow-hidden z-10 before:absolute before:top-0 before:left-0 before:h-full before:w-full before:bg-black before:-z-10 before:transition-transform before:duration-300 before:scale-y-0 before:origin-bottom hover:before:scale-y-100;
-  }
+	/* === BUTTONS === */
+	.btn {
+		@apply relative text-white font-semibold overflow-hidden z-10 before:absolute before:top-0 before:left-0 before:h-full before:w-full before:bg-black before:-z-10 before:transition-transform before:duration-300 before:scale-y-0 before:origin-bottom hover:before:scale-y-100;
+	}
 
-  .btn {
-    @apply py-2 px-6 bg-primary;
-  }
+	.btn {
+		@apply py-2 px-6 bg-primary;
+	}
 
-  .btn-lg {
-    @apply py-2 px-8 text-base;
-  }
+	.btn-lg {
+		@apply py-2 px-8 text-base;
+	}
 }
-
 
 /* ================= */
 /* === FAQ ITEMS === */
 /* ================= */
 
 details {
-  &::details-content {
-    block-size: 0;
-    display: block;
-    opacity: 0%;
-    transition-property: all;
-    transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
-    transition-duration: var(--tw-duration, var(--default-transition-duration));
-    transition-behavior: allow-discrete;
-  }
+	&::details-content {
+		block-size: 0;
+		display: block;
+		opacity: 0%;
+		transition-property: all;
+		transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+		transition-duration: var(--tw-duration, var(--default-transition-duration));
+		transition-behavior: allow-discrete;
+	}
 
-  &[open]::details-content {
-    block-size: auto;
-    block-size: calc-size(auto, size);
-    opacity: 100%;
-  }
+	&[open]::details-content {
+		block-size: auto;
+		block-size: calc-size(auto, size);
+		opacity: 100%;
+	}
 
-  summary {
-    display: inline-flex;
-    cursor: pointer;
-    align-items: center;
-  }
+	summary {
+		display: inline-flex;
+		cursor: pointer;
+		align-items: center;
+	}
 }
 
 details > summary::-webkit-details-marker {
-  display: none;
+	display: none;
 }
-
 
 /* ================== */
 /* === NAVIGATION === */
 /* ================== */
 
 .cm-drop-ul {
-  @apply absolute top-full left-0 min-w-52 bg-white shadow-md z-50 transition-[scale,opacity] duration-500 ease-in-out scale-y-0 origin-top opacity-0;
+	@apply absolute top-full left-0 min-w-52 bg-white shadow-md z-50 transition-[scale,opacity] duration-500 ease-in-out scale-y-0 origin-top opacity-0;
 }
 
 /* Show dropdown when active (via JS click) or hovered (on desktop) */
 .cm-dropdown.cm-active .cm-drop-ul,
 .cm-dropdown:hover .cm-drop-ul {
-  @apply scale-y-100 opacity-100;
+	@apply scale-y-100 opacity-100;
 }
 
 /* Mobile styles for the wrapper */
 @media (max-width: 1024px) {
-    #cm-ul-wrapper {
-      @apply absolute top-full left-0 h-auto w-full py-4 px-4 bg-white dark:bg-black shadow-md transition-[scale,opacity] duration-500 ease-in-out scale-y-0 origin-top opacity-0;
-    }
-    
-    #cm-navigation.cm-active #cm-ul-wrapper {
-      @apply scale-y-100 opacity-100;
-    }
+	#cm-ul-wrapper {
+		@apply absolute top-full left-0 h-auto w-full py-4 px-4 bg-white dark:bg-black shadow-md transition-[scale,opacity] duration-500 ease-in-out scale-y-0 origin-top opacity-0;
+	}
 
-    .cm-drop-ul {
-      /* static - stacks dropdowns vertically on mobile */
-      @apply static grid grid-rows-[0fr] shadow-none transition-[grid-template-rows] duration-500 ease-in-out;
-    }
+	#cm-navigation.cm-active #cm-ul-wrapper {
+		@apply scale-y-100 opacity-100;
+	}
 
-    .cm-dropdown.cm-active .cm-drop-ul {
-      @apply grid-rows-[1fr];
-    }
+	.cm-drop-ul {
+		/* static - stacks dropdowns vertically on mobile */
+		@apply static grid grid-rows-[0fr] shadow-none transition-[grid-template-rows] duration-500 ease-in-out;
+	}
+
+	.cm-dropdown.cm-active .cm-drop-ul {
+		@apply grid-rows-[1fr];
+	}
 }
-
 
 /* ============= */
 /* === FONTS === */
@@ -146,22 +139,28 @@ details > summary::-webkit-details-marker {
 
 /* raleway-latin-wght-normal */
 @font-face {
-  font-family: 'Raleway';
-  font-style: normal;
-  font-display: swap;
-  font-weight: 100 900;
-  src: url("../fonts/raleway-latin.woff2") format('woff2 supports variations'),
-    url("../fonts/raleway-latin.woff2") format('woff2');
-  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+	font-family: "Raleway";
+	font-style: normal;
+	font-display: swap;
+	font-weight: 100 900;
+	src:
+		url("../fonts/raleway-latin.woff2") format("woff2 supports variations"),
+		url("../fonts/raleway-latin.woff2") format("woff2");
+	unicode-range:
+		U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC,
+		U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
 /* raleway-latin-ext-wght-normal */
 @font-face {
-  font-family: 'Raleway';
-  font-style: normal;
-  font-display: swap;
-  font-weight: 100 900;
-  src: url("../fonts/raleway-latin-ext.woff2") format('woff2 supports variations'),
-    url("../fonts/raleway-latin-ext.woff2") format('woff2');
-  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+	font-family: "Raleway";
+	font-style: normal;
+	font-display: swap;
+	font-weight: 100 900;
+	src:
+		url("../fonts/raleway-latin-ext.woff2") format("woff2 supports variations"),
+		url("../fonts/raleway-latin-ext.woff2") format("woff2");
+	unicode-range:
+		U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F,
+		U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
