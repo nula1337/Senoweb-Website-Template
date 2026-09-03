@@ -34,7 +34,7 @@
 	let lastWindowWidth = window.innerWidth;
 
 	// Utilities
-	const isMobile = () => window.matchMedia(`(max-width: ${CONFIG.BREAKPOINTS.MOBILE}px)`).matches;
+	const isMobile = () => window.matchMedia(`(width < ${CONFIG.BREAKPOINTS.MOBILE}px)`).matches;
 
 	const toggleAttribute = (element, attribute, value1 = "true", value2 = "false") => {
 		if (!element) return;
