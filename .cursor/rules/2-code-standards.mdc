@@ -1,5 +1,5 @@
 ---
-description: Global code standards, scope guardrails, and automated verification rules
+description: Global code standards, scope guardrails, layout patterns, and style rules
 globs: *
 alwaysApply: true
 ---
@@ -8,23 +8,31 @@ alwaysApply: true
 ## Language
 - Primary language for site content and UI copy is **Czech** (unless requested otherwise).
 
-## Execution & Verification Guardrails
-1. **Scope Limit**: Edit ONLY files explicitly referenced or tagged using `@`. Do not modify unrequested files or refactor surrounding logic unless asked.
-2. **Match Existing Patterns**: Before inventing new structures, scan existing components or layout files in `src/` and duplicate their structural patterns.
-3. **Automated Verification**: After modifying or creating files, execute `npm run build` in the terminal to confirm there are no syntax or 11ty compilation errors. Include the build output status in your response.
+## Execution & Scope Guardrails
+1. **Strict Scope Limit**: Edit ONLY files explicitly referenced or tagged using `@`. Do not modify unrequested files or refactor surrounding logic unless asked.
+2. **Match Existing Patterns**: Before inventing new structures or data-fetching logic, scan existing components or layout files in `src/` and duplicate their structural patterns.
+3. **No Unnecessary File Rewrites**: Keep edits small and targeted. Only rewrite the specific lines or blocks necessary for the task.
+
+## Layout & Spacing Architecture
+- **Flexbox & Gaps over Margins**: ALWAYS use flexbox/grid containers with `gap-*` (or `gap-fluid-*`) to control spacing between sibling elements. Avoid applying top/bottom margins (`mt-*`, `mb-*`, `my-*`) directly to individual child elements.
+  - *Example*: Use `flex flex-col gap-fluid-6-8` on the parent instead of placing `mt-6` on child paragraphs.
+  - Margins are reserved strictly for positioning/alignment helpers (e.g., `m-auto`, `ml-auto`).
+- **Section Containers**: Main section wrappers should use `.container.m-auto` with flex column layouts to organize top-level content blocks.
+- **Section Data Attributes**: Use `data-*` attributes (e.g. `data-orientation`, `data-position`) combined with Tailwind `group-data-*` or `data-*` variants to handle layout variations cleanly.
+
+## HTML Markup & Comments
+- **Descriptive HTML Comments**: Structure component markup with uppercase section and block comments to clearly delineate component architecture (e.g., `<!-- EDITORIAL -->`, `<!-- TOPPER + TEXT -->`, `<!-- HEADING -->`, `<!-- TEXT + CTA -->`).
+- **Semantic Tags**: Always use proper semantic tags (`<header>`, `<nav>`, `<main>`, `<section>`, `<article>`, `<footer>`).
 
 ## CSS & Tailwind Rules
 - **No Arbitrary CSS Values**: NEVER use inline Tailwind pixel values (e.g. `h-[42px]` or `mt-[13px]`). Always use standard Tailwind spacing or custom fluid classes (`*-fluid-*`).
-- **Class Ordering**:
-  1. Positioning (`relative`, `absolute`, `fixed`, `inset-*`, `top-*`)
-  2. Display & Layout (`flex`, `grid`, `block`, `hidden`)
-  3. Box Model & Sizing (`size-full`, `w-full`, `max-w-*`, `m-*`, `p-*`)
-  4. Typography (`text-*`, `font-*`, `leading-*`, `uppercase`)
-  5. Visuals & Decoration (`bg-*`, `border-*`, `rounded-*`, `shadow-*`)
-  6. Filters & Backdrop filters (`blur-*`, `grayscale`, `backdrop-blur-*`)
-  7. Transitions & Transforms (`transition-*`, `duration-*`, `ease-*`, `translate-*`)
-  8. Hover & Other States (`hover:*`, `*:focus`, `data-active:*`, `aria-expanded:*`)
-  9. Pseudo-elements (`before:`, `after:`)
-
-## HTML Semantics
-- Always use semantic tags (`<header>`, `<nav>`, `<main>`, `<section>`, `<article>`, `<footer>`).
+- **Class Ordering**: Maintain strict logical class ordering:
+  1. **Positioning**: `relative`, `absolute`, `fixed`, `inset-*`, `top-*`, `z-*`
+  2. **Display & Layout**: `flex`, `flex-col`, `grid`, `block`, `hidden`, `items-*`, `justify-*`
+  3. **Box Model & Sizing**: `size-full`, `w-full`, `max-w-*`, `h-*`, `m-*`, `p-*`, `gap-*`, `gap-fluid-*`
+  4. **Typography**: `text-*`, `text-fluid-*`, `font-*`, `leading-*`, `uppercase`
+  5. **Visuals & Decoration**: `bg-*`, `border-*`, `rounded-*`, `shadow-*`
+  6. **Filters & Backdrop Filters**: `blur-*`, `grayscale`, `backdrop-blur-*`
+  7. **Transitions & Transforms**: `transition-*`, `duration-*`, `ease-*`, `translate-*`
+  8. **Hover & Other States**: `hover:*`, `focus:*`, `data-active:*`, `aria-expanded:*`, `group-data-*`
+  9. **Pseudo-elements**: `before:`, `after:`
