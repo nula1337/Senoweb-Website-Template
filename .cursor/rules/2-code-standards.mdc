@@ -9,9 +9,8 @@ alwaysApply: true
 - Primary language for site content and UI copy is **Czech** (unless requested otherwise).
 
 ## Execution & Scope Guardrails
-1. **Strict Scope Limit**: Edit ONLY files explicitly referenced or tagged using `@`. Do not modify unrequested files or refactor surrounding logic unless asked.
+1. **Targeted Scope**: Modify only tagged files (`@file`). When editing existing logic, make minimal surgical changes. When explicitly asked to create or scaffold a new section/component, generate the complete markup from start to finish without truncating.
 2. **Match Existing Patterns**: Before inventing new structures or data-fetching logic, scan existing components or layout files in `src/` and duplicate their structural patterns.
-3. **No Unnecessary File Rewrites**: Keep edits small and targeted. Only rewrite the specific lines or blocks necessary for the task.
 
 ## Layout & Spacing Architecture
 - **Flexbox & Gaps over Margins**: ALWAYS use flexbox/grid containers with `gap-*` (or `gap-fluid-*`) to control spacing between sibling elements. Avoid applying top/bottom margins (`mt-*`, `mb-*`, `my-*`) directly to individual child elements.
@@ -20,19 +19,32 @@ alwaysApply: true
 - **Section Containers**: Main section wrappers should use `.container.m-auto` with flex column layouts to organize top-level content blocks.
 - **Section Data Attributes**: Use `data-*` attributes (e.g. `data-orientation`, `data-position`) combined with Tailwind `group-data-*` or `data-*` variants to handle layout variations cleanly.
 
+### Canonical Section Pattern
+```html
+<section class="py-fluid-16-24 px-fluid-4-8">
+  <div class="container m-auto flex flex-col gap-fluid-8-12">
+    <!-- TOPPER + HEADING -->
+    <hgroup class="flex flex-col gap-fluid-2-4">
+      <span class="topper">Kategorie</span>
+      <h2 class="text-fluid-2xl-5xl font-bold">Nadpis</h2>
+    </hgroup>
+
+    <!-- GRID -->
+    <ul class="grid grid-cols-1 md:grid-cols-3 gap-fluid-4-8">
+      <!-- ITEM -->
+      <li class="flex flex-col gap-fluid-2-4">
+        <img src="/assets/images/foto.jpg" alt="Popis" sizes="(max-width: 48rem) 100vw, 33vw" class="w-full h-auto object-cover">
+        <h3 class="text-fluid-lg-2xl font-semibold">Položka</h3>
+      </li>
+    </ul>
+  </div>
+</section>
+```
+
 ## HTML Markup & Comments
 - **Descriptive HTML Comments**: Structure component markup with uppercase section and block comments to clearly delineate component architecture (e.g., `<!-- EDITORIAL -->`, `<!-- TOPPER + TEXT -->`, `<!-- HEADING -->`, `<!-- TEXT + CTA -->`).
 - **Semantic Tags**: Always use proper semantic tags (`<header>`, `<nav>`, `<main>`, `<section>`, `<article>`, `<footer>`).
 
 ## CSS & Tailwind Rules
 - **No Arbitrary CSS Values**: NEVER use inline Tailwind pixel values (e.g. `h-[42px]` or `mt-[13px]`). Always use standard Tailwind spacing or custom fluid classes (`*-fluid-*`).
-- **Class Ordering**: Maintain strict logical class ordering:
-  1. **Positioning**: `relative`, `absolute`, `fixed`, `inset-*`, `top-*`, `z-*`
-  2. **Display & Layout**: `flex`, `flex-col`, `grid`, `block`, `hidden`, `items-*`, `justify-*`
-  3. **Box Model & Sizing**: `size-full`, `w-full`, `max-w-*`, `h-*`, `m-*`, `p-*`, `gap-*`, `gap-fluid-*`
-  4. **Typography**: `text-*`, `text-fluid-*`, `font-*`, `leading-*`, `uppercase`
-  5. **Visuals & Decoration**: `bg-*`, `border-*`, `rounded-*`, `shadow-*`
-  6. **Filters & Backdrop Filters**: `blur-*`, `grayscale`, `backdrop-blur-*`
-  7. **Transitions & Transforms**: `transition-*`, `duration-*`, `ease-*`, `translate-*`
-  8. **Hover & Other States**: `hover:*`, `focus:*`, `data-active:*`, `aria-expanded:*`, `group-data-*`
-  9. **Pseudo-elements**: `before:`, `after:`
+- **Class Grouping**: Group classes logically: Layout (`flex`, `grid`) -> Spacing/Sizing (`w-*`, `p-*`, `gap-*`) -> Typography (`text-*`, `font-*`) -> Visuals (`bg-*`, `rounded-*`) -> States (`hover:*`). Detailed sorting is handled by Prettier.

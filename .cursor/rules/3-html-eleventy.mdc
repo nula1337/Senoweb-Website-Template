@@ -15,6 +15,7 @@ ALWAYS output images as standard `<img>` elements with explicit fluid `sizes`. T
   sizes="(max-width: 48rem) 100vw, (max-width: 80rem) 100vw, 96rem"
   class="w-full h-auto object-cover"
 >
+```
 
 ## Fluid Typography & Spacing
 Use our fluid CSS classes from `input.css` instead of fixed breakpoints when appropriate:
