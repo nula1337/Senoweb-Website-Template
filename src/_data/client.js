@@ -8,8 +8,18 @@ export default {
 		lineOne: "Třebovská 123",
 		city: "Ústí nad Orlicí",
 		zip: "56203",
+		state: "Pardubický kraj",
+		country: "CZ",
 		mapLink: "https://maps.app.goo.gl/GQmwqUWKd6JMZi8Y7"
 	},
+	geo: {
+		latitude: 49.707127956310046,
+		longitude: 16.519943548031982,
+	},
+	areaServed: "Česká republika",
+  	openingHours: [
+  	  "Mo-Fr 07:00-16:00",
+  	],
 	socials: {
 		facebook: "https://www.facebook.com/",
 		instagram: "https://www.instagram.com/",
